@@ -28,14 +28,14 @@
 }
 
 .container__box .header .header__wrapper .main__logo {
-    height: 2rem;
-    width: 6rem;
+    height: 24px;
+    width: auto;
     /* background-color: tomato; */
 }
 
 .container__box .header .header__wrapper .cart__icon {
-    height: 2rem;
-    width: 2rem;
+    height: 20px;
+    width: 16px;
     /* background-color: tomato; */
 }
 
