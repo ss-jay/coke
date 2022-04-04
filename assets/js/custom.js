@@ -9,9 +9,9 @@ window.onload = function () {
     }, 200);
 }
 
-(function() {
+(function () {
     console.log("ashish testing");
-})()
+})();
 
 function insertSearchBar() {
     document.getElementById("search_input").placeholder = config.search.placeholder;
