@@ -1,11 +1,13 @@
 (function () {
     console.log("ashish testing");
-    insertSearchBar();
-    insertTabContainer();
-    insertPromotionsContainer();
-    insertFilterBar();
-    insertProducts();
-    insertInnerProducts();
+    setTimeout(() => {
+        insertSearchBar();
+        insertTabContainer();
+        insertPromotionsContainer();
+        insertFilterBar();
+        insertProducts();
+        insertInnerProducts();
+    }, 500);
 })();
 
 function insertSearchBar() {
