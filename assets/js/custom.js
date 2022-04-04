@@ -1,16 +1,11 @@
-window.onload = function () {
-    setTimeout(() => {
-        insertSearchBar();
-        insertTabContainer();
-        insertPromotionsContainer();
-        insertFilterBar();
-        insertProducts();
-        insertInnerProducts();
-    }, 200);
-};
-
 (function () {
     console.log("ashish testing");
+    insertSearchBar();
+    insertTabContainer();
+    insertPromotionsContainer();
+    insertFilterBar();
+    insertProducts();
+    insertInnerProducts();
 })();
 
 function insertSearchBar() {
