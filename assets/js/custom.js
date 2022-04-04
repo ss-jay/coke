@@ -1,10 +1,13 @@
 window.onload = function () {
-    insertSearchBar();
-    insertTabContainer();
-    insertPromotionsContainer();
-    insertFilterBar();
-    insertProducts();
-    insertInnerProducts();
+    setTimeout(() => {
+        insertSearchBar();
+        insertTabContainer();
+        insertPromotionsContainer();
+        insertFilterBar();
+        insertProducts();
+        insertInnerProducts();
+    }, 200);
+    
 }
 
 function insertSearchBar() {
