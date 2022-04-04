@@ -1,11 +1,13 @@
-window.onload = function () {
-    insertSearchBar();
-    insertTabContainer();
-    insertPromotionsContainer();
-    insertFilterBar();
-    insertProducts();
-    insertInnerProducts();
-}
+(function () {
+    setTimeout(() => {
+        insertSearchBar();
+        insertTabContainer();
+        insertPromotionsContainer();
+        insertFilterBar();
+        insertProducts();
+        insertInnerProducts();
+    }, 500);
+})();
 
 function insertSearchBar() {
     document.getElementById("search_input").placeholder = config.search.placeholder;
