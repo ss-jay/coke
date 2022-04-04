@@ -7,8 +7,11 @@ window.onload = function () {
         insertProducts();
         insertInnerProducts();
     }, 200);
-    
 }
+
+(function() {
+    console.log("ashish testing");
+})()
 
 function insertSearchBar() {
     document.getElementById("search_input").placeholder = config.search.placeholder;
