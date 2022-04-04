@@ -15,6 +15,7 @@ function insertSearchBar() {
 }
 
 function insertTabContainer() {
+    console.log("insertTabContainer -> ", document.getElementById("tab_container"));
     $("#tab_container").prepend(`<p class="title">${config.tabs_section.tabs_title}</p>`)
     config.tabs_section.tabs.map((val, tabNum) => {
         let classname = val.active ? "'grid__item active'" : "'grid__item'";
