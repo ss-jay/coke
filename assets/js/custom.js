@@ -7,7 +7,7 @@ window.onload = function () {
         insertProducts();
         insertInnerProducts();
     }, 200);
-}
+};
 
 (function () {
     console.log("ashish testing");
