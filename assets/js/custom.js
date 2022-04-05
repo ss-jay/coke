@@ -13,6 +13,18 @@ function loadPageContent(page) {
         insertProducts();
         insertInnerProducts();
     }
+    
+    $('.product-bottom-details').click(function() {
+        addProducts(this)
+    });
+
+    $('.counter__minus').click(function () {
+        updateCounter(this, "minus");
+    });
+    
+    $('.counter__plus').click(function () {
+        updateCounter(this, "add");
+    });
 }
 
 function insertSearchBar() {
@@ -53,8 +65,24 @@ function insertPromotionsContainer() {
                         <p class="product__quantity">${promotion.description}</p>
                         <p class="product__price">${promotion.price}</p>
                     </div>
-                    <div class="product-bottom-details">
+                    <div class="product-bottom-details" id="product-bottom-details">
                         <div class="btn">ADD</div>
+                    </div>
+                    <div class="counter__wrapper hide">
+                        <div class="counter__container">
+                            <div class="counter__box__container">
+                                <div class="counter__minus" id="minus">
+                                    <img src="/assets/images/png/minus.png" />
+                                </div>
+                            </div>
+                        
+                            <input id="counter_input" class="counter__input home" type="text" value="1" size="1" maxlength="2" />
+                            <div class="counter__box__container">
+                                <div class="counter__plus" id="plus">
+                                    <img src="/assets/images/png/plus.png" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,6 +141,22 @@ function insertInnerProducts() {
                         <div class="product-bottom-details">
                             <div class="btn">ADD</div>
                         </div>
+                        <div class="counter__wrapper hide">
+                            <div class="counter__container">
+                                <div class="counter__box__container">
+                                    <div class="counter__minus" id="minus">
+                                        <img src="/assets/images/png/minus.png" />
+                                    </div>
+                                </div>
+                            
+                                <input id="counter_input" class="counter__input home" type="text" value="1" size="1" maxlength="2" />
+                                <div class="counter__box__container">
+                                    <div class="counter__plus" id="plus">
+                                        <img src="/assets/images/png/plus.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `);
@@ -122,14 +166,76 @@ function insertInnerProducts() {
 
 
 function switchTabs(id) {
-    let containerId = "tab_grid_item" + id;
-    setTimeout(() => {
-        let classlist = Array.from(document.getElementById(containerId).classList);
-        if (classlist.includes("active")) {
-            console.log("ashish")
-        } else {
+    event.preventDefault();
+    let siblings = $(event.target).siblings();
+    let parsedSiblings = [...siblings]
+    parsedSiblings.forEach(ele => {
+        $(ele).removeClass("active");
+    });
 
-        }
-    }, 100);
+    switch (id) {
+        case 0:
+            $(`#tab_grid_item${id}`).addClass("active");
+            $("#product_wrapper").show();
+            $("#promotions_container").show();
+            $("#promotions_products_container").show();
+            break;
+        case 1:
+            $(`#tab_grid_item${id}`).addClass("active");
+            $("#promotions_container").hide();
+            $("#product_wrapper").show();
+            break;
+        case 2:
+            $(`#tab_grid_item${id}`).addClass("active");
+            $("#promotions_products_container").hide();
+            $("#promotions_container").hide();
+            $("#product_wrapper").hide();
+            break;
+        default:
+            break;
+    }
 
+}
+
+
+
+function addProducts(quantityInput) {
+    let siblingWrapper = $(quantityInput).siblings(".counter__wrapper");
+    $(quantityInput).hide();
+    $(siblingWrapper).show();
+    let numberCircleCount = $("#numberCircle").attr("value");
+    let parseCount = Number(numberCircleCount)
+    let updatedValue = parseCount + 1;
+    $("#numberCircle").attr("value", updatedValue);
+    $("#numberCircle").text(updatedValue);
+}
+
+
+function updateCounter(counterInput, type) {
+    let siblingWrapper = $(counterInput).parent().siblings(".counter__input");
+    if(type === "add") {
+        var $input = $(siblingWrapper);
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        let numberCircleCount = $("#numberCircle").attr("value");
+        let parseCount = Number(numberCircleCount)
+        let updatedValue = parseCount + 1;
+        $("#numberCircle").attr("value", updatedValue);
+        $("#numberCircle").text(updatedValue);
+        return false;
+    }
+
+    if(type === "minus") {
+        var $input = $(siblingWrapper);
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        let numberCircleCount = $("#numberCircle").attr("value");
+        let parseCount = Number(numberCircleCount)
+        let updatedValue = parseCount - 1;
+        $("#numberCircle").attr("value", updatedValue);
+        $("#numberCircle").text(updatedValue);
+        return false;
+    }
 }

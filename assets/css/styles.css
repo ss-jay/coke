@@ -24,13 +24,32 @@
 .header .header__wrapper .main__logo {
     height: 24px;
     width: auto;
-    /* background-color: tomato; */
 }
 
 .header .header__wrapper .cart__icon {
     height: 20px;
     width: 16px;
-    /* background-color: tomato; */
+    position: relative;
+}
+
+
+.header .header__wrapper .cart__icon .numberCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #F4000B;
+    background-color: #F4000B;
+    border-radius: 50%;
+    font-size: 8px;
+    font-weight: 600;
+    padding: 8px;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: -5px;
+    right: -10px;
 }
 
 .container__box {
@@ -132,12 +151,14 @@
     width: 36px;
     height: 36px;
     margin: 0 auto 5px auto;
+    pointer-events: none;
 }
 
 .grid__item .icon__wrapper .icon {
     height: auto;
     width: 100%;
     object-fit: cover;
+    pointer-events: none;
 }
 
 .grid__item .detail {

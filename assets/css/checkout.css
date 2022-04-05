@@ -168,6 +168,7 @@
 
 .product__counter .icon__wrapper {
     margin-bottom: 16px;
+    pointer-events: none;
 }
 
 .name {
@@ -230,6 +231,11 @@
     border-radius: 6px;
 }
 
+.counter__wrapper .counter__container {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 .counter__box__container {
     padding: 5px 0px;
 }
@@ -254,6 +260,11 @@
     box-sizing: border-box;
     border-radius: 2px;
     font-size: 14px;
+}
+
+.counter__container .counter__input.home {
+    padding: 0px 4px;
+    margin: 6px 10px;
 }
 
 .coupon__banner__container {

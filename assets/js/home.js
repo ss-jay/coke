@@ -14,7 +14,6 @@ function renderPage(page) {
     } 
     
     if(page === "checkoutpage") {
-        console.log(page)
         document.getElementById(`${page}`).style.display = "block";
         document.getElementById(`homepage`).style.display = "none";
     }
