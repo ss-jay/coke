@@ -1,0 +1,368 @@
+.checkout__container {
+    display: none;
+}
+
+.checkout__container .title {
+    padding: 16px 16px 8px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+}
+
+.checkout__container .order__wrapper,
+.checkout__container .offer__info__wrapper {
+    padding: 8px 16px 8px 16px;
+}
+
+.checkout__container .order__wrapper .title {
+    padding: 8px 0 8px 0 ;
+}
+
+.checkout__container .order__container,
+.checkout__container .offer__container {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.order__section,
+.checkout__container .offer__info__section {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    background-color: #fff;
+}
+
+.checkout__container .offer__info__section {
+    display: block;
+}
+
+.order__section::before,
+.checkout__container .offer__info__section::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 16px;
+    right: 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.order__section:last-child::before,
+.checkout__container .offer__info__section:last-child::before {
+    border-bottom: none;
+}
+
+.offer__bar__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.offer__bar__box .offer__name__box {
+    display: flex;
+    align-items: center;
+}
+
+.offer__bar__box .offer__name__box .icon {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    margin-right: 10px;
+}
+
+.offer__bar__box .offer__name__box .name {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+}
+
+.offer__bar__box .offer__apply {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    color: #f4000b;
+}
+
+.offer__info__section .offer__info {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #F4000B;
+}
+
+.checkout__container .offer__info__section .offer__info__description {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #999999;
+    padding-bottom: 8px;
+}
+
+.checkout__container .offer__info__section .more__descriptionbox .more__cta {
+    font-weight: 700;
+    font-size: 12px;
+    color: #333333;
+}
+
+.checkout__container .offer__info__section .more__descriptionbox .description__details {
+    display: none;
+}
+
+.checkout__container .offer__info__section .more__descriptionbox .description__details .title {
+    font-weight: 700;
+    font-size: 12px;
+    color: #333333;
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+.checkout__container .offer__info__section .more__descriptionbox .description__details .list__points {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #999999;
+    margin-bottom: 8px;
+}
+
+.checkout__container .offer__info__section .more__descriptionbox .description__details .list__points:last-child {
+    margin-bottom: 0px;
+}
+
+.details__section {
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-right: 8px;
+}
+
+.product__counter {
+    width: 40%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 12px;
+    color: #f4000b;
+}
+
+.discount {
+    font-weight: 400;
+    font-size: 10px;
+    text-decoration-line: line-through;
+    color: #999999;
+}
+
+.description,
+.discount__detail {
+    font-weight: 400;
+    font-size: 12px;
+    color: #999999;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 68%;
+}
+
+.discount__detail__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.discount__detail__bar span {
+    position: absolute;
+    right: 0;
+    font-weight: 400;
+    font-size: 12px;
+    color: #f4000b;
+    align-self: flex-end;
+    white-space: nowrap;
+}
+
+.counter__container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4000b;
+    padding: 0 15px;
+    border-radius: 6px;
+}
+
+.counter__box__container {
+    padding: 5px 0px;
+}
+
+.counter__container .counter__minus,
+.counter__container .counter__plus {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.counter__container .counter__input {
+    padding: 2px 4px;
+    text-align: center;
+    margin: 5px 10px;
+    color: #ffffff;
+    background: #d21724;
+    border: 1px solid #bb1723;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.coupon__banner__container {
+    padding: 16px;
+}
+
+.coupon__banner__container .title {
+    padding: 0 0 8px 0;
+}
+
+.coupon__banner__container .svg__box {
+    height: 146px;
+    width: 83.02px;
+}
+
+.coupon__banner__container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.banner__wrapper {
+    display: flex;
+    background-color: #fff;
+}
+
+.banner__wrapper .detail__box {
+    width: -webkit-fill-available;
+    padding: 8.5px;
+}
+
+.banner__wrapper .detail__box .box__wrapper {
+    width: 100%;
+    height: 100%;
+    border: 1px dashed #f4000b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.discount__info {
+    border: 1px solid #271d1c;
+    border-radius: 4px;
+    position: relative;
+    padding: 15px 26px;
+    width: 70%;
+}
+.discount__info .title {
+    position: absolute;
+    top: -0.3rem;
+    bottom: 0;
+    left: 0;
+    /* margin: 0 16px; */
+    margin: 0 1rem;
+    padding: 0;
+    right: 0px;
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 9px;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    height: 12px;
+}
+
+.discount__info .discount_name {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.banner__wrapper .detail__box .box__wrapper .discount__detail {
+    font-weight: 400;
+    font-size: 11px;
+    color: #333333;
+    margin-top: 6.5px;
+}
+
+.coupon__banner__container .view__more {
+    font-weight: 400;
+    font-size: 14px;
+    padding-top: 12px;
+    color: #f4000b;
+    text-decoration: underline;
+    text-align: right;
+}
+
+.delivery__details__container,
+.delivery__details__container .summary__wrapper,
+.delivery__details__container,
+.delivery__details__container .details__wrapper {
+    padding: 16px;
+}
+
+.delivery__details__container .title,
+.delivery__details__container .title {
+    padding: 0 0 8px 0;
+}
+
+.delivery__details__container .summary__wrapper,
+.delivery__details__container .details__wrapper {
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.delivery__details__container .summary__wrapper .detail,
+.delivery__details__container .summary__wrapper .detail__num,
+.delivery__details__container .details__wrapper .address {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: #999999;
+    margin-bottom: 8px;
+}
+
+.delivery__details__container .details__wrapper .address {
+    max-width: 80%;
+}
+
+.order__summary__container .summary__wrapper .detail__num,
+.delivery__details__container .details__wrapper .mobile,
+.delivery__details__container .details__wrapper .email {
+    color: #f4000b;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: underline;
+}
