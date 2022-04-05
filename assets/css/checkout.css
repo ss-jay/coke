@@ -14,8 +14,15 @@
     padding: 8px 16px 8px 16px;
 }
 
+.checkout__container .more__offers__parent__container {
+    display: none;
+    overflow: hidden;
+    height: 0;
+    transition: height 1.5s ease;
+}
+
 .checkout__container .order__wrapper .title {
-    padding: 8px 0 8px 0 ;
+    padding: 8px 0 8px 0;
 }
 
 .checkout__container .order__container,
@@ -69,7 +76,7 @@
 .offer__bar__box .offer__name__box .icon {
     width: 20px;
     height: 20px;
-    border: 1px solid #E0E0E0;
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
     display: flex;
     align-items: center;
@@ -96,7 +103,7 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 18px;
-    color: #F4000B;
+    color: #f4000b;
 }
 
 .checkout__container .offer__info__section .offer__info__description {
@@ -115,6 +122,9 @@
 
 .checkout__container .offer__info__section .more__descriptionbox .description__details {
     display: none;
+    overflow: hidden;
+    height: 0;
+    transition: height 1.5s ease;
 }
 
 .checkout__container .offer__info__section .more__descriptionbox .description__details .title {
@@ -275,7 +285,7 @@
 .coupon__banner__container .svg__box .name {
     font-weight: 700;
     font-size: 20px;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-bottom: 3px;
 }
 
@@ -360,6 +370,16 @@
     text-align: right;
 }
 
+.more__offers__parent__container .view__less {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration-line: underline;
+    color: #F4000B;
+    padding: 0 16px 16px 16px;
+    text-align: right;
+}
+
 .delivery__details__container,
 .delivery__details__container .summary__wrapper,
 .delivery__details__container,
@@ -399,4 +419,46 @@
     font-size: 14px;
     line-height: 20px;
     text-decoration: underline;
+}
+
+.delivery__details__container .price__cart__box {
+
+}
+
+.delivery__details__container .price__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.delivery__details__container .price__item.total {
+    margin-top: 20px;
+}
+
+.delivery__details__container .price__item .key {
+    font-weight: 400;
+    font-size: 12px;
+    color: #333333;
+}
+
+.delivery__details__container .price__item .item {
+    font-weight: 100;
+    font-size: 12px;
+    text-align: right;
+    color: #333333;
+}
+
+.delivery__details__container .price__item .key.bold {
+    font-weight: 700;
+}
+
+.delivery__details__container .price__item .key.red,
+.delivery__details__container .price__item .item.red {
+    color: #F4000B;
+}
+
+.delivery__details__container .price__item .key.bold.total,
+.delivery__details__container .price__item .item.red.total {
+    font-size: 14px;
 }
