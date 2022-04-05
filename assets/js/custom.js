@@ -1,12 +1,12 @@
 (function () {
-    setTimeout(() => {
-        insertSearchBar();
-        insertTabContainer();
-        insertPromotionsContainer();
-        insertFilterBar();
-        insertProducts();
-        insertInnerProducts();
-    }, 500);
+    // setTimeout(() => {
+    //     insertSearchBar();
+    //     insertTabContainer();
+    //     insertPromotionsContainer();
+    //     insertFilterBar();
+    //     insertProducts();
+    //     insertInnerProducts();
+    // }, 500);
 })();
 
 function insertSearchBar() {
