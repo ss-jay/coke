@@ -138,7 +138,7 @@
 }
 
 .details__section {
-    width: 60%;
+    width: 65%;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -147,13 +147,17 @@
 }
 
 .product__counter {
-    width: 40%;
+    width: 35%;
     height: 100%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.product__counter .icon__wrapper {
+    margin-bottom: 16px;
 }
 
 .name {
@@ -203,8 +207,12 @@
     white-space: nowrap;
 }
 
-.counter__container {
-    display: inline-flex;
+.counter__wrapper {
+    width: 100%;
+}
+
+.counter__wrapper .counter__container {
+    display: flex;
     align-items: center;
     justify-content: center;
     background: #f4000b;
