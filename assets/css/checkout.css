@@ -313,26 +313,26 @@
     text-align: right;
 }
 
-.order__summary__container,
-.order__summary__container .summary__wrapper,
+.delivery__details__container,
+.delivery__details__container .summary__wrapper,
 .delivery__details__container,
 .delivery__details__container .details__wrapper {
     padding: 16px;
 }
 
-.order__summary__container .title,
+.delivery__details__container .title,
 .delivery__details__container .title {
     padding: 0 0 8px 0;
 }
 
-.order__summary__container .summary__wrapper,
+.delivery__details__container .summary__wrapper,
 .delivery__details__container .details__wrapper {
     background-color: #fff;
     border-radius: 6px;
 }
 
-.order__summary__container .summary__wrapper .detail,
-.order__summary__container .summary__wrapper .detail__num,
+.delivery__details__container .summary__wrapper .detail,
+.delivery__details__container .summary__wrapper .detail__num,
 .delivery__details__container .details__wrapper .address {
     font-weight: 400;
     font-size: 13px;

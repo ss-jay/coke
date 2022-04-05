@@ -289,7 +289,7 @@
 
 .product__wrapper .product__header__bar {
     margin: 24px 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
 }

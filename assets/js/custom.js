@@ -1,13 +1,19 @@
 (function () {
-    // setTimeout(() => {
-    //     insertSearchBar();
-    //     insertTabContainer();
-    //     insertPromotionsContainer();
-    //     insertFilterBar();
-    //     insertProducts();
-    //     insertInnerProducts();
-    // }, 500);
+    setTimeout(() => {
+        loadPageContent("homepage")
+    }, 500);
 })();
+
+function loadPageContent(page) {
+    if(page === "homepage") {
+        insertSearchBar();
+        insertTabContainer();
+        insertPromotionsContainer();
+        insertFilterBar();
+        insertProducts();
+        insertInnerProducts();
+    }
+}
 
 function insertSearchBar() {
     document.getElementById("search_input").placeholder = config.search.placeholder;
@@ -57,6 +63,9 @@ function insertPromotionsContainer() {
 }
 
 function insertFilterBar() {
+    if(!($("#product_header_bar").is(":visible"))) {
+        $("#product_header_bar").css('display', 'flex');
+    }
     $("#product_header_bar").prepend(`<p class="title">${config.filterbar.title}</p>`)
     config.filterbar.menu.map((item) => {
         $("#dropdown_items").append(`<li class="item-drop">${item.name}</li>`);
