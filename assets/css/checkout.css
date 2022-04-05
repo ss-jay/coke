@@ -249,6 +249,32 @@
 .coupon__banner__container .svg__box {
     height: 146px;
     width: 83.02px;
+    position: relative;
+}
+
+.coupon__banner__container .svg__box .coupon__name__box {
+    height: 40px;
+    width: max-content;
+    transform: rotate(-90deg);
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.coupon__banner__container .svg__box .name {
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-bottom: 3px;
+}
+
+.coupon__banner__container .svg__box .stripes {
+    width: 100%;
+    height: 16px;
+    background: repeating-linear-gradient(to right, #fff 4px, #ffff 7px, #f4000b 2px, #f4000b 10px);
 }
 
 .coupon__banner__container img {
