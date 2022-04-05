@@ -58,11 +58,24 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 8px;
 }
 
 .offer__bar__box .offer__name__box {
     display: flex;
     align-items: center;
+}
+
+.offer__bar__box .offer__name__box .icon {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    margin-right: 10px;
 }
 
 .offer__bar__box .offer__name__box .name {
