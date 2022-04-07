@@ -32,7 +32,7 @@
     background-color: #fff;
 }
 
-.order__section,
+.checkout__container .order__section,
 .checkout__container .offer__info__section {
     position: relative;
     display: flex;
@@ -41,7 +41,7 @@
     padding: 16px;
 }
 
-.offer__info__section {
+.checkout__container .offer__info__section {
     background-color: #fff;
 }
 
@@ -50,7 +50,7 @@
     display: block;
 }
 
-.order__section::before,
+.checkout__container .order__section::before,
 .checkout__container .offer__info__section::before {
     content: "";
     position: absolute;
@@ -61,7 +61,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.order__section:last-child::before,
+.checkout__container .order__section:last-child::before,
 .checkout__container .offer__info__section:last-child::before {
     border-bottom: none;
 }
@@ -239,6 +239,11 @@
 .counter__wrapper .counter__container {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.counter__wrapper .counter__container.checkout {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 .counter__box__container {

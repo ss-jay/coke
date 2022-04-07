@@ -4,7 +4,6 @@
 
 function loadCheckoutPageContent(page) {
     if(page === "checkoutpage") {
-        // insertOrderCart();
         insertSelectedCoupon(config.checkout.discounts[1]);
         insertDiscountSection();
         insertDistributorAddress();
@@ -22,6 +21,7 @@ function loadCheckoutPageContent(page) {
 }
 
 function insertOrderCart(orderCart) {
+    $("#favourites_container_title").show();
     orderCart.map((product, index) => {
         $("#order_checkout_cart").append(`
             <div class="order__section">
@@ -29,7 +29,7 @@ function insertOrderCart(orderCart) {
                     <div class="name">${product.name}</div>
                     <div class="discount__offer">
                         <span class="price">$${product.price}</span>
-                        <span class="discount">$${product.discount}</span>
+                        <span class="discount">$${product.costprice}</span>
                     </div>
                     <div class="discount__detail">${product.discount_detail}</div>
                     <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
@@ -40,7 +40,7 @@ function insertOrderCart(orderCart) {
                     </div>
 
                     <div class="counter__wrapper">
-                        <div class="counter__container">
+                        <div class="counter__container checkout">
                             <div class="counter__box__container">
                                 <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
                                     <img src="/assets/images/png/minus.png" />
@@ -230,31 +230,40 @@ function addDiscount(node) {
     let decodedDiscountData = JSON.parse(decodeURIComponent(discountData));
     insertSelectedCoupon(decodedDiscountData, "update");
     hideDiscount();
+    recalculateCart(decodedDiscountData);
 }
 
 function processQ(data) {
     insertOrderCart([...data]);
-    recalculateCart(...data);
+    recalculateCart(config.checkout.discounts[1]);
 }
 
-function recalculateCart(product) {
+function recalculateCart(discountData) {
+    console.log("ass ", discountData)
     let subtotal = 0;
     /* Sum up row totals */
     checkoutData.forEach((val, i) => {
         subtotal += parseFloat(val.price);
     });
-
     /* Calculate totals */
     let tax = subtotal * 0.18;
-    let discount = subtotal * 0.20;
+    let discount = subtotal * (parseInt(discountData.discount)/100);
     let total = subtotal + tax - discount ;
 
     /* Update totals display */
     $('.item').fadeOut(300, function () {
         $('#item_total').text(subtotal.toFixed(2));
+        $('#item_total').attr("orderValue" , subtotal.toFixed(2));
+
         $('#tax_charges').text(tax.toFixed(2));
+        $('#tax_charges').attr("orderValue", tax.toFixed(2));
+        
         $('#discout_perc').text(discount.toFixed(2));
+        $('#discout_perc').attr("orderValue", toFixed(2));
+        
         $('#grand_total').text(total.toFixed(2));
+        $('#grand_total').attr("orderValue", total.toFixed(2));
+        
         $('.item').fadeIn(300);
     });
 }
