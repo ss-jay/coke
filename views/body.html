@@ -8,7 +8,10 @@
         <!-- Search Box -->
         <div class="search__container">
             <div class="search__icon__box"></div>
-            <input id="search_input" class="search__input" />
+            <input id="search_input" class="search__input"/>
+            <div class="search__product__box" id="search_product_box">
+                <div id="search_product_wrap"></div>
+            </div>
         </div>
 
 
@@ -35,7 +38,20 @@
             </div>
         </div>
 
-        <div class="product__wrapper">
+        <!-- Recent order history container -->
+        <div class="orderhistory__container" id="orderhistory_container">
+            
+            <div class="orderhistory__container__inner" id="orderhistory_container__inner">
+                
+            </div>
+
+            <div class="title" id="favourites_container_title">Your favourite products</div>
+            
+            <div class="products__container favourites" id="favourites__container">
+            </div>
+        </div>
+
+        <div class="product__wrapper" id="product_wrapper">
             <div class="product__header__bar" id="product_header_bar">
                 
 
@@ -43,7 +59,7 @@
                 <div class="dropdown__filter">
                     <label class="drop">
                         <input type="checkbox" id="target-drop-example">
-                        <span class="control">Sort by: <strong>Volume</strong></span>
+                        <span class="control">Sort by: <strong><span id="dpValue">Volume</span></strong></span>
                         <ul class="drop-items" id="dropdown_items">
 
                         </ul>

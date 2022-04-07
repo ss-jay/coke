@@ -29,23 +29,28 @@
 .checkout__container .offer__container {
     border-radius: 6px;
     overflow: hidden;
+    background-color: #fff;
 }
 
-.order__section,
+.checkout__container .order__section,
 .checkout__container .offer__info__section {
     position: relative;
     display: flex;
     width: 100%;
     max-width: 100%;
     padding: 16px;
+}
+
+.checkout__container .offer__info__section {
     background-color: #fff;
 }
+
 
 .checkout__container .offer__info__section {
     display: block;
 }
 
-.order__section::before,
+.checkout__container .order__section::before,
 .checkout__container .offer__info__section::before {
     content: "";
     position: absolute;
@@ -56,7 +61,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.order__section:last-child::before,
+.checkout__container .order__section:last-child::before,
 .checkout__container .offer__info__section:last-child::before {
     border-bottom: none;
 }
@@ -168,6 +173,7 @@
 
 .product__counter .icon__wrapper {
     margin-bottom: 16px;
+    pointer-events: none;
 }
 
 .name {
@@ -230,6 +236,16 @@
     border-radius: 6px;
 }
 
+.counter__wrapper .counter__container {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.counter__wrapper .counter__container.checkout {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
 .counter__box__container {
     padding: 5px 0px;
 }
@@ -256,6 +272,11 @@
     font-size: 14px;
 }
 
+.counter__container .counter__input.home {
+    padding: 0px 4px;
+    margin: 6px 10px;
+}
+
 .coupon__banner__container {
     padding: 16px;
 }
@@ -272,6 +293,7 @@
 
 .coupon__banner__container .svg__box .coupon__name__box {
     height: 40px;
+    /* height: 5rem; */
     width: max-content;
     transform: rotate(-90deg);
     margin: auto;
@@ -325,7 +347,8 @@
     border: 1px solid #271d1c;
     border-radius: 4px;
     position: relative;
-    padding: 15px 26px;
+    /* padding: 15px 26px; */
+    padding: 15px 6px;
     width: 70%;
 }
 .discount__info .title {
@@ -348,6 +371,7 @@
 }
 
 .discount__info .discount_name {
+    text-align: center;
     font-weight: 700;
     font-size: 20px;
     line-height: 20px;
@@ -406,6 +430,10 @@
     line-height: 20px;
     color: #999999;
     margin-bottom: 8px;
+}
+
+.delivery__details__container .summary__wrapper .detail__num {
+    color: #f4000b;
 }
 
 .delivery__details__container .details__wrapper .address {
