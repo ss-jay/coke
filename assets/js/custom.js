@@ -5,7 +5,7 @@
 })();
 
 function loadPageContent(page) {
-    if(page === "homepage") {
+    if (page === "homepage") {
         insertSearchBar();
         insertTabContainer();
         insertPromotionsContainer();
@@ -15,21 +15,26 @@ function loadPageContent(page) {
         insertProducts();
         insertInnerProducts();
     }
-    
-    $('.product-bottom-details').click(function() {
+
+
+    $('.product-bottom-details').click(function () {
         addProducts(this)
     });
 
     $('.counter__minus').click(function () {
         updateCounter(this, "minus");
     });
-    
+
     $('.counter__plus').click(function () {
         updateCounter(this, "add");
     });
 
     $('.item-drop').click(function () {
         updateDropDownMenu(this);
+    });
+
+    $('#search_input').on("input", function () {
+        processChange(this);
     });
 }
 
@@ -186,7 +191,7 @@ function insertFavouriteProducts() {
 }
 
 function insertFilterBar() {
-    if(!($("#product_header_bar").is(":visible"))) {
+    if (!($("#product_header_bar").is(":visible"))) {
         $("#product_header_bar").css('display', 'flex');
     }
     $("#product_header_bar").prepend(`<p class="title">${config.filterbar.title}</p>`)
@@ -261,6 +266,68 @@ function insertInnerProducts() {
     });
 }
 
+function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+}
+
+function saveInput(node) {
+    let filteredData = getAllProducts.map((product) => {
+        let data = product.keywords.map((words) => {
+            return words.includes(node.value) ? product : false;
+        })
+        if (!data.includes(false)) return data;
+    });
+
+    let finalData = filteredData.filter(function (element) {
+        return element !== undefined;
+    });
+    searchProducts(finalData)
+}
+
+
+let processChange = debounce((node) => saveInput(node));
+
+function searchProducts(node) {
+    $("#search_product_box").fadeIn().show();
+    $(".product.searchproducts").remove();
+    config.products[0].items.map((item) => {
+        $("#search_product_wrap").append(`
+            <div class="product searchproducts">
+                <div class="left__wrapper">
+                    <div class="name">${item.name}</div>
+                    <div class="description">${item.description}</div>
+                    <div class="price">$${item.price}</div>
+                </div>
+                <div class="right__wrapper">
+                    <div class="product-bottom-details" product="${encodeURIComponent(JSON.stringify(item))}">
+                        <div class="btn">ADD</div>
+                    </div>
+                    <div class="counter__wrapper hide">
+                        <div class="counter__container">
+                            <div class="counter__box__container">
+                                <div class="counter__minus" id="minus">
+                                    <img src="/assets/images/png/minus.png" product="${encodeURIComponent(JSON.stringify(item))}" />
+                                </div>
+                            </div>
+                        
+                            <input id="counter_input" class="counter__input home" type="text" value="1" size="1" maxlength="2" />
+                            <div class="counter__box__container">
+                                <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(item))}">
+                                    <img src="/assets/images/png/plus.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+    });
+}
+
 
 function switchTabs(id) {
     event.preventDefault();
@@ -313,7 +380,7 @@ function addProducts(quantityInput) {
 
 function updateCounter(counterInput, type) {
     let siblingWrapper = $(counterInput).parent().siblings(".counter__input");
-    if(type === "add") {
+    if (type === "add") {
         var $input = $(siblingWrapper);
         $input.val(parseInt($input.val()) + 1);
         $input.change();
@@ -328,7 +395,7 @@ function updateCounter(counterInput, type) {
         return false;
     }
 
-    if(type === "minus") {
+    if (type === "minus") {
         var $input = $(siblingWrapper);
         var count = parseInt($input.val()) - 1;
         count = count < 1 ? 1 : count;

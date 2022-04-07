@@ -239,12 +239,12 @@ function processQ(data) {
 }
 
 function recalculateCart(discountData) {
-    console.log("ass ", discountData)
     let subtotal = 0;
     /* Sum up row totals */
     checkoutData.forEach((val, i) => {
         subtotal += parseFloat(val.price);
     });
+
     /* Calculate totals */
     let tax = subtotal * 0.18;
     let discount = subtotal * (parseInt(discountData.discount)/100);
@@ -259,7 +259,7 @@ function recalculateCart(discountData) {
         $('#tax_charges').attr("orderValue", tax.toFixed(2));
         
         $('#discout_perc').text(discount.toFixed(2));
-        $('#discout_perc').attr("orderValue", toFixed(2));
+        $('#discout_perc').attr("orderValue", discount.toFixed(2));
         
         $('#grand_total').text(total.toFixed(2));
         $('#grand_total').attr("orderValue", total.toFixed(2));
