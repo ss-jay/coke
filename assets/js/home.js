@@ -8,14 +8,17 @@ $(function () {
 });
 
 function renderPage(page) {
-    if(page === "homepage") {
+    if (page === "homepage") {
         document.getElementById(`${page}`).style.display = "block";
         document.getElementById(`checkoutpage`).style.display = "none";
-    } 
-    
-    if(page === "checkoutpage") {
+    }
+
+    if (page === "checkoutpage") {
         document.getElementById(`${page}`).style.display = "block";
         document.getElementById(`homepage`).style.display = "none";
     }
-    
+
 }
+
+var checkoutData = [];
+checkoutData.push = function () { Array.prototype.push.apply(this, arguments); processQ(arguments); };

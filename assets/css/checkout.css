@@ -29,6 +29,7 @@
 .checkout__container .offer__container {
     border-radius: 6px;
     overflow: hidden;
+    background-color: #fff;
 }
 
 .order__section,
@@ -38,8 +39,12 @@
     width: 100%;
     max-width: 100%;
     padding: 16px;
+}
+
+.offer__info__section {
     background-color: #fff;
 }
+
 
 .checkout__container .offer__info__section {
     display: block;
@@ -283,6 +288,7 @@
 
 .coupon__banner__container .svg__box .coupon__name__box {
     height: 40px;
+    /* height: 5rem; */
     width: max-content;
     transform: rotate(-90deg);
     margin: auto;
@@ -336,7 +342,8 @@
     border: 1px solid #271d1c;
     border-radius: 4px;
     position: relative;
-    padding: 15px 26px;
+    /* padding: 15px 26px; */
+    padding: 15px 6px;
     width: 70%;
 }
 .discount__info .title {
@@ -359,6 +366,7 @@
 }
 
 .discount__info .discount_name {
+    text-align: center;
     font-weight: 700;
     font-size: 20px;
     line-height: 20px;
@@ -417,6 +425,10 @@
     line-height: 20px;
     color: #999999;
     margin-bottom: 8px;
+}
+
+.delivery__details__container .summary__wrapper .detail__num {
+    color: #f4000b;
 }
 
 .delivery__details__container .details__wrapper .address {
