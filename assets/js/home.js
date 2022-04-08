@@ -21,4 +21,5 @@ function renderPage(page) {
 }
 
 var checkoutData = [];
-checkoutData.push = function () { Array.prototype.push.apply(this, arguments); processQ(arguments); };
+var cart = {};
+// checkoutData.push = function () { Array.prototype.push.apply(this, arguments); processQ(arguments); };

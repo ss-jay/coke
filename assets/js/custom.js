@@ -374,7 +374,8 @@ function addProducts(quantityInput) {
     let updatedValue = parseCount + 1;
     $("#numberCircle").attr("value", updatedValue);
     $("#numberCircle").text(updatedValue);
-    checkoutData.push(decodedProductData);
+    // checkoutData.push(decodedProductData);
+    updateCheckoutCartData(decodedProductData, "add");
 }
 
 
@@ -391,7 +392,8 @@ function updateCounter(counterInput, type) {
         $("#numberCircle").text(updatedValue);
         let productData = $(counterInput).attr("product");
         let decodedProductData = JSON.parse(decodeURIComponent(productData));
-        checkoutData.push(decodedProductData);
+        // checkoutData.push(decodedProductData);
+        updateCheckoutCartData(decodedProductData, "add");
         return false;
     }
 
@@ -406,10 +408,38 @@ function updateCounter(counterInput, type) {
         let updatedValue = parseCount - 1;
         $("#numberCircle").attr("value", updatedValue);
         $("#numberCircle").text(updatedValue);
+        let productData = $(counterInput).attr("product");
+        let decodedProductData = JSON.parse(decodeURIComponent(productData));
+        updateCheckoutCartData(decodedProductData, "minus");
         return false;
     }
 }
 
 function updateDropDownMenu(dpItem) {
     $("#dpValue").text($(dpItem).text())
+}
+
+function updateCheckoutCartData(data) {
+    console.log("1.0", data);
+    if(Object.keys(cart).length == 0) {
+        cart[data.sku] = 1;
+        console.log("1.0 i.0", cart);
+        return;
+    }
+
+    for (const key in cart) {
+        if(data.sku === key) {
+            console.log("1.1", key);
+            let q = cart[key]
+            console.log("1.2", q);
+            cart[key] = q + 1;
+        } else {
+            console.log("ashish ", data.sku);
+            if(!cart[data.sku]) {
+                cart[data.sku] = 1;
+            }
+        }
+        
+    }
+    console.log("1.3", cart);
 }
