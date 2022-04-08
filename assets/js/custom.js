@@ -337,20 +337,32 @@ function switchTabs(id) {
         $(ele).removeClass("active");
     });
 
+    let gridItem = [...$(`.grid__item`)];
+
+    console.log(gridItem)
+
+    gridItem.map(item => {
+        $(item).removeClass("active");
+        $("#promotions_products_container").hide();
+        $("#promotions_container").hide();
+        $("#product_wrapper").hide();
+        $("#orderhistory_container").hide();
+    })
+
     switch (id) {
         case 0:
-            $(`#tab_grid_item${id}`).addClass("active");
+            $(`#tab_grid_item${id}`).toggleClass("active");
             $("#product_wrapper").show();
             $("#promotions_container").show();
             $("#promotions_products_container").show();
             break;
         case 1:
-            $(`#tab_grid_item${id}`).addClass("active");
+            $(`#tab_grid_item${id}`).toggleClass("active");
             $("#promotions_container").hide();
             $("#product_wrapper").show();
             break;
         case 2:
-            $(`#tab_grid_item${id}`).addClass("active");
+            $(`#tab_grid_item${id}`).toggleClass("active");
             $("#promotions_products_container").hide();
             $("#promotions_container").hide();
             $("#product_wrapper").hide();
@@ -374,7 +386,8 @@ function addProducts(quantityInput) {
     let updatedValue = parseCount + 1;
     $("#numberCircle").attr("value", updatedValue);
     $("#numberCircle").text(updatedValue);
-    checkoutData.push(decodedProductData);
+    // checkoutData.push(decodedProductData);
+    updateCheckoutCartData(decodedProductData, "add");
 }
 
 
@@ -391,25 +404,144 @@ function updateCounter(counterInput, type) {
         $("#numberCircle").text(updatedValue);
         let productData = $(counterInput).attr("product");
         let decodedProductData = JSON.parse(decodeURIComponent(productData));
-        checkoutData.push(decodedProductData);
+        // checkoutData.push(decodedProductData);
+        updateCheckoutCartData(decodedProductData, "add");
         return false;
     }
 
     if (type === "minus") {
         var $input = $(siblingWrapper);
         var count = parseInt($input.val()) - 1;
-        count = count < 1 ? 1 : count;
-        $input.val(count);
-        $input.change();
-        let numberCircleCount = $("#numberCircle").attr("value");
-        let parseCount = Number(numberCircleCount)
-        let updatedValue = parseCount - 1;
-        $("#numberCircle").attr("value", updatedValue);
-        $("#numberCircle").text(updatedValue);
-        return false;
+        if(count >= 0) {
+            console.log("aaaaaaa")
+            
+            
+            if(count == 0) {
+                let parentAddWrapper = $(counterInput).parent().parent().parent();
+                let siblingAddWrapper = $(counterInput).parent().parent().parent().siblings(".product-bottom-details");
+                $(parentAddWrapper).hide();
+                $(siblingAddWrapper).show();
+            } else {
+                $input.val(count);
+                $input.change();
+                let numberCircleCount = $("#numberCircle").attr("value");
+                let parseCount = Number(numberCircleCount)
+                let updatedValue = parseCount - 1;
+                $("#numberCircle").attr("value", updatedValue);
+                $("#numberCircle").text(updatedValue);
+            }
+            let productData = $(counterInput).attr("product");
+            let decodedProductData = JSON.parse(decodeURIComponent(productData));
+            updateCheckoutCartData(decodedProductData, "minus");
+            return false;
+        }
+        count = count < 1 ? 0 : count;
+       /*  let parentAddWrapper = $(counterInput).parent().parent().parent();
+        let siblingAddWrapper = $(counterInput).parent().parent().parent().siblings(".product-bottom-details");
+        $(parentAddWrapper).hide();
+        $(siblingAddWrapper).show(); */
     }
 }
 
 function updateDropDownMenu(dpItem) {
     $("#dpValue").text($(dpItem).text())
 }
+
+function updateCheckoutCartData(data, type) {
+    console.log(cartData);
+    console.log("1.0", data);
+    if(Object.keys(cartData).length == 0) {
+        // cart[data.sku] = 1;
+        cartData[data.sku] = {
+            "product_data" : data,
+            "quantity": 1 
+        }
+        console.log("1.0 i.0", cartData);
+        // return;
+    }
+
+    for (const key in cartData) {
+        if(data.sku === key) {
+            console.log("1.1", key);
+            let q = cartData[key]["quantity"];
+            console.log("1.2", q);
+            // cart[key] = q + 1;
+            if(type === "add") {
+                cartData[key] = {
+                    "product_data" : data,
+                    "quantity": q + 1 
+                }
+            }
+
+            if(type === "minus") {
+                cartData[key] = {
+                    "product_data" : data,
+                    "quantity": q - 1 
+                }
+            }
+        } else {
+            console.log("ashish ", data.sku);
+            if(!cartData[data.sku]) {
+                // cart[data.sku] = 1;
+                cartData[data.sku] = {
+                    "product_data" : data,
+                    "quantity": 1 
+                }
+            }
+        }
+        
+    }
+    console.log("1.3", cartData);
+    processQ(cartData, data.sku);
+}
+
+// function updateCheckoutCartData(data, type) {
+//     // console.log("data", data);
+//     console.log("cart data 1.0", cartData);
+
+//     if(Object.keys(cartData).length !== 0) {
+//         for (const key in cartData) {
+//             if(cartData[key]?.["pr"]?.["sku"] === data.sku) {
+//                 console.log("cart data 1.1", data.sku)
+//                 if(type === "add") {
+//                     console.log("cart data 1.2", cartData[key]["quantity"])
+//                     console.log("cart data 1.3", cartData[key])
+//                     cartData[key]["quantity"] = data.quantity + 1;
+//                     cartData[key]["pr"]["quantity"] = cartData[key]["quantity"];
+//                 } else if(type === "minus") {
+//                     console.log("cart data 1.4")
+//                     cartData[key]["quantity"] = cartData[key]["quantity"] - 1;
+//                     cartData[key]["pr"]["quantity"] = cartData[key]["quantity"];
+//                     if(cartData[key]["quantity"] == 0) {
+//                         cartData = {};
+//                     }
+//                 }
+//             } else {
+//                 console.log("cart data 1.5")
+//                 data.quantity = 1;
+//                 cartData[data.sku] = {
+//                     "pr" : data,
+//                     "quantity": 1 
+//                 }
+//             }
+//         }
+//     } else {
+//         console.log("cart data 1.6")
+//         if (type === "add") {
+//             data.quantity = 1;
+//             cartData[data.sku] = {
+//                 "pr" : data,
+//                 "quantity": 1 
+//             }
+//         } else {
+//             data.quantity = 0;
+//             cartData[data.sku] = {
+//                 "pr" : {},
+//                 "quantity": 0 
+//             }
+//         }
+        
+//     }
+//     console.log("cart data 2", cartData);
+//     return cartData;
+// }

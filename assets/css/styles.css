@@ -593,7 +593,7 @@ input[type="checkbox"] {
     font-size: 15px;
     line-height: 23px;
     background: #fff;
-    transition: max-height 0.25s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
 }
 
 .faq-drawer__trigger:checked + .faq-drawer__title + .faq-drawer__content-wrapper {

@@ -20,11 +20,52 @@ function loadCheckoutPageContent(page) {
     }
 }
 
-function insertOrderCart(orderCart) {
+function insertOrderCart(orderCart, skuid) {
+    console.log("insertOrderCart")
     $("#favourites_container_title").show();
-    orderCart.map((product, index) => {
+    if(Object.keys($(`#${skuid}`)).length !== 0) {
+        console.log("found", )
+        let product = orderCart[skuid]["product_data"]
+        $(`#${skuid}`).replaceWith(`
+            <div class="order__section" id=${product.sku}>
+                <div class="details__section">
+                    <div class="name">${product.name}</div>
+                    <div class="discount__offer">
+                        <span class="price">$${product.price}</span>
+                        <span class="discount">$${product.costprice}</span>
+                    </div>
+                    <div class="discount__detail">${product.discount_detail}</div>
+                    <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
+                </div>
+                <div class="product__counter">
+                    <div class="icon__wrapper">
+                        <img src="/assets/images/png/product.png" />
+                    </div>
+
+                    <div class="counter__wrapper">
+                        <div class="counter__container checkout">
+                            <div class="counter__box__container">
+                                <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
+                                    <img src="/assets/images/png/minus.png" />
+                                </div>
+                            </div>
+                        
+                            <input id="counter_input" class="counter__input" type="text" value='${orderCart[skuid]["quantity"]}' size="1" maxlength="2" />
+                            <div class="counter__box__container">
+                                <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
+                                    <img src="/assets/images/png/plus.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `)
+    } else {
+        console.log("not found")
+        let product = orderCart[skuid]["product_data"]
         $("#order_checkout_cart").append(`
-            <div class="order__section">
+            <div class="order__section" id=${product.sku}>
                 <div class="details__section">
                     <div class="name">${product.name}</div>
                     <div class="discount__offer">
@@ -58,7 +99,8 @@ function insertOrderCart(orderCart) {
                 </div>
             </div>
         `)
-    })
+    }
+    
 }
 
 function insertSelectedCoupon(discount, type) {
@@ -233,20 +275,22 @@ function addDiscount(node) {
     recalculateCart(decodedDiscountData);
 }
 
-function processQ(data) {
-    insertOrderCart([...data]);
+function processQ(data, skuid) {
+    console.log("process Q ", data, "\n",  skuid);
+    insertOrderCart(data, skuid);
     recalculateCart(config.checkout.discounts[1]);
 }
 
 function recalculateCart(discountData) {
     let subtotal = 0;
     /* Sum up row totals */
-    checkoutData.forEach((val, i) => {
-        subtotal += parseFloat(val.price);
-    });
+    for (const key in cartData) {
+        subtotal += parseFloat(cartData[key]["product_data"].price);
+        subtotal = subtotal * parseInt(cartData[key]["quantity"]);
+    }
 
     /* Calculate totals */
-    let tax = subtotal * 0.18;
+    let tax = subtotal * 0.28;
     let discount = subtotal * (parseInt(discountData.discount)/100);
     let total = subtotal + tax - discount ;
 
