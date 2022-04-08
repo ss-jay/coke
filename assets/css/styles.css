@@ -311,7 +311,7 @@
 }
 
 
-.products__container .product-card .product-tumb.inner {
+.products__container .product-card .product-tumb.inner.favourite {
     background: #fff;
     border-radius: 6px 6px 0px 0px;
     padding: 20px 0 9px 0;
