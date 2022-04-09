@@ -72,8 +72,6 @@ img, embed {
     height: 100%;
 }
 
-
-
 .hide {
     display: none;
 }
@@ -98,4 +96,8 @@ img, svg {
     to {
         opacity: 1
     }
+}
+
+#homepage, #checkoutpage {
+    padding-bottom: 54px;
 }

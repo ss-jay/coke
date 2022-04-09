@@ -27,7 +27,7 @@ var config = {
         "products": [
             {
                 "sku": "CCPPID1",
-                "keywords": ["Kinley case offer", "5 case offer", "Kinley 5 case"],
+                "keywords": "Kinley case offer; 5 case offer; Kinley 5 case",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -40,8 +40,8 @@ var config = {
             },
             {
                 "sku": "CCPPID2",
-                "keywords": ["coke case offer", "5 coke offer", "coke 5 case"],
-                "name": "Kinley 5 case offer",
+                "keywords": "coke case offer; 5 coke offer; coke 5 case",
+                "name": "Coke 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
                 "costprice": "16.95",
@@ -53,8 +53,8 @@ var config = {
             },
             {
                 "sku": "CCPPID3",
-                "keywords": ["sprite case offer", "5 case offer", "Kinley 5 case"],
-                "name": "Kinley 5 case offer",
+                "keywords": "sprite case offer; 5 case offer; Kinley 5 case",
+                "name": "Sprite 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
                 "costprice": "16.95",
@@ -66,8 +66,8 @@ var config = {
             },
             {
                 "sku": "CCPPID4",
-                "keywords": ["", "", ""],
-                "name": "Kinley 5 case offer",
+                "keywords": "Diet coke offer; 10 case offer; ",
+                "name": "Diet 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
                 "costprice": "16.95",
@@ -84,15 +84,13 @@ var config = {
         "menu": [
             {
                 "name": "Name",
-                "active": false
-            },
-            {
-                "name": "Price",
-                "active": false
+                "active": false,
+                "sortBy" : "name",
             },
             {
                 "name": "Volume",
-                "active": true
+                "active": true,
+                "sortBy" : "order_volume",
             },
         ]
     },
@@ -100,10 +98,12 @@ var config = {
         {
             "icon": "/assets/images/svg/coke_product.svg",
             "volume": "2 Ltr",
+            "order_volume" : 2,
+            "name" : "coke",
             "items": [
                 {
                     "sku": "CCPPID5",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -116,7 +116,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID6",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -129,7 +129,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID7",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -142,7 +142,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID8",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -158,10 +158,12 @@ var config = {
         {
             "icon": "/assets/images/svg/fanta_xl.svg",
             "volume": "1 Ltr",
+            "order_volume" : 1,
+            "name" : "fanta",
             "items": [
                 {
                     "sku": "CCPPID9",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -174,7 +176,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID10",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -187,7 +189,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID11",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -200,7 +202,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID12",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -216,10 +218,12 @@ var config = {
         {
             "icon": "/assets/images/svg/sprite_product.svg",
             "volume": "250 Ml",
+            "order_volume" : 0.250,
+            "name" : "sprite",
             "items": [
                 {
                     "sku": "CCPPID13",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -232,7 +236,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID14",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -245,7 +249,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID15",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -258,7 +262,7 @@ var config = {
                 },
                 {
                     "sku": "CCPPID16",
-                    "keywords": ["", "", ""],
+                    "keywords": "",
                     "name": "Kinley 5 case offer",
                     "description": "7.5 fl oz, 10 pack",
                     "price": "14.95",
@@ -338,7 +342,7 @@ var config = {
         "products": [
             {
                 "sku": "CCPPID17",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -352,7 +356,7 @@ var config = {
             },
             {
                 "sku": "CCPPID18",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -366,7 +370,7 @@ var config = {
             },
             {
                 "sku": "CCPPID19",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -380,7 +384,7 @@ var config = {
             },
             {
                 "sku": "CCPPID20",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -399,7 +403,7 @@ var config = {
         "items": [
             {
                 "sku": "CCPPID21",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -412,7 +416,7 @@ var config = {
             },
             {
                 "sku": "CCPPID22",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -425,7 +429,7 @@ var config = {
             },
             {
                 "sku": "CCPPID23",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -438,7 +442,7 @@ var config = {
             },
             {
                 "sku": "CCPPID24",
-                "keywords": ["", "", ""],
+                "keywords": "",
                 "name": "Kinley 5 case offer",
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
@@ -456,7 +460,7 @@ var config = {
 var getAllProducts = [
     {
         "sku": "CCPPID1",
-        "keywords": ["Kinley case offer", "5 case offer", "Kinley 5 case"],
+        "keywords": "Kinley case offer; 5 case offer; Kinley 5 case",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -469,8 +473,8 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID2",
-        "keywords": ["coke case offer", "5 coke offer", "coke 5 case"],
-        "name": "Kinley 5 case offer",
+        "keywords": "Coke case offer; 5 coke offer; coke 5 case",
+        "name": "Coke 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
         "costprice": "16.95",
@@ -482,8 +486,8 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID3",
-        "keywords": ["sprite case offer", "5 case offer", "Kinley 5 case"],
-        "name": "Kinley 5 case offer",
+        "keywords": "sprite case offer; 5 case offer; sprite 5 case",
+        "name": "Sprite 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
         "costprice": "16.95",
@@ -495,8 +499,8 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID4",
-        "keywords": ["", "", ""],
-        "name": "Kinley 5 case offer",
+        "keywords": "Diet coke offer; 10 case offer; ",
+        "name": "Black Diet 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
         "costprice": "16.95",
@@ -508,7 +512,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID5",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -521,7 +525,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID6",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -534,7 +538,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID7",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -547,7 +551,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID8",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -560,7 +564,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID9",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -573,7 +577,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID10",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -586,7 +590,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID11",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -599,7 +603,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID12",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -612,7 +616,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID13",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -625,7 +629,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID14",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -638,7 +642,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID15",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",
@@ -651,7 +655,7 @@ var getAllProducts = [
     },
     {
         "sku": "CCPPID16",
-        "keywords": ["", "", ""],
+        "keywords": "",
         "name": "Kinley 5 case offer",
         "description": "7.5 fl oz, 10 pack",
         "price": "14.95",

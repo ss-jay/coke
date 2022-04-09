@@ -4,7 +4,7 @@
 
 function loadCheckoutPageContent(page) {
     if(page === "checkoutpage") {
-        insertSelectedCoupon(config.checkout.discounts[1]);
+        
         insertDiscountSection();
         insertDistributorAddress();
         insertOrderSummary();
@@ -299,6 +299,9 @@ function recalculateCart(discountData) {
         $('#item_total').text(subtotal.toFixed(2));
         $('#item_total').attr("orderValue" , subtotal.toFixed(2));
 
+        $('#sticky_cart_price').text(`$${subtotal.toFixed(2)}`);
+        $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
+
         $('#tax_charges').text(tax.toFixed(2));
         $('#tax_charges').attr("orderValue", tax.toFixed(2));
         
@@ -310,9 +313,16 @@ function recalculateCart(discountData) {
         
         $('.item').fadeIn(300);
     });
+
+    $('.sticky__footer').fadeIn().show();
 }
 
 function updateCounterDataFromCheckout(type) {
-    let targetNode = $(event.target).parent()
+    let targetNode = $(event.target).parent();
+    let selectedProduct = $(targetNode).attr("product")
+    let decodedselectedProduct = JSON.parse(decodeURIComponent(selectedProduct));
     updateCounter(targetNode, type);
+    let value = $(targetNode).parent().siblings(".counter__input").val();
+    $(`#counter_input_${decodedselectedProduct.sku}`).val(value);
+    $(`#counter_input_${decodedselectedProduct.sku}`).change();
 }
