@@ -16,9 +16,9 @@ function renderPage(page, sectionToScroll) {
 
     if (page === "checkoutpage") {
         $(window).scrollTop(0);
-        if(sectionToScroll === "order_summary") {
+        if (sectionToScroll === "order_summary") {
             setTimeout(() => {
-                $('html,body').animate({scrollTop: $("#order_summary").offset().top}, 1000);
+                $('html,body').animate({ scrollTop: $("#order_summary").offset().top }, 1000);
             }, 100);
         } else {
             $(window).scrollTop(0);

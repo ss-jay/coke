@@ -1,10 +1,10 @@
-(function() {
+(function () {
     loadCheckoutPageContent("checkoutpage");
 })();
 
 function loadCheckoutPageContent(page) {
-    if(page === "checkoutpage") {
-        
+    if (page === "checkoutpage") {
+
         insertDiscountSection();
         insertDistributorAddress();
         insertOrderSummary();
@@ -23,8 +23,8 @@ function loadCheckoutPageContent(page) {
 function insertOrderCart(orderCart, skuid) {
     console.log("insertOrderCart")
     $("#favourites_container_title").show();
-    if(Object.keys($(`#${skuid}`)).length !== 0) {
-        console.log("found", )
+    if (Object.keys($(`#${skuid}`)).length !== 0) {
+        console.log("found",)
         let product = orderCart[skuid]["product_data"]
         $(`#${skuid}`).replaceWith(`
             <div class="order__section" id=${product.sku}>
@@ -100,12 +100,12 @@ function insertOrderCart(orderCart, skuid) {
             </div>
         `)
     }
-    
+
 }
 
 function insertSelectedCoupon(discount, type) {
     var elementNode = "";
-    if(type === "update") {
+    if (type === "update") {
         elementNode = ".coupon__banner__container";
     } else {
         elementNode = "#coupon_container";
@@ -225,7 +225,7 @@ function insertDeliveryDetails() {
         </div>
     `)
 }
- 
+
 $(document).ready(function () {
     $('#minus').click(function () {
         var $input = $('#counter_input');
@@ -276,7 +276,7 @@ function addDiscount(node) {
 }
 
 function processQ(data, skuid) {
-    console.log("process Q ", data, "\n",  skuid);
+    console.log("process Q ", data, "\n", skuid);
     insertOrderCart(data, skuid);
     recalculateCart(config.checkout.discounts[1]);
 }
@@ -291,30 +291,36 @@ function recalculateCart(discountData) {
 
     /* Calculate totals */
     let tax = subtotal * 0.28;
-    let discount = subtotal * (parseInt(discountData.discount)/100);
-    let total = subtotal + tax - discount ;
+    let discount = subtotal * (parseInt(discountData.discount) / 100);
+    let total = subtotal + tax - discount;
 
     /* Update totals display */
     $('.item').fadeOut(300, function () {
         $('#item_total').text(subtotal.toFixed(2));
-        $('#item_total').attr("orderValue" , subtotal.toFixed(2));
+        $('#item_total').attr("orderValue", subtotal.toFixed(2));
 
         $('#sticky_cart_price').text(`$${subtotal.toFixed(2)}`);
         $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
 
         $('#tax_charges').text(tax.toFixed(2));
         $('#tax_charges').attr("orderValue", tax.toFixed(2));
-        
+
         $('#discout_perc').text(discount.toFixed(2));
         $('#discout_perc').attr("orderValue", discount.toFixed(2));
-        
+
         $('#grand_total').text(total.toFixed(2));
         $('#grand_total').attr("orderValue", total.toFixed(2));
-        
+
         $('.item').fadeIn(300);
     });
 
+    if ($("#numberCircle").attr("value") == 0) {
+        $(".sticky__footer").fadeIn().hide();
+        $("#numberCircle").fadeIn().hide();
+        return
+    }
     $('.sticky__footer').fadeIn().show();
+    $("#numberCircle").fadeIn().css("display", "flex");
 }
 
 function updateCounterDataFromCheckout(type) {

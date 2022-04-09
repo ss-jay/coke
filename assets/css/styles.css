@@ -32,15 +32,14 @@
     position: relative;
 }
 
-
 .header .header__wrapper .cart__icon .numberCircle {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 16px;
     height: 16px;
-    border: 1px solid #F4000B;
-    background-color: #F4000B;
+    border: 1px solid #f4000b;
+    background-color: #f4000b;
     border-radius: 50%;
     font-size: 8px;
     font-weight: 600;
@@ -50,6 +49,7 @@
     position: absolute;
     top: -5px;
     right: -10px;
+    display: none;
 }
 
 .search__product__box {
@@ -103,9 +103,8 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 14px;
-    color: #F4000B;
+    color: #f4000b;
     /* margin-bottom: 8px; */
-    
 }
 
 .search__product__box .right__wrapper {
@@ -113,12 +112,12 @@
 }
 
 .search__product__box .right__wrapper .product-bottom-details {
-    background: #F4000B;
+    background: #f4000b;
     width: 105px;
     border-radius: 6px;
 }
 
-.search__product__box .right__wrapper .product-bottom-details .btn { 
+.search__product__box .right__wrapper .product-bottom-details .btn {
     border-radius: 6px;
 }
 
@@ -210,7 +209,7 @@
     /* padding: 20px; */
     padding: 9.5px 0 9.5px 0;
     background: #ffffff;
-    border: 1px solid rgba(230, 29, 43, 0.12);;
+    border: 1px solid rgba(230, 29, 43, 0.12);
     box-shadow: 0px 4px 12px -4px rgba(0, 0, 0, 0.08);
     border-radius: 6px;
 }
@@ -272,13 +271,13 @@
 .products__container.inner {
     grid-column-gap: 12px;
     grid-row-gap: 12px;
-} 
+}
 
 .products__container.favourites {
     margin: 16px 0;
 }
 
-.products__container.favourites .title { 
+.products__container.favourites .title {
     display: none;
     font-weight: 700;
     font-size: 14px;
@@ -308,9 +307,8 @@
     border-radius: 6px 6px 0px 0px;
     padding: 20px 0 9px 0;
     height: auto;
-    border: 1px solid rgba(204, 204, 204, 0.4)
+    border: 1px solid rgba(204, 204, 204, 0.4);
 }
-
 
 .products__container .product-card .product-tumb.inner.favourite {
     background: #fff;
@@ -366,7 +364,7 @@
 }
 
 .products__container .product-card .product__details.inner {
-    background: #FFFFFF;
+    background: #ffffff;
     border-left: 1px solid rgba(204, 204, 204, 0.4);
     border-right: 1px solid rgba(204, 204, 204, 0.4);
     border-radius: 0px;
@@ -399,19 +397,19 @@
     margin-top: 7px;
 }
 
-.products__container .product-card .product__details .product-bottom-details[isdisabled=true] {
+.products__container .product-card .product__details .product-bottom-details[isdisabled="true"] {
     pointer-events: none;
 }
 
-.product-bottom-details.orderhistory {
+.orderhistory {
     width: 100%;
 }
 
-.product-bottom-details.orderhistory .btn {
+.orderhistory .btn {
     border-radius: 6px;
 }
 
-.product-bottom-details.orderhistory svg {
+.orderhistory svg {
     width: 9px;
     height: 13px;
     display: flex;
@@ -434,7 +432,7 @@
     padding: 4px 0;
 }
 
-.btn[isdisabled=true] {
+.btn[isdisabled="true"] {
     background: #ccc;
     pointer-events: none;
 }
@@ -525,8 +523,8 @@
 }
 
 .drop .drop-items .item-drop {
-   padding: 5px 1rem;
-   text-align: left;
+    padding: 5px 1rem;
+    text-align: left;
 }
 
 .drop .drop-items .item-drop:hover {
@@ -565,7 +563,7 @@ input[type="checkbox"] {
     height: 68.6px;
     position: absolute;
     left: 14px;
-    bottom: 5.5px;    
+    bottom: 5.5px;
 }
 
 .faq-drawer__title {
@@ -627,7 +625,6 @@ input[type="checkbox"] {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
-
 
 .orderhistory__container {
     display: none;
@@ -697,7 +694,7 @@ input[type="checkbox"] {
 }
 
 .orderhistory__container .order__history__wrapper .history__details .date,
-.orderhistory__container .order__history__wrapper .history__details .time  {
+.orderhistory__container .order__history__wrapper .history__details .time {
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
@@ -705,7 +702,7 @@ input[type="checkbox"] {
 }
 
 .orderhistory__container .order__history__wrapper .history__details .time {
-    color: #F4000B;
+    color: #f4000b;
 }
 
 .orderhistory__container .offer__info__section {
@@ -720,7 +717,7 @@ input[type="checkbox"] {
     left: 0;
     bottom: 0;
     z-index: 9;
-    background: #F4000B;
+    background: #f4000b;
     border: none;
     display: none;
 }
@@ -734,7 +731,8 @@ input[type="checkbox"] {
 }
 .sticky__footer .wrapper__bar .product__details__sticky {
     display: flex;
-    align-items: center;}
+    align-items: center;
+}
 .sticky__footer .wrapper__bar .product__details__sticky .icon {
     height: 20px;
     width: 16.92px;
@@ -768,5 +766,5 @@ input[type="checkbox"] {
     padding: 6px;
     font-size: 12px;
     line-height: 12px;
-    color: #F4000B;
+    color: #f4000b;
 }

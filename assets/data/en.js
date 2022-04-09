@@ -85,12 +85,12 @@ var config = {
             {
                 "name": "Name",
                 "active": false,
-                "sortBy" : "name",
+                "sortBy": "name",
             },
             {
                 "name": "Volume",
                 "active": true,
-                "sortBy" : "order_volume",
+                "sortBy": "order_volume",
             },
         ]
     },
@@ -98,8 +98,8 @@ var config = {
         {
             "icon": "/assets/images/svg/coke_product.svg",
             "volume": "2 Ltr",
-            "order_volume" : 2,
-            "name" : "coke",
+            "order_volume": 2,
+            "name": "coke",
             "items": [
                 {
                     "sku": "CCPPID5",
@@ -158,8 +158,8 @@ var config = {
         {
             "icon": "/assets/images/svg/fanta_xl.svg",
             "volume": "1 Ltr",
-            "order_volume" : 1,
-            "name" : "fanta",
+            "order_volume": 1,
+            "name": "fanta",
             "items": [
                 {
                     "sku": "CCPPID9",
@@ -218,8 +218,8 @@ var config = {
         {
             "icon": "/assets/images/svg/sprite_product.svg",
             "volume": "250 Ml",
-            "order_volume" : 0.250,
-            "name" : "sprite",
+            "order_volume": 0.250,
+            "name": "sprite",
             "items": [
                 {
                     "sku": "CCPPID13",

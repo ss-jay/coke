@@ -124,10 +124,10 @@ function insertOrderHistoryProducts() {
                         <div class="icon__wrapper">
                             <img src="/assets/images/png/product.png" />
                         </div>
-                        <div class="product-bottom-details orderhistory" id="product-bottom-details" product="${encodeURIComponent(JSON.stringify(product))}">
+                        <div class="repeat orderhistory" id="product-bottom-details" product="${encodeURIComponent(JSON.stringify(product))}">
                             <div class="btn">REPEAT</div>
                         </div>
-                        <div class="counter__wrapper product-bottom-details orderhistory hide" id="product-bottom-details-repeat" product="${encodeURIComponent(JSON.stringify(product))}">
+                        <div class="counter__wrapper orderhistory hide" id="product-bottom-details-repeat" product="${encodeURIComponent(JSON.stringify(product))}">
                             <div class="btn">
                                 ADDED 
                                 <span>
@@ -143,6 +143,16 @@ function insertOrderHistoryProducts() {
                 </div>
             </div>
         `)
+    });
+
+    $(".counter__wrapper.orderhistory").click(function () {
+        console.log("TEST ====> ");
+        updateProductsBasedOnProducts(this, "minus");
+    });
+    $(".repeat.orderhistory").click(function () {
+        console.log("NOT TEST ====> ");
+        updateProductsBasedOnProducts(this, "add");
+        // repeatOrderHistory(this, "add");
     });
 }
 
@@ -386,6 +396,7 @@ function switchTabs(id) {
 
 
 function addProducts(quantityInput) {
+    console.log("quantityInput ======>> ", quantityInput)
     let siblingWrapper = $(quantityInput).siblings(".counter__wrapper");
     let productData = $(quantityInput).attr("product");
     let decodedProductData = JSON.parse(decodeURIComponent(productData));
@@ -403,6 +414,7 @@ function addProducts(quantityInput) {
 
 
 function updateCounter(counterInput, type) {
+    console.log("qaudnasndsad asdas ", counterInput)
     let siblingWrapper = $(counterInput).parent().siblings(".counter__input");
     if (type === "add") {
         var $input = $(siblingWrapper);
@@ -432,6 +444,11 @@ function updateCounter(counterInput, type) {
                 let siblingAddWrapper = $(counterInput).parent().parent().parent().siblings(".product-bottom-details");
                 $(parentAddWrapper).hide();
                 $(siblingAddWrapper).show();
+                let numberCircleCount = $("#numberCircle").attr("value");
+                let parseCount = Number(numberCircleCount)
+                let updatedValue = parseCount - 1;
+                $("#numberCircle").attr("value", updatedValue);
+                $("#numberCircle").text(updatedValue);
             } else {
                 $input.val(count);
                 $input.change();
@@ -468,12 +485,12 @@ function sortProducts(products, sortBy) {
         return products.sort(function (a, b) {
             const bandA = a[sortBy].toUpperCase();
             const bandB = b[sortBy].toUpperCase();
-        
+
             let comparison = 0;
             if (bandA > bandB) {
-            comparison = -1;
+                comparison = -1;
             } else if (bandA < bandB) {
-            comparison = 1;
+                comparison = 1;
             }
             return comparison;
         });
@@ -494,7 +511,8 @@ function updateCheckoutCartData(data, type) {
         }
         console.log("1.0 i.0", cartData);
         insertSelectedCoupon(config.checkout.discounts[1]);
-        // return;
+        processQ(cartData, data.sku);
+        return;
     }
 
     for (const key in cartData) {
@@ -532,53 +550,29 @@ function updateCheckoutCartData(data, type) {
     processQ(cartData, data.sku);
 }
 
-// function updateCheckoutCartData(data, type) {
-//     // console.log("data", data);
-//     console.log("cart data 1.0", cartData);
+function updateProductsBasedOnProducts(node, type) {
+    let orderhistoryNode = "";
+    let productData = $(node).attr("product");
+    let decodedProductData = JSON.parse(decodeURIComponent(productData));
+    if (type === "add") {
+        orderhistoryNode = $(node).siblings(".counter__wrapper.orderhistory");
+        let numberCircleCount = $("#numberCircle").attr("value");
+        let parseCount = Number(numberCircleCount)
+        let updatedValue = parseCount + 1;
+        $("#numberCircle").attr("value", updatedValue);
+        $("#numberCircle").text(updatedValue);
 
-//     if(Object.keys(cartData).length !== 0) {
-//         for (const key in cartData) {
-//             if(cartData[key]?.["pr"]?.["sku"] === data.sku) {
-//                 console.log("cart data 1.1", data.sku)
-//                 if(type === "add") {
-//                     console.log("cart data 1.2", cartData[key]["quantity"])
-//                     console.log("cart data 1.3", cartData[key])
-//                     cartData[key]["quantity"] = data.quantity + 1;
-//                     cartData[key]["pr"]["quantity"] = cartData[key]["quantity"];
-//                 } else if(type === "minus") {
-//                     console.log("cart data 1.4")
-//                     cartData[key]["quantity"] = cartData[key]["quantity"] - 1;
-//                     cartData[key]["pr"]["quantity"] = cartData[key]["quantity"];
-//                     if(cartData[key]["quantity"] == 0) {
-//                         cartData = {};
-//                     }
-//                 }
-//             } else {
-//                 console.log("cart data 1.5")
-//                 data.quantity = 1;
-//                 cartData[data.sku] = {
-//                     "pr" : data,
-//                     "quantity": 1 
-//                 }
-//             }
-//         }
-//     } else {
-//         console.log("cart data 1.6")
-//         if (type === "add") {
-//             data.quantity = 1;
-//             cartData[data.sku] = {
-//                 "pr" : data,
-//                 "quantity": 1 
-//             }
-//         } else {
-//             data.quantity = 0;
-//             cartData[data.sku] = {
-//                 "pr" : {},
-//                 "quantity": 0 
-//             }
-//         }
 
-//     }
-//     console.log("cart data 2", cartData);
-//     return cartData;
-// }
+    }
+    if (type === "minus") {
+        orderhistoryNode = $(node).siblings(".repeat.orderhistory");
+        let numberCircleCount = $("#numberCircle").attr("value");
+        let parseCount = Number(numberCircleCount)
+        let updatedValue = parseCount - 1;
+        $("#numberCircle").attr("value", updatedValue);
+        $("#numberCircle").text(updatedValue);
+    }
+    $(orderhistoryNode).show();
+    $(node).hide();
+    updateCheckoutCartData(decodedProductData, type);
+}

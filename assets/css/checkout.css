@@ -45,7 +45,6 @@
     background-color: #fff;
 }
 
-
 .checkout__container .offer__info__section {
     display: block;
 }
@@ -400,7 +399,7 @@
     font-size: 14px;
     line-height: 18px;
     text-decoration-line: underline;
-    color: #F4000B;
+    color: #f4000b;
     padding: 0 16px 16px 16px;
     text-align: right;
 }
@@ -451,7 +450,6 @@
 }
 
 .delivery__details__container .price__cart__box {
-
 }
 
 .delivery__details__container .price__item {
@@ -484,7 +482,7 @@
 
 .delivery__details__container .price__item .key.red,
 .delivery__details__container .price__item .item.red {
-    color: #F4000B;
+    color: #f4000b;
 }
 
 .delivery__details__container .price__item .key.bold.total,
