@@ -21,10 +21,8 @@ function loadCheckoutPageContent(page) {
 }
 
 function insertOrderCart(orderCart, skuid) {
-    console.log("insertOrderCart")
     $("#favourites_container_title").show();
     if (Object.keys($(`#${skuid}`)).length !== 0) {
-        console.log("found",)
         let product = orderCart[skuid]["product_data"]
         $(`#${skuid}`).replaceWith(`
             <div class="order__section" id=${product.sku}>
@@ -62,7 +60,6 @@ function insertOrderCart(orderCart, skuid) {
             </div>
         `)
     } else {
-        console.log("not found")
         let product = orderCart[skuid]["product_data"]
         $("#order_checkout_cart").append(`
             <div class="order__section" id=${product.sku}>
@@ -276,7 +273,6 @@ function addDiscount(node) {
 }
 
 function processQ(data, skuid) {
-    console.log("process Q ", data, "\n", skuid);
     insertOrderCart(data, skuid);
     recalculateCart(config.checkout.discounts[1]);
 }

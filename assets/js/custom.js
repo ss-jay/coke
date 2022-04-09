@@ -150,13 +150,10 @@ function insertOrderHistoryProducts() {
     });
 
     $(".counter__wrapper.orderhistory").click(function () {
-        console.log("TEST ====> ");
         updateProductsBasedOnProducts(this, "minus");
     });
     $(".repeat.orderhistory").click(function () {
-        console.log("NOT TEST ====> ");
         updateProductsBasedOnProducts(this, "add");
-        // repeatOrderHistory(this, "add");
     });
 }
 
@@ -289,13 +286,11 @@ function debounce(func, timeout = 300) {
 function saveInput(node) {
     var filter = "keywords";
     var keyword = node.value;
-    console.log("getAllProducts , ", getAllProducts)
     var filteredData = getAllProducts.filter(function (obj) {
         if (obj[filter] != "") {
             return obj[filter].includes(keyword);
         }
     });
-    console.log(filteredData);
     searchProducts(filteredData)
 }
 
@@ -339,10 +334,10 @@ function searchProducts(node) {
         `);
     });
     if (node.length !== 0) {
-        console.log("a")
         $('.product-bottom-details').click(function () {
             addProducts(this)
         });
+
         $('.counter__minus').click(function () {
             updateCounter(this, "minus");
         });
@@ -368,8 +363,6 @@ function switchTabs(id) {
     });
 
     let gridItem = [...$(`.grid__item`)];
-
-    console.log(gridItem)
 
     gridItem.map(item => {
         $(item).removeClass("active");
@@ -406,25 +399,21 @@ function switchTabs(id) {
 
 
 function addProducts(quantityInput) {
-    console.log("quantityInput ======>> ", quantityInput)
     let siblingWrapper = $(quantityInput).siblings(".counter__wrapper");
     let productData = $(quantityInput).attr("product");
     let decodedProductData = JSON.parse(decodeURIComponent(productData));
     $(quantityInput).hide();
-    console.log("saf", $(quantityInput))
     $(siblingWrapper).show();
     let numberCircleCount = $("#numberCircle").attr("value");
     let parseCount = Number(numberCircleCount)
     let updatedValue = parseCount + 1;
     $("#numberCircle").attr("value", updatedValue);
     $("#numberCircle").text(updatedValue);
-    // checkoutData.push(decodedProductData);
     updateCheckoutCartData(decodedProductData, "add");
 }
 
 
 function updateCounter(counterInput, type) {
-    console.log("qaudnasndsad asdas ", counterInput)
     let siblingWrapper = $(counterInput).parent().siblings(".counter__input");
     if (type === "add") {
         var $input = $(siblingWrapper);
@@ -437,7 +426,6 @@ function updateCounter(counterInput, type) {
         $("#numberCircle").text(updatedValue);
         let productData = $(counterInput).attr("product");
         let decodedProductData = JSON.parse(decodeURIComponent(productData));
-        // checkoutData.push(decodedProductData);
         updateCheckoutCartData(decodedProductData, "add");
         return false;
     }
@@ -446,9 +434,6 @@ function updateCounter(counterInput, type) {
         var $input = $(siblingWrapper);
         var count = parseInt($input.val()) - 1;
         if (count >= 0) {
-            console.log("aaaaaaa")
-
-
             if (count == 0) {
                 let parentAddWrapper = $(counterInput).parent().parent().parent();
                 let siblingAddWrapper = $(counterInput).parent().parent().parent().siblings(".product-bottom-details");
@@ -511,15 +496,11 @@ function sortProducts(products, sortBy) {
 }
 
 function updateCheckoutCartData(data, type) {
-    console.log(cartData);
-    console.log("1.0", data);
     if (Object.keys(cartData).length == 0) {
-        // cart[data.sku] = 1;
         cartData[data.sku] = {
             "product_data": data,
             "quantity": 1
         }
-        console.log("1.0 i.0", cartData);
         insertSelectedCoupon(config.checkout.discounts[1]);
         processQ(cartData, data.sku);
         return;
@@ -527,10 +508,7 @@ function updateCheckoutCartData(data, type) {
 
     for (const key in cartData) {
         if (data.sku === key) {
-            console.log("1.1", key);
             let q = cartData[key]["quantity"];
-            console.log("1.2", q);
-            // cart[key] = q + 1;
             if (type === "add") {
                 cartData[key] = {
                     "product_data": data,
@@ -545,9 +523,7 @@ function updateCheckoutCartData(data, type) {
                 }
             }
         } else {
-            console.log("ashish ", data.sku);
             if (!cartData[data.sku]) {
-                // cart[data.sku] = 1;
                 cartData[data.sku] = {
                     "product_data": data,
                     "quantity": 1
@@ -556,7 +532,6 @@ function updateCheckoutCartData(data, type) {
         }
 
     }
-    console.log("1.3", cartData);
     processQ(cartData, data.sku);
 }
 

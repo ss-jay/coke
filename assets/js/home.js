@@ -11,7 +11,6 @@ function renderPage(page, sectionToScroll) {
     if (page === "homepage") {
         document.getElementById(`${page}`).style.display = "block";
         document.getElementById(`checkoutpage`).style.display = "none";
-        // $("html, body").animate({ scrollTop: 0 }, "slow");
     }
 
     if (page === "checkoutpage") {
@@ -29,35 +28,4 @@ function renderPage(page, sectionToScroll) {
 
 }
 
-var checkoutData = [];
 var cartData = {};
-// checkoutData.filter = function () {
-//     Array.prototype.filter.apply(this, arguments);
-//     // processF(arguments);
-// };
-
-// checkoutData.push = function (args) {
-//     if(!args.quantity) {
-//         args.quantity = 1;
-//     }
-//     console.log("args --> ", args);
-//     console.log("checkoutData --> ", checkoutData);
-//     checkoutData.forEach(v => console.log(v));
-//     let filteredData = checkoutData.map((item) => {
-//         console.log(args.sku)
-//         console.log(item.sku)
-//         if(item.sku !== args.sku) {
-//             console.log("push")
-//             item.quantity = 1;
-//             return item;
-//         } else {
-//             console.log("pull");
-//             item.quantity = item.quantity + 1;
-//             return undefined;
-//         }
-//     });
-//     console.log("filteredData --> ", filteredData);
-
-//     Array.prototype.push.apply(this, [args]);
-//     processQ(arguments);
-// };
