@@ -353,6 +353,8 @@ var config = {
                 "discount": "",
                 "discount_detail": "5 case offer on 1L/500ML",
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                "order_date" : "Dec 14, 2021",
+                "order_amount" : "149.50",
             },
             {
                 "sku": "CCPPID18",
@@ -367,6 +369,8 @@ var config = {
                 "discount": "",
                 "discount_detail": "5 case offer on 1L/500ML",
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                "order_date" : "Dec 14, 2021",
+                "order_amount" : "149.50",
             },
             {
                 "sku": "CCPPID19",
@@ -381,6 +385,8 @@ var config = {
                 "discount": "",
                 "discount_detail": "5 case offer on 1L/500ML",
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                "order_date" : "Dec 14, 2021",
+                "order_amount" : "149.50",
             },
             {
                 "sku": "CCPPID20",
@@ -395,6 +401,8 @@ var config = {
                 "discount": "",
                 "discount_detail": "5 case offer on 1L/500ML",
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                "order_date" : "Dec 14, 2021",
+                "order_amount" : "149.50",
             }
         ]
     },
