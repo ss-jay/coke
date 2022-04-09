@@ -114,8 +114,8 @@ function insertOrderHistoryProducts() {
             
             <div class="order__history__wrapper">
                 <div class="history__details">
-                    <div class="date">Dec 14, 2021</div>
-                    <div class="price">$14.95</div>
+                    <div class="date">${product.order_date}</div>
+                    <div class="price">$${product.order_amount}</div>
                 </div>
                 <div class="order__section">
                     <div class="details__section">
