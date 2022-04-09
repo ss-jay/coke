@@ -8,13 +8,14 @@
 
     <!-- seo properties -->
     <meta name="description" content="">
-	<meta name="author" content="">
-	<meta property="og:title" content="">
-	<meta property="og:description" content="">
-	<meta property="og:type" content="">
-	<meta name="keywords" content="">
-	<!-- Responsive setting -->
-	
+    <meta name="author" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="">
+    <meta name="keywords" content="">
+
+    <!-- Responsive setting -->
+
     <!-- Google Fonts -->
 
     <!-- Custom stylesheets -->
@@ -35,17 +36,31 @@
     <header class="header">
         <div class="header__wrapper">
             <div class="main__logo" onclick="renderPage('homepage')">
-                <img src="/coke/assets/images/svg/main_logo.svg" alt="coke"/> 
+                <img src="/coke/assets/images/svg/main_logo.svg" alt="coke" />
             </div>
             <div class="cart__icon" onclick="renderPage('checkoutpage')">
                 <div id="numberCircle" class="numberCircle" value="0">0</div>
-                <img src="/coke/assets/images/svg/cart.svg" alt="checkout" /> 
+                <img src="/coke/assets/images/svg/cart.svg" alt="checkout" />
             </div>
         </div>
     </header>
-    <div style="height: 54px;"></div>
+    <div style="height: 55px;"></div>
     <div id="bodyContent"></div>
     <div id="checkoutcart"></div>
+    <div class="sticky__footer">
+        <div class="wrapper__bar">
+            <div class="product__details__sticky">
+                <div class="icon">
+                    <img src="/coke/assets/images/svg/sticky_footer_cart.svg" alt="checkout" />
+                </div>
+                <div class="details">
+                    <div id="sticky_cart_price"></div>
+                    <div id="sticky_cart_quantity"></div>
+                </div>
+            </div>
+            <div class="view__cart__cta" onclick="renderPage('checkoutpage', 'order_summary')">VIEW CART</div>
+        </div>
+    </div>
 
     <script>
         function idleLogout() {
@@ -56,7 +71,7 @@
             window.ontouchstart = resetTimer; // catches touchscreen swipes as well      
             window.ontouchmove = resetTimer;  // required by some devices 
             window.onclick = resetTimer;      // catches touchpad clicks as well
-            window.onkeydown = resetTimer;   
+            window.onkeydown = resetTimer;
             window.addEventListener('scroll', resetTimer, true); // improved; see comments
 
             function yourFunction() {

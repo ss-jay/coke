@@ -1,10 +1,10 @@
-(function() {
+(function () {
     loadCheckoutPageContent("checkoutpage");
 })();
 
 function loadCheckoutPageContent(page) {
-    if(page === "checkoutpage") {
-        insertSelectedCoupon(config.checkout.discounts[1]);
+    if (page === "checkoutpage") {
+
         insertDiscountSection();
         insertDistributorAddress();
         insertOrderSummary();
@@ -20,11 +20,49 @@ function loadCheckoutPageContent(page) {
     }
 }
 
-function insertOrderCart(orderCart) {
+function insertOrderCart(orderCart, skuid) {
     $("#favourites_container_title").show();
-    orderCart.map((product, index) => {
+    if (Object.keys($(`#${skuid}`)).length !== 0) {
+        let product = orderCart[skuid]["product_data"]
+        $(`#${skuid}`).replaceWith(`
+            <div class="order__section" id=${product.sku}>
+                <div class="details__section">
+                    <div class="name">${product.name}</div>
+                    <div class="discount__offer">
+                        <span class="price">$${product.price}</span>
+                        <span class="discount">$${product.costprice}</span>
+                    </div>
+                    <div class="discount__detail">${product.discount_detail}</div>
+                    <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
+                </div>
+                <div class="product__counter">
+                    <div class="icon__wrapper">
+                        <img src="/assets/images/png/product.png" />
+                    </div>
+
+                    <div class="counter__wrapper">
+                        <div class="counter__container checkout">
+                            <div class="counter__box__container">
+                                <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
+                                    <img src="/assets/images/png/minus.png" />
+                                </div>
+                            </div>
+                        
+                            <input id="counter_input" class="counter__input" type="text" value='${orderCart[skuid]["quantity"]}' size="1" maxlength="2" />
+                            <div class="counter__box__container">
+                                <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
+                                    <img src="/assets/images/png/plus.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `)
+    } else {
+        let product = orderCart[skuid]["product_data"]
         $("#order_checkout_cart").append(`
-            <div class="order__section">
+            <div class="order__section" id=${product.sku}>
                 <div class="details__section">
                     <div class="name">${product.name}</div>
                     <div class="discount__offer">
@@ -58,12 +96,13 @@ function insertOrderCart(orderCart) {
                 </div>
             </div>
         `)
-    })
+    }
+
 }
 
 function insertSelectedCoupon(discount, type) {
     var elementNode = "";
-    if(type === "update") {
+    if (type === "update") {
         elementNode = ".coupon__banner__container";
     } else {
         elementNode = "#coupon_container";
@@ -183,7 +222,7 @@ function insertDeliveryDetails() {
         </div>
     `)
 }
- 
+
 $(document).ready(function () {
     $('#minus').click(function () {
         var $input = $('#counter_input');
@@ -233,42 +272,63 @@ function addDiscount(node) {
     recalculateCart(decodedDiscountData);
 }
 
-function processQ(data) {
-    insertOrderCart([...data]);
+function processQ(data, skuid) {
+    insertOrderCart(data, skuid);
     recalculateCart(config.checkout.discounts[1]);
 }
 
 function recalculateCart(discountData) {
     let subtotal = 0;
     /* Sum up row totals */
-    checkoutData.forEach((val, i) => {
-        subtotal += parseFloat(val.price);
-    });
+    for (const key in cartData) {
+        subtotal += parseFloat(cartData[key]["product_data"].price);
+        if(cartData[key]["product_data"].unit) {
+            subtotal = subtotal * parseInt(cartData[key]["product_data"].unit);
+        } else {
+            subtotal = subtotal * parseInt(cartData[key]["quantity"]);
+        }
+    }
 
     /* Calculate totals */
-    let tax = subtotal * 0.18;
-    let discount = subtotal * (parseInt(discountData.discount)/100);
-    let total = subtotal + tax - discount ;
+    let tax = subtotal * 0.28;
+    let discount = subtotal * (parseInt(discountData.discount) / 100);
+    let total = subtotal + tax - discount;
 
     /* Update totals display */
     $('.item').fadeOut(300, function () {
         $('#item_total').text(subtotal.toFixed(2));
-        $('#item_total').attr("orderValue" , subtotal.toFixed(2));
+        $('#item_total').attr("orderValue", subtotal.toFixed(2));
+
+        $('#sticky_cart_price').text(`$${subtotal.toFixed(2)}`);
+        $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
 
         $('#tax_charges').text(tax.toFixed(2));
         $('#tax_charges').attr("orderValue", tax.toFixed(2));
-        
+
         $('#discout_perc').text(discount.toFixed(2));
         $('#discout_perc').attr("orderValue", discount.toFixed(2));
-        
+
         $('#grand_total').text(total.toFixed(2));
         $('#grand_total').attr("orderValue", total.toFixed(2));
-        
+
         $('.item').fadeIn(300);
     });
+
+    if ($("#numberCircle").attr("value") == 0) {
+        $(".sticky__footer").fadeIn().hide();
+        $("#numberCircle").fadeIn().hide();
+        return
+    }
+    $('.sticky__footer').fadeIn().show();
+    $("#numberCircle").fadeIn().css("display", "flex");
 }
 
 function updateCounterDataFromCheckout(type) {
-    let targetNode = $(event.target).parent()
+    let targetNode = $(event.target).parent();
+    let selectedProduct = $(targetNode).attr("product")
+    let decodedselectedProduct = JSON.parse(decodeURIComponent(selectedProduct));
     updateCounter(targetNode, type);
+    let value = $(targetNode).parent().siblings(".counter__input").val();
+    $(`#counter_input_${decodedselectedProduct.sku}`).val(value);
+    $(`#counter_input_${decodedselectedProduct.sku}`).change();
 }
