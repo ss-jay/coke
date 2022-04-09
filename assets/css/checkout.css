@@ -489,3 +489,20 @@
 .delivery__details__container .price__item .item.red.total {
     font-size: 14px;
 }
+
+.buyout__btn__wrapper {
+    width: 100%;
+    margin: 25px auto 0 auto;
+}
+
+.buyout__btn__wrapper .buyout__btn {
+    width: fit-content;
+    background: #f4000b;
+    border-radius: 6px;
+    padding: 9px 57px 9px 56px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: #ffffff;
+}

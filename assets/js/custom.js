@@ -21,6 +21,10 @@ function loadPageContent(page) {
         processChange(this);
     });
 
+    $('.close__icon__box').click(function () {
+        emptySearch(this);
+    });
+
     $('.product-bottom-details').click(function () {
         addProducts(this)
     });
@@ -76,7 +80,7 @@ function insertPromotionsContainer() {
                     <div class="product__text__wrapper">
                         <p class="product__name">${promotion.name}</p>
                         <p class="product__quantity">${promotion.description}</p>
-                        <p class="product__price">${promotion.price}</p>
+                        <p class="product__price">$${promotion.price}</p>
                     </div>
                     <div isdisabled=${isdisabled} class="product-bottom-details" id="product-bottom-details" product="${encodeURIComponent(JSON.stringify(promotion))}">
                         <div class="btn" isdisabled=${isdisabled}>${btnName}</div>
@@ -171,7 +175,7 @@ function insertFavouriteProducts() {
                     <div class="product__text__wrapper">
                         <p class="product__name">${item.name}</p>
                         <p class="product__quantity">${item.description}</p>
-                        <p class="product__price">${item.price}</p>
+                        <p class="product__price">$${item.price}</p>
                     </div>
                     <div isdisabled=${isdisabled} class="product-bottom-details" product="${encodeURIComponent(JSON.stringify(item))}">
                         <div class="btn" isdisabled=${isdisabled}>${btnName}</div>
@@ -239,14 +243,14 @@ function insertInnerProducts(products) {
                 <div class="product-card">
                     <div class="product-tumb inner">
                         <div class="innerbox">
-                            <img class="img__wrapper" src=${item.icon} alt="">
+                            <img class="img__wrapper inner" src=${item.icon} alt="">
                         </div>
                     </div>
                     <div class="product__details inner">
                         <div class="product__text__wrapper">
                             <p class="product__name">${item.name}</p>
                             <p class="product__quantity">${item.description}</p>
-                            <p class="product__price">${item.price}</p>
+                            <p class="product__price">$${item.price}</p>
                         </div>
                         <div isdisabled=${isdisabled} class="product-bottom-details" product="${encodeURIComponent(JSON.stringify(item))}">
                             <div class="btn inner" isdisabled=${isdisabled}>${btnName}</div>
@@ -301,6 +305,7 @@ let processChange = debounce((node) => saveInput(node));
 function searchProducts(node) {
     $("#search_product_box").fadeIn().show();
     $(".product.searchproducts").remove();
+    $('.close__icon__box').show();
     node.map((item) => {
         $("#search_product_wrap").append(`
             <div class="product searchproducts">
@@ -348,6 +353,11 @@ function searchProducts(node) {
     }
 }
 
+function emptySearch(node) {
+    $("#search_product_wrap").empty();
+    $("#search_product_box").fadeIn().hide();
+    $("#search_input").val("");
+}
 
 function switchTabs(id) {
     event.preventDefault();

@@ -286,7 +286,11 @@ function recalculateCart(discountData) {
     /* Sum up row totals */
     for (const key in cartData) {
         subtotal += parseFloat(cartData[key]["product_data"].price);
-        subtotal = subtotal * parseInt(cartData[key]["quantity"]);
+        if(cartData[key]["product_data"].unit) {
+            subtotal = subtotal * parseInt(cartData[key]["product_data"].unit);
+        } else {
+            subtotal = subtotal * parseInt(cartData[key]["quantity"]);
+        }
     }
 
     /* Calculate totals */
