@@ -37,21 +37,21 @@ function insertOrderCart(orderCart, skuid) {
                 </div>
                 <div class="product__counter">
                     <div class="icon__wrapper">
-                        <img src="/assets/images/png/product.png" />
+                        <img src="/coke/assets/images/png/product.png" />
                     </div>
 
                     <div class="counter__wrapper">
                         <div class="counter__container checkout">
                             <div class="counter__box__container">
                                 <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
-                                    <img src="/assets/images/png/minus.png" />
+                                    <img src="/coke/assets/images/png/minus.png" />
                                 </div>
                             </div>
                         
                             <input id="counter_input" class="counter__input" type="text" value='${orderCart[skuid]["quantity"]}' size="1" maxlength="2" />
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
-                                    <img src="/assets/images/png/plus.png" />
+                                    <img src="/coke/assets/images/png/plus.png" />
                                 </div>
                             </div>
                         </div>
