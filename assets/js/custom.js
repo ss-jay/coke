@@ -228,6 +228,18 @@ function insertProducts(products) {
             </div>
         `);
     });
+
+    $(".faq-drawer__title").click(function() {
+        let drawerContentBox = $(this).siblings(".faq-drawer__content-wrapper").children().children(".products__container.inner");
+        let drawerContentBoxHeight = drawerContentBox[0].offsetHeight;
+        if($(this).siblings(".faq-drawer__content-wrapper").hasClass("ashish")) {
+            $($(this).siblings(".faq-drawer__content-wrapper")).css("max-height", 0);
+            $(this).siblings(".faq-drawer__content-wrapper").removeClass("ashish");
+        } else {
+            $($(this).siblings(".faq-drawer__content-wrapper")).css("max-height", drawerContentBoxHeight + 32);
+            $(this).siblings(".faq-drawer__content-wrapper").addClass("ashish");
+        }
+    });
 }
 
 function insertInnerProducts(products) {
@@ -381,8 +393,9 @@ function switchTabs(id) {
             break;
         case 1:
             $(`#tab_grid_item${id}`).toggleClass("active");
-            $("#promotions_container").hide();
-            $("#product_wrapper").show();
+            $("#promotions_container").show();
+            $("#promotions_products_container").show();
+            $("#product_wrapper").hide();
             break;
         case 2:
             $(`#tab_grid_item${id}`).toggleClass("active");
@@ -501,7 +514,7 @@ function updateCheckoutCartData(data, type) {
             "product_data": data,
             "quantity": 1
         }
-        insertSelectedCoupon(config.checkout.discounts[1]);
+        insertSelectedCoupon(config.checkout.discounts[0]);
         processQ(cartData, data.sku);
         return;
     }

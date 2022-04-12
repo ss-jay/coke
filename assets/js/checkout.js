@@ -4,18 +4,15 @@
 
 function loadCheckoutPageContent(page) {
     if (page === "checkoutpage") {
-
-        insertDiscountSection();
+        let clonedArr = [...config.checkout.discounts];
+        clonedArr.splice(0, 1);
+        insertDiscountSection(clonedArr);
         insertDistributorAddress();
         insertOrderSummary();
         insertDeliveryDetails();
 
         $('.more__cta').click(function () {
             expandMore(this);
-        });
-
-        $('.offer__apply').click(function () {
-            addDiscount(this);
         });
     }
 }
@@ -137,10 +134,9 @@ function insertSelectedCoupon(discount, type) {
     `)
 }
 
-function insertDiscountSection() {
-    let discountAvailable = config.checkout;
-
-    discountAvailable.discounts.map((discount, index) => {
+function insertDiscountSection(discountAvailable) {
+        $("#offers_height_box").empty();
+        discountAvailable.map((discount, index) => {
         $("#offers_height_box").prepend(`
             <div class="offer__info__wrapper">
                 <div class="offer__info__container">
@@ -174,6 +170,10 @@ function insertDiscountSection() {
                 </div>
             </div>
         `)
+    });
+
+    $('.offer__apply').click(function () {
+        addDiscount(this);
     });
 }
 
@@ -261,7 +261,6 @@ function viewDiscount() {
 
 function hideDiscount() {
     $("#offers_parent_container").css('height', 0);
-    $("#view_more").fadeIn().removeClass("hide");
 }
 
 function addDiscount(node) {
@@ -269,6 +268,11 @@ function addDiscount(node) {
     let decodedDiscountData = JSON.parse(decodeURIComponent(discountData));
     insertSelectedCoupon(decodedDiscountData, "update");
     hideDiscount();
+    let filteredDiscounts = config.checkout.discounts.filter(val => {
+        return val.name !== decodedDiscountData.name;
+    })
+    insertDiscountSection(filteredDiscounts);
+    $("#view_more").fadeIn().removeClass("hide");
     recalculateCart(decodedDiscountData);
 }
 
