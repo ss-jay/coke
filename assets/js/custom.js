@@ -82,10 +82,10 @@ function insertPromotionsContainer() {
                         <p class="product__quantity">${promotion.description}</p>
                         <p class="product__price">$${promotion.price}</p>
                     </div>
-                    <div isdisabled=${isdisabled} class="product-bottom-details" id="product-bottom-details" product="${encodeURIComponent(JSON.stringify(promotion))}">
+                    <div isdisabled=${isdisabled} class="product-bottom-details" id="promotions-add-${promotion.sku}" product="${encodeURIComponent(JSON.stringify(promotion))}">
                         <div class="btn" isdisabled=${isdisabled}>${btnName}</div>
                     </div>
-                    <div class="counter__wrapper hide">
+                    <div class="counter__wrapper hide" id="promotions-counter-${promotion.sku}">
                         <div class="counter__container">
                             <div class="counter__box__container">
                                 <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(promotion))}">
@@ -227,6 +227,18 @@ function insertProducts(products) {
                 </div>
             </div>
         `);
+    });
+
+    $(".faq-drawer__title").click(function() {
+        let drawerContentBox = $(this).siblings(".faq-drawer__content-wrapper").children().children(".products__container.inner");
+        let drawerContentBoxHeight = drawerContentBox[0].offsetHeight;
+        if($(this).siblings(".faq-drawer__content-wrapper").hasClass("ashish")) {
+            $($(this).siblings(".faq-drawer__content-wrapper")).css("max-height", 0);
+            $(this).siblings(".faq-drawer__content-wrapper").removeClass("ashish");
+        } else {
+            $($(this).siblings(".faq-drawer__content-wrapper")).css("max-height", drawerContentBoxHeight + 32);
+            $(this).siblings(".faq-drawer__content-wrapper").addClass("ashish");
+        }
     });
 }
 
@@ -381,8 +393,9 @@ function switchTabs(id) {
             break;
         case 1:
             $(`#tab_grid_item${id}`).toggleClass("active");
-            $("#promotions_container").hide();
-            $("#product_wrapper").show();
+            $("#promotions_container").show();
+            $("#promotions_products_container").show();
+            $("#product_wrapper").hide();
             break;
         case 2:
             $(`#tab_grid_item${id}`).toggleClass("active");
@@ -413,7 +426,7 @@ function addProducts(quantityInput) {
 }
 
 
-function updateCounter(counterInput, type) {
+function updateCounter(counterInput, type, requestFrom) {
     let siblingWrapper = $(counterInput).parent().siblings(".counter__input");
     if (type === "add") {
         var $input = $(siblingWrapper);
@@ -434,6 +447,8 @@ function updateCounter(counterInput, type) {
         var $input = $(siblingWrapper);
         var count = parseInt($input.val()) - 1;
         if (count >= 0) {
+            let productData = $(counterInput).attr("product");
+            let decodedProductData = JSON.parse(decodeURIComponent(productData));
             if (count == 0) {
                 let parentAddWrapper = $(counterInput).parent().parent().parent();
                 let siblingAddWrapper = $(counterInput).parent().parent().parent().siblings(".product-bottom-details");
@@ -444,6 +459,10 @@ function updateCounter(counterInput, type) {
                 let updatedValue = parseCount - 1;
                 $("#numberCircle").attr("value", updatedValue);
                 $("#numberCircle").text(updatedValue);
+                if(requestFrom && requestFrom === "checkout") {
+                    $(`#promotions-add-${decodedProductData.sku}`).show()
+                    $(`#promotions-counter-${decodedProductData.sku}`).hide()
+                }
             } else {
                 $input.val(count);
                 $input.change();
@@ -453,8 +472,7 @@ function updateCounter(counterInput, type) {
                 $("#numberCircle").attr("value", updatedValue);
                 $("#numberCircle").text(updatedValue);
             }
-            let productData = $(counterInput).attr("product");
-            let decodedProductData = JSON.parse(decodeURIComponent(productData));
+            
             updateCheckoutCartData(decodedProductData, "minus");
             return false;
         }
@@ -501,7 +519,7 @@ function updateCheckoutCartData(data, type) {
             "product_data": data,
             "quantity": 1
         }
-        insertSelectedCoupon(config.checkout.discounts[1]);
+        insertSelectedCoupon(config.checkout.discounts[0]);
         processQ(cartData, data.sku);
         return;
     }

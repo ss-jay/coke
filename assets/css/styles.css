@@ -316,7 +316,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f0f0f0;
+    background: #fef4f5;
     position: relative;
     height: 118px;
 }
@@ -643,8 +643,8 @@ input[type="checkbox"] {
 }
 
 .faq-drawer__trigger:checked + .faq-drawer__title + .faq-drawer__content-wrapper {
-    max-height: 350px;
-    overflow: scroll;
+    /* max-height: 350px; */
+    /* overflow: scroll; */
 }
 
 .faq-drawer__trigger:checked + .faq-drawer__title {
@@ -798,4 +798,10 @@ input[type="checkbox"] {
     font-size: 12px;
     line-height: 12px;
     color: #f4000b;
+}
+
+@media (max-width: 360px) {
+    .griddy {
+        overflow: auto;
+    }
 }
