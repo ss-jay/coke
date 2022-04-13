@@ -21,41 +21,45 @@ function insertOrderCart(orderCart, skuid) {
     $("#favourites_container_title").show();
     if (Object.keys($(`#${skuid}`)).length !== 0) {
         let product = orderCart[skuid]["product_data"]
-        $(`#${skuid}`).replaceWith(`
-            <div class="order__section" id=${product.sku}>
-                <div class="details__section">
-                    <div class="name">${product.name}</div>
-                    <div class="discount__offer">
-                        <span class="price">$${product.price}</span>
-                        <span class="discount">$${product.costprice}</span>
+        if(orderCart[skuid]["quantity"] !== 0) {
+            $(`#${skuid}`).replaceWith(`
+                <div class="order__section" id=${product.sku}>
+                    <div class="details__section">
+                        <div class="name">${product.name}</div>
+                        <div class="discount__offer">
+                            <span class="price">$${product.price}</span>
+                            <span class="discount">$${product.costprice}</span>
+                        </div>
+                        <div class="discount__detail">${product.discount_detail}</div>
+                        <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
                     </div>
-                    <div class="discount__detail">${product.discount_detail}</div>
-                    <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
-                </div>
-                <div class="product__counter">
-                    <div class="icon__wrapper">
-                        <img src="/assets/images/png/product.png" />
-                    </div>
+                    <div class="product__counter">
+                        <div class="icon__wrapper">
+                            <img src="/assets/images/png/product.png" />
+                        </div>
 
-                    <div class="counter__wrapper">
-                        <div class="counter__container checkout">
-                            <div class="counter__box__container">
-                                <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
-                                    <img src="/assets/images/png/minus.png" />
+                        <div class="counter__wrapper">
+                            <div class="counter__container checkout">
+                                <div class="counter__box__container">
+                                    <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
+                                        <img src="/assets/images/png/minus.png" />
+                                    </div>
                                 </div>
-                            </div>
-                        
-                            <input id="counter_input" class="counter__input" type="text" value='${orderCart[skuid]["quantity"]}' size="1" maxlength="2" />
-                            <div class="counter__box__container">
-                                <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
-                                    <img src="/assets/images/png/plus.png" />
+                            
+                                <input id="counter_input" class="counter__input" type="text" value='${orderCart[skuid]["quantity"]}' size="1" maxlength="2" />
+                                <div class="counter__box__container">
+                                    <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
+                                        <img src="/assets/images/png/plus.png" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        `)
+            `)
+        } else {
+            $(`#${product.sku}`).remove();
+        }
     } else {
         let product = orderCart[skuid]["product_data"]
         $("#order_checkout_cart").append(`
@@ -285,14 +289,14 @@ function recalculateCart(discountData) {
     let subtotal = 0;
     /* Sum up row totals */
     for (const key in cartData) {
-        subtotal += parseFloat(cartData[key]["product_data"].price);
+        // subtotal += parseFloat(cartData[key]["product_data"].price);
         if(cartData[key]["product_data"].unit) {
-            subtotal = subtotal * parseInt(cartData[key]["product_data"].unit);
+            subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["product_data"].unit * parseInt(cartData[key]["quantity"]));
         } else {
-            subtotal = subtotal * parseInt(cartData[key]["quantity"]);
+            subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["quantity"]);
+            // subtotal = subtotal * (parseInt(cartData[key]["quantity"]) ? parseInt(cartData[key]["quantity"]) : 1);
         }
     }
-
     /* Calculate totals */
     let tax = subtotal * 0.28;
     let discount = subtotal * (parseInt(discountData.discount) / 100);
@@ -331,7 +335,7 @@ function updateCounterDataFromCheckout(type) {
     let targetNode = $(event.target).parent();
     let selectedProduct = $(targetNode).attr("product")
     let decodedselectedProduct = JSON.parse(decodeURIComponent(selectedProduct));
-    updateCounter(targetNode, type);
+    updateCounter(targetNode, type, "checkout");
     let value = $(targetNode).parent().siblings(".counter__input").val();
     $(`#counter_input_${decodedselectedProduct.sku}`).val(value);
     $(`#counter_input_${decodedselectedProduct.sku}`).change();
