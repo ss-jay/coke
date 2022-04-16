@@ -1,9 +1,3 @@
-(function () {
-    setTimeout(() => {
-        loadPageContent("homepage")
-    }, 500);
-})();
-
 function loadPageContent(page) {
     if (page === "homepage") {
         insertSearchBar();

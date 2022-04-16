@@ -1,4 +1,23 @@
-var config = {
+window.addEventListener('message', function (eventData) {
+    console.log("Get the sent data ", eventData);
+    const parsedEventData = JSON.parse(eventData.data)
+    console.log("received data from parent iframe ", parsedEventData);
+    if (parsedEventData.event_code === "custom-child-client-event") {
+        console.log("\n\n\n\n\n\n\n HEYYYYYYYYYYYYYYYYYYY \n\n\n\n\n\n\n\n");
+        console.log(parsedEventData);
+
+        console.log("hitesh sir =-> ", document.getElementById('bodyContent'));
+        var scriptTag = document.createElement('script');
+        scriptTag.src = "/coke/assets/js/custom.js";
+        scriptTag.type = "text/javascript";
+        document.getElementById('bodyContent').append(scriptTag);
+        setTimeout(() => {
+            loadPageContent("homepage", parsedEventData.data)
+        }, 2500);
+    }
+});
+
+/* var config = {
     "search": {
         "placeholder": "Search for beverage..."
     },
@@ -463,7 +482,7 @@ var config = {
             }
         ]
     }
-};
+}; */
 
 var getAllProducts = [
     {
