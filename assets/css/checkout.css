@@ -357,7 +357,7 @@
     bottom: 0;
     left: 0;
     /* margin: 0 16px; */
-    margin: 0 1rem;
+    margin: 0 auto;
     padding: 0;
     right: 0px;
     white-space: nowrap;
@@ -368,6 +368,11 @@
     justify-content: center;
     background-color: #fff;
     height: 12px;
+
+    white-space: nowrap;
+    width: max-content;
+    background: #fff;
+    padding: 0 10px;
 }
 
 .discount__info .discount_name {
@@ -499,11 +504,30 @@
     width: fit-content;
     background: #f4000b;
     border-radius: 6px;
-    padding: 9px 57px 9px 56px;
+    /* padding: 9px 57px 9px 56px; */
+    padding: 18px 57px 18px 56px;
     font-weight: 700;
     font-size: 12px;
     line-height: 12px;
     text-align: center;
     color: #ffffff;
     margin: auto;
+    text-transform: uppercase;
+}
+
+
+@media (min-width: 540px) {
+    .buyout__btn__wrapper .buyout__btn {
+        padding: 15px 80px 15px 80px;
+    }
+    .product__counter .icon__wrapper {
+        height: 4rem;
+        width: 6rem;
+    }
+    /* .counter__wrapper {
+        width:fit-content;
+    } */
+    .product__counter {
+        align-items: flex-end;
+    }
 }
