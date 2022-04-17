@@ -14,6 +14,35 @@ function loadPageContent(page) {
         insertFilterBar();
         insertProducts(config.products);
         insertInnerProducts(config.products);
+        $('input').on('keyup', function () {
+            let key = event.keyCode || event.charCode;
+            if (key == 8 || key == 46) {
+                return false;
+            }
+            if (key === 37 || key === 39 || key === 38 || key === 40) {
+                event.preventDefault();
+                return
+            }
+            let currentValue = parseInt(event.target.value)
+            let divNode = $(this).siblings(".counter__box__container")[1];
+            let previousValue = $(this).attr("previous-value");
+            $(this).val(parseInt(previousValue));
+            $(this).change();
+            console.log("test", previousValue)
+            console.log("test 2", currentValue)
+            if(currentValue != 0) {
+                if(previousValue > currentValue) {
+                    for (let i = 0; i < previousValue; i++) {
+                        console.log(i)
+                        updateCounter($(divNode).children(".counter__plus")[0], "minus");
+                    }
+                } else {
+                    for (let i = 0; i < currentValue; i++) {
+                        updateCounter($(divNode).children(".counter__plus")[0], "add");
+                    }
+                }
+            }
+        });
     }
 
 
@@ -65,11 +94,16 @@ function removeTabContainer(id) {
     document.getElementById(id).remove();
 }
 
+function detectIsOverflow(element) {
+    return element.scrollHeight > element.clientHeight
+}
+
 function insertPromotionsContainer() {
     $("#promotions_container").prepend(`<p class="products__title">${config.promotions.promotions_title}</p>`)
     config.promotions.products.map((promotion) => {
         let isdisabled = promotion.quantity_available ? false : true;
         let btnName = isdisabled ? "Out of stock" : "ADD";
+        console.log(promotion.description.length)
         $("#promotions_products_container").append(`
             <div class="product-card">
                 <div class="product-tumb">
@@ -80,6 +114,8 @@ function insertPromotionsContainer() {
                     <div class="product__text__wrapper">
                         <p class="product__name">${promotion.name}</p>
                         <p class="product__quantity">${promotion.description}</p>
+                        ${promotion.description.length > 120 ? `<div class="readmore">read more</div>` : ""}
+                        <div class="readless hide">read less</div>
                         <p class="product__price">$${promotion.price}</p>
                     </div>
                     <div isdisabled=${isdisabled} class="product-bottom-details" id="promotions-add-${promotion.sku}" product="${encodeURIComponent(JSON.stringify(promotion))}">
@@ -93,7 +129,7 @@ function insertPromotionsContainer() {
                                 </div>
                             </div>
                         
-                            <input id="counter_input_${promotion.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" />
+                            <input id="counter_input_${promotion.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(promotion))}">
                                     <img src="/assets/images/png/plus.png" />
@@ -103,8 +139,25 @@ function insertPromotionsContainer() {
                     </div>
                 </div>
             </div>
-        `)
+        `);
     });
+
+    $('.readmore').click(function () {
+        let readlessSibling = $(this).siblings(".readless")[0];
+        let readmoreSibling = $(this).siblings(".product__quantity")[0];
+        $(this).hide();
+        $(readlessSibling).show();
+        $(readmoreSibling).css("display", "block");
+    });
+
+    $('.readless').click(function () {
+        let readlessSibling = $(this).siblings(".readmore")[0];
+        let readmoreSibling = $(this).siblings(".product__quantity")[0];
+        $(this).hide();
+        $(readlessSibling).show();
+        $(readmoreSibling).css("display", "-webkit-box");
+    });
+
 }
 
 function insertOrderHistoryProducts() {
@@ -229,10 +282,10 @@ function insertProducts(products) {
         `);
     });
 
-    $(".faq-drawer__title").click(function() {
+    $(".faq-drawer__title").click(function () {
         let drawerContentBox = $(this).siblings(".faq-drawer__content-wrapper").children().children(".products__container.inner");
         let drawerContentBoxHeight = drawerContentBox[0].offsetHeight;
-        if($(this).siblings(".faq-drawer__content-wrapper").hasClass("ashish")) {
+        if ($(this).siblings(".faq-drawer__content-wrapper").hasClass("ashish")) {
             $($(this).siblings(".faq-drawer__content-wrapper")).css("max-height", 0);
             $(this).siblings(".faq-drawer__content-wrapper").removeClass("ashish");
         } else {
@@ -432,6 +485,7 @@ function updateCounter(counterInput, type, requestFrom) {
         var $input = $(siblingWrapper);
         $input.val(parseInt($input.val()) + 1);
         $input.change();
+        $input.attr("previous-value", $input.val());
         let numberCircleCount = $("#numberCircle").attr("value");
         let parseCount = Number(numberCircleCount)
         let updatedValue = parseCount + 1;
@@ -459,20 +513,21 @@ function updateCounter(counterInput, type, requestFrom) {
                 let updatedValue = parseCount - 1;
                 $("#numberCircle").attr("value", updatedValue);
                 $("#numberCircle").text(updatedValue);
-                if(requestFrom && requestFrom === "checkout") {
+                if (requestFrom && requestFrom === "checkout") {
                     $(`#promotions-add-${decodedProductData.sku}`).show()
                     $(`#promotions-counter-${decodedProductData.sku}`).hide()
                 }
             } else {
                 $input.val(count);
                 $input.change();
+                $input.attr("previous-value", $input.val());
                 let numberCircleCount = $("#numberCircle").attr("value");
                 let parseCount = Number(numberCircleCount)
                 let updatedValue = parseCount - 1;
                 $("#numberCircle").attr("value", updatedValue);
                 $("#numberCircle").text(updatedValue);
             }
-            
+
             updateCheckoutCartData(decodedProductData, "minus");
             return false;
         }
