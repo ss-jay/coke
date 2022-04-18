@@ -31,18 +31,20 @@ function insertOrderCart(orderCart, skuid) {
                     <div class="details__section">
                         <div class="name">${product.name}</div>
                         <div class="discount__offer">
-                            <span class="price">$${product.price}</span>
-                            <span class="discount">$${product.costprice}</span>
+                            <span class="price">Rs. ${product.price}</span>
+                            <span class="discount">Rs. ${product.costprice}</span>
                         </div>
                         <div class="discount__detail">${product.discount_detail}</div>
-                        <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
+                        <div class="discount__detail__bar">
+                            <div class="description">${product.discount_description}</div>
+                        </div>
                     </div>
                     <div class="product__counter">
                         <div class="icon__wrapper">
                             <img src="/coke/assets/images/png/product.png" />
                         </div>
 
-                        <div class="counter__wrapper">
+                        <div class="counter__wrapper checkout">
                             <div class="counter__container checkout">
                                 <div class="counter__box__container">
                                     <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
@@ -71,18 +73,20 @@ function insertOrderCart(orderCart, skuid) {
                 <div class="details__section">
                     <div class="name">${product.name}</div>
                     <div class="discount__offer">
-                        <span class="price">$${product.price}</span>
-                        <span class="discount">$${product.costprice}</span>
+                        <span class="price">Rs. ${product.price}</span>
+                        <span class="discount">Rs. ${product.costprice}</span>
                     </div>
                     <div class="discount__detail">${product.discount_detail}</div>
-                    <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
+                    <div class="discount__detail__bar">
+                        <div class="description">${product.discount_description}</div>
+                    </div>
                 </div>
                 <div class="product__counter">
                     <div class="icon__wrapper">
                         <img src="/coke/assets/images/png/product.png" />
                     </div>
 
-                    <div class="counter__wrapper">
+                    <div class="counter__wrapper checkout">
                         <div class="counter__container checkout">
                             <div class="counter__box__container">
                                 <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('minus')">
@@ -203,10 +207,6 @@ function insertOrderSummary() {
                     <div class="key bold">Item total</div>
                     <div class="item" orderValue="0" id="item_total">$0</div>
                 </div>
-                <div class="price__item">
-                    <div class="key">Taxes & charges</div>
-                    <div class="item" orderValue="0" id="tax_charges">$0</div>
-                </div>
                 <div class="price__item" id="discount_perc">
                     <div class="key red">Discount</div>
                     <div class="item red" orderValue="0" id="discout_perc">$0</div>
@@ -302,20 +302,17 @@ function recalculateCart(discountData) {
         }
     }
     /* Calculate totals */
-    let tax = subtotal * 0.28;
+    // let tax = subtotal * 0.28;
     let discount = subtotal * (parseInt(discountData.discount) / 100);
-    let total = subtotal + tax - discount;
+    let total = subtotal - discount;
 
     /* Update totals display */
     $('.item').fadeOut(300, function () {
         $('#item_total').text(subtotal.toFixed(2));
         $('#item_total').attr("orderValue", subtotal.toFixed(2));
 
-        $('#sticky_cart_price').text(`$${subtotal.toFixed(2)}`);
+        $('#sticky_cart_price').text(`Rs. ${subtotal.toFixed(2)}`);
         $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
-
-        $('#tax_charges').text(tax.toFixed(2));
-        $('#tax_charges').attr("orderValue", tax.toFixed(2));
 
         $('#discout_perc').text(discount.toFixed(2));
         $('#discout_perc').attr("orderValue", discount.toFixed(2));
@@ -335,7 +332,6 @@ function recalculateCart(discountData) {
     $("#numberCircle").fadeIn().css("display", "flex");
     orderCartData = {
         products: cartData,
-        tax: tax,
         discount: discount,
         subtotal: subtotal
     }

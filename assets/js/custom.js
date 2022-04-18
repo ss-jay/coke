@@ -7,11 +7,10 @@ function loadPageContent(page, data) {
         insertTabContainer();
         insertPromotionsContainer();
         insertOrderHistoryProducts();
-        insertFavouriteProducts();
         insertFilterBar();
         insertProducts(config.products);
         insertInnerProducts(config.products);
-        $('input').on('keyup', function () {
+        $('input').blur(function () {
             let key = event.keyCode || event.charCode;
             if (key == 8 || key == 46) {
                 return false;
@@ -29,7 +28,7 @@ function loadPageContent(page, data) {
             console.log("test 2", currentValue)
             if(currentValue != 0) {
                 if(previousValue > currentValue) {
-                    for (let i = 0; i < previousValue; i++) {
+                    for (let i = 0; i < (previousValue - currentValue); i++) {
                         console.log(i)
                         updateCounter($(divNode).children(".counter__plus")[0], "minus");
                     }
@@ -113,7 +112,7 @@ function insertPromotionsContainer() {
                         <p class="product__quantity">${promotion.description}</p>
                         ${promotion.description.length > 60 ? `<div class="readmore">read more</div>` : ""}
                         <div class="readless hide">read less</div>
-                        <p class="product__price">$${promotion.price}</p>
+                        <p class="product__price">Rs. ${promotion.price}</p>
                     </div>
                     <div isdisabled=${isdisabled} class="product-bottom-details" id="promotions-add-${promotion.sku}" product="${encodeURIComponent(JSON.stringify(promotion))}">
                         <div class="btn" isdisabled=${isdisabled}>${btnName}</div>
@@ -165,7 +164,7 @@ function insertOrderHistoryProducts() {
             <div class="order__history__wrapper">
                 <div class="history__details">
                     <div class="date">${product.order_date}</div>
-                    <div class="price">$${product.order_amount}</div>
+                    <div class="price">Rs. ${product.order_amount}</div>
                 </div>
                 <div class="order__section">
                     <div class="details__section">
@@ -222,7 +221,7 @@ function insertFavouriteProducts() {
                     <div class="product__text__wrapper">
                         <p class="product__name">${item.name}</p>
                         <p class="product__quantity">${item.description}</p>
-                        <p class="product__price">$${item.price}</p>
+                        <p class="product__price">Rs. ${item.price}</p>
                     </div>
                     <div isdisabled=${isdisabled} class="product-bottom-details" product="${encodeURIComponent(JSON.stringify(item))}">
                         <div class="btn" isdisabled=${isdisabled}>${btnName}</div>
@@ -235,7 +234,7 @@ function insertFavouriteProducts() {
                                 </div>
                             </div>
                         
-                            <input id="counter_input" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off"/>
+                            <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
                             <div class="counter__box__container" product="${encodeURIComponent(JSON.stringify(item))}">
                                 <div class="counter__plus" id="plus">
                                     <img src="/coke/assets/images/png/plus.png" />
@@ -309,12 +308,12 @@ function insertInnerProducts(products) {
                         <div class="product__text__wrapper">
                             <p class="product__name">${item.name}</p>
                             <p class="product__quantity">${item.description}</p>
-                            <p class="product__price">$${item.price}</p>
+                            <p class="product__price">Rs. ${item.price}</p>
                         </div>
-                        <div isdisabled=${isdisabled} class="product-bottom-details" product="${encodeURIComponent(JSON.stringify(item))}">
+                        <div isdisabled=${isdisabled} class="product-bottom-details" id="promotions-add-${item.sku}" product="${encodeURIComponent(JSON.stringify(item))}">
                             <div class="btn inner" isdisabled=${isdisabled}>${btnName}</div>
                         </div>
-                        <div class="counter__wrapper hide">
+                        <div class="counter__wrapper hide" id="promotions-counter-${item.sku}">
                             <div class="counter__container">
                                 <div class="counter__box__container">
                                     <div class="counter__minus" id="minus" product="${encodeURIComponent(JSON.stringify(item))}">
@@ -322,7 +321,7 @@ function insertInnerProducts(products) {
                                     </div>
                                 </div>
                             
-                                <input id="counter_input" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off"/>
+                                <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
                                 <div class="counter__box__container">
                                     <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(item))}">
                                         <img src="/coke/assets/images/png/plus.png" />
@@ -369,7 +368,7 @@ function searchProducts(node) {
                 <div class="left__wrapper">
                     <div class="name">${item.name}</div>
                     <div class="description">${item.description}</div>
-                    <div class="price">$${item.price}</div>
+                    <div class="price">Rs. ${item.price}</div>
                 </div>
                 <div class="right__wrapper">
                     <div class="product-bottom-details" product="${encodeURIComponent(JSON.stringify(item))}">
@@ -383,7 +382,7 @@ function searchProducts(node) {
                                 </div>
                             </div>
                         
-                            <input id="counter_input" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off"/>
+                            <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(item))}">
                                     <img src="/coke/assets/images/png/plus.png" />
