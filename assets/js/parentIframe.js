@@ -37,7 +37,7 @@ window.addEventListener('message', function (eventData) {
                     }
                 }
            }, '*');
-            console.log("12", window);
+            console.log("12", window.location);
             window.location.href('https://wa.me/+94773233440?text=show%20cart');
                         console.log("34");
             return;
