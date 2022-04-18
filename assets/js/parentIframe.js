@@ -32,7 +32,7 @@ window.addEventListener('message', function (eventData) {
                 event_code: 'ym-client-event',
                 data: {
                     event: {
-                     code: "UPDATE_CART",
+                     code: "updated-json",
                      data: parsedData
                     }
                 }
