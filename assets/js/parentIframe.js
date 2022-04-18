@@ -37,7 +37,7 @@ window.addEventListener('message', function (eventData) {
                     }
                 }
            }, '*');
-            window.location.href('https://wa.me/+94773233440?text=show%20cart');
+            window.location.replace('https://wa.me/+94773233440?text=show%20cart');
             return;
         }
     } catch (error) {
