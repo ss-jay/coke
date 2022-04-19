@@ -527,7 +527,14 @@
     /* .counter__wrapper {
         width:fit-content;
     } */
+    .orderhistory .btn {
+        width: 6rem;
+        margin: auto 0 auto auto;
+    }
     .product__counter {
         align-items: flex-end;
+    }
+    .counter__wrapper.checkout {
+        width: 6rem;
     }
 }
