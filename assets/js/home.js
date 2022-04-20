@@ -22,17 +22,12 @@ function renderPage(page, sectionToScroll) {
         document.getElementById(`homepage`).style.display = "none";
 
         // send event
-        console.log('home.js => ',document.getElementById('ymIframe'));
-        document.getElementById('ymIframe').contentWindow.postMessage({
-            event_code: 'ym-client-event',
-            data: {
-                event: {
-                 code: "applied_coupons",
-                 data: {}
-                }
-            }
-       }, '*');
-       console.log('home.js => Event sent');
+        console.log("BEFORE ++");
+        parent.postMessage(JSON.stringify({
+            event_code: 'custom-checkout-event',
+            data: {}
+        }), '*');
+        console.log("AFTER ++");
     }
 
 }
