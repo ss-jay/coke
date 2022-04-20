@@ -42,6 +42,21 @@ window.addEventListener('message', function (eventData) {
                         console.log("34");
             return;
         }
+        
+        if (parsedData?.event_code == 'custom-parenttoroot-checkout-event') {
+            console.log("Checkout data ------- --- --- --- ------> ", parsedData);
+            document.getElementById('ymIframe').contentWindow.postMessage({
+                event_code: 'ym-client-event',
+                data: {
+                    event: {
+                     code: "applied_coupons",
+                     data: {}
+                    }
+                }
+           }, '*');
+            console.log("12", window.location);
+            return;
+        }
     } catch (error) {
         console.log(error);
         return;
