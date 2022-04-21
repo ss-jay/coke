@@ -113,7 +113,7 @@ function insertPromotionsContainer() {
                             </div>
                             <div class="addmore__qty">
                                 <div class="submit">
-                                    <img src="/assets/images/png/plus.png" />
+                                    <img src="/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
                         </div>

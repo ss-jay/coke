@@ -261,7 +261,6 @@
     position: absolute;
     align-items: center;
     justify-content: center;
-    background: darkgreen;
     animation-name: slideToRight;
     animation-duration: 3s;
     animation-delay: 0ms;
@@ -523,16 +522,30 @@
 }
 
 .buyout__btn__wrapper {
-    width: 100%;
+    /* width: 100%;
     margin: 25px auto 0 auto;
+    display: flex;
+    padding: 0 18px;
+    overflow: hidden;
+    flex-wrap: nowrap; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    justify-items: center;
+    align-items: center;
+    padding: 0 16px;
+    flex-wrap: nowrap;
 }
 
 .buyout__btn__wrapper .buyout__btn {
-    width: fit-content;
+    /* width: fit-content; */
+    width: 100%;
     background: #f4000b;
     border-radius: 6px;
     /* padding: 9px 57px 9px 56px; */
-    padding: 18px 57px 18px 56px;
+    /* padding: 18px 57px 18px 56px; */
+    padding: 18px 0;
     font-weight: 700;
     font-size: 12px;
     line-height: 12px;
@@ -540,6 +553,7 @@
     color: #ffffff;
     margin: auto;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 
