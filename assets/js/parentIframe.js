@@ -11,6 +11,10 @@
     }
 })();
 
+window.addEventListener('message', function (eventData) {
+    console.log("Parent window listener");
+    console.log("DAATA ++>", eventData.data);
+});
 
 window.addEventListener('message', function (eventData) {
     console.log("test js file called");
