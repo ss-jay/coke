@@ -175,7 +175,7 @@ function insertOrderHistoryProducts() {
                         <div class="name">${product.name}</div>
                         <div class="units">SKU:&nbsp;${product.unit}</div>
                         <div class="discount__detail">${product.discount_detail}</div>
-                        <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
+                        <div class="discount__detail__bar"><div class="description">${product.discount_description}</div></div>
                     </div>
                     <div class="product__counter">
                         <div class="icon__wrapper">
