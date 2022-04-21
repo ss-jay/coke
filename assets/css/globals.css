@@ -120,3 +120,7 @@ svg {
     padding: 0 5px;
     border-radius: 6px;
 }
+
+.dropdown__filter {
+    opacity: 0;
+}

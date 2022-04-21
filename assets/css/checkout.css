@@ -233,6 +233,7 @@
     background: #f4000b;
     padding: 0 15px;
     border-radius: 6px;
+    position: relative;
 }
 
 .counter__wrapper .counter__container {
@@ -247,6 +248,32 @@
 
 .counter__box__container {
     padding: 5px 0px;
+}
+
+.counter__container .addmore__qty{
+    display: flex;
+    right: 26%;
+    height: auto;
+    height: 18px;
+    width: 18px;
+    font-size: 5px;
+    border-radius: 50%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    background: darkgreen;
+    animation-name: slideToRight;
+    animation-duration: 3s;
+    animation-delay: 0ms;
+    opacity: 0;
+}
+
+@keyframes slideToRight {
+    0%   {left: 45%;}
+    25%  {left: 45%;}
+    50%  {left: 63%;}
+    75%  {left: 63%;}
+    100% {left: 63%;}
 }
 
 .counter__container .counter__minus,
