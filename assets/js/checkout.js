@@ -118,7 +118,7 @@ function insertSelectedCoupon(discount, type) {
     }
     $(elementNode).replaceWith(`
         <div class="coupon__banner__container">
-            <div class="title">Coupon details</div>
+            <div class="title">Promotions details</div>
             <div class="banner__wrapper">
                 <div class="svg__box">
                     <svg width="84" height="146" viewBox="0 0 84 146" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -134,14 +134,14 @@ function insertSelectedCoupon(discount, type) {
                 <div class="detail__box">
                     <div class="box__wrapper">
                         <div class="discount__info">
-                            <div class="title">Already availed discount</div>
+                            <div class="title">Applied Promo</div>
                             <div class="discount_name">${discount.name}</div>
                         </div>
                         <div class="discount__detail">${discount.offer}</div>
                     </div>
                 </div>
             </div>
-            <div class="view__more" id="view_more" onclick="viewDiscount()">View More Discount</div>
+            <div class="view__more" id="view_more" onclick="viewDiscount()">View More Promotions</div>
         </div>
     `)
 }
@@ -183,7 +183,7 @@ function insertDiscountSection(discountAvailable) {
             </div>
         `)
     });
-
+    $("#offers_height_box").append(`<div class="view__less" onclick="hideDiscount()">View less</div>`);
     $('.offer__apply').click(function () {
         addDiscount(this);
     });
@@ -269,6 +269,7 @@ function viewDiscount() {
 
 function hideDiscount() {
     $("#offers_parent_container").css('height', 0);
+    $("#view_more").removeClass("hide");
 }
 
 function addDiscount(node) {
@@ -335,7 +336,6 @@ function recalculateCart(discountData) {
         discount: discount,
         subtotal: subtotal
     }
-    console.log(orderCartData)
 }
 
 function updateCounterDataFromCheckout(type) {
@@ -349,7 +349,6 @@ function updateCounterDataFromCheckout(type) {
 }
 
 function sendDataToBot() {
-    console.log(orderCartData);
     window.parent.postMessage(JSON.stringify({
         event_code: 'custom-childtoparent-client-event',
         data: orderCartData
