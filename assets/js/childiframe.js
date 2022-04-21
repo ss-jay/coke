@@ -11,7 +11,11 @@
 
 window.addEventListener('message', function (eventData) {
     console.log("local test 2 file called --> ", eventData.data);
-    let parsedEventData = JSON.parse(eventData.data);
+    let parsedEventData = eventData.data;    
+    if (typeof eventData.data == 'string') {
+            parsedEventData = JSON.parse(eventData.data);    
+    }
+
     console.log("local testing 2 ashish case 2 ", parsedEventData.data);
     
     if(parsedEventData.event_code === "custom-parent-client-event" && parsedEventData.data) {
