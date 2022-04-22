@@ -38,7 +38,7 @@ window.addEventListener('message', function (eventData) {
         console.log("innner iframe called with parsed Data for checkout ---> ", parsedEventData.data);
         parent.postMessage(JSON.stringify({
             event_code: 'custom-parenttoroot-checkout-event',
-            data: {}
+            data: parsedEventData.data
         }), '*');
     }
 });

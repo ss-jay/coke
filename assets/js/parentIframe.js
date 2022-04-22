@@ -50,7 +50,7 @@ window.addEventListener('message', function (eventData) {
                 data: {
                     event: {
                      code: "applied_coupons",
-                     data: {}
+                     data: parsedData
                     }
                 }
            }, '*');
