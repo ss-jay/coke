@@ -312,7 +312,7 @@ function insertInnerProducts(products) {
                     </div>
                     <div class="product__details inner">
                         <div class="product__text__wrapper">
-                            <p class="product__name">${item.name}</p>
+                            <p class="product__name">${item.name} - ${item.listing_type}</p>
                             <p class="product__quantity">${item.description}</p>
                             <p class="product__price">Rs. ${item.price}</p>
                         </div>
