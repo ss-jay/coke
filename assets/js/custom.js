@@ -22,7 +22,11 @@ function loadPageContent(page, data) {
         });
         
         console.log("12.213 => ", config.products);
-        getAllProducts = config.products;
+        
+        for (let pObj of config.products) {
+            getAllProducts.push(...pObj.item);
+        }
+//         getAllProducts = config.products.map(p => p.item);
     }
 
 
