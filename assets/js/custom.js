@@ -24,7 +24,7 @@ function loadPageContent(page, data) {
         console.log("12.213 => ", config.products);
         
         for (let pObj of config.products) {
-            getAllProducts.push(...pObj.item);
+            getAllProducts.push(...pObj.items);
         }
 //         getAllProducts = config.products.map(p => p.item);
     }
