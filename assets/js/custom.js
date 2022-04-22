@@ -20,6 +20,8 @@ function loadPageContent(page, data) {
             $($(this).siblings()[1]).fadeIn("slow").hide();
             $(this).siblings(".addmore__qty").css("opacity", "1");
         });
+
+        getAllProducts = config.products;
     }
 
 
