@@ -11,33 +11,14 @@ function loadPageContent(page, data) {
         insertProducts(config.products);
         insertInnerProducts(config.products);
         $('input').blur(function () {
-            let key = event.keyCode || event.charCode;
-            if (key == 8 || key == 46) {
-                return false;
-            }
-            if (key === 37 || key === 39 || key === 38 || key === 40) {
-                event.preventDefault();
-                return
-            }
-            let currentValue = parseInt(event.target.value)
-            let divNode = $(this).siblings(".counter__box__container")[1];
-            let previousValue = $(this).attr("previous-value");
-            $(this).val(parseInt(previousValue));
-            $(this).change();
-            console.log("test", previousValue)
-            console.log("test 2", currentValue)
-            if(currentValue != 0) {
-                if(previousValue > currentValue) {
-                    for (let i = 0; i < (previousValue - currentValue); i++) {
-                        console.log(i)
-                        updateCounter($(divNode).children(".counter__plus")[0], "minus");
-                    }
-                } else {
-                    for (let i = 0; i < currentValue; i++) {
-                        updateCounter($(divNode).children(".counter__plus")[0], "add");
-                    }
-                }
-            }
+            $($(this).siblings()[0]).fadeIn("slow").show();
+            $($(this).siblings()[1]).fadeIn("slow").show();
+            $(this).siblings(".addmore__qty").css("opacity", "0");
+        });
+        $('input').focus(function() {
+            $($(this).siblings()[0]).fadeIn("slow").hide();
+            $($(this).siblings()[1]).fadeIn("slow").hide();
+            $(this).siblings(".addmore__qty").css("opacity", "1");
         });
     }
 
@@ -99,7 +80,6 @@ function insertPromotionsContainer() {
     config.promotions.products.map((promotion) => {
         let isdisabled = promotion.quantity_available ? false : true;
         let btnName = isdisabled ? "Out of stock" : "ADD";
-        console.log(promotion.description.length)
         $("#promotions_products_container").append(`
             <div class="product-card">
                 <div class="product-tumb">
@@ -131,11 +111,35 @@ function insertPromotionsContainer() {
                                     <img src="/coke/assets/images/png/plus.png" />
                                 </div>
                             </div>
+                            <div class="addmore__qty">
+                                <div class="submit">
+                                    <img src="/coke/assets/images/svg/icons8-ok.svg" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `);
+    });
+
+    $('.submit').click(function () {
+        let counterInput = $(this).parent().siblings(".counter__input");
+        let currentValue = $(counterInput).val();
+        let previousValue = $(counterInput).attr("previous-value");
+        $(counterInput).val(parseInt(previousValue));
+        $(counterInput).change();
+        if(currentValue != 0) {
+            if(previousValue > currentValue) {
+                for (let i = 0; i < (previousValue - currentValue); i++) {
+                    updateCounter($($(counterInput).siblings()[0]).children()[0], "minus");
+                }
+            } else {
+                for (let i = 0; i < currentValue; i++) {
+                    updateCounter($($(counterInput).siblings()[1]).children()[0], "add");
+                }
+            }
+        }
     });
 
     $('.readmore').click(function () {
@@ -171,7 +175,7 @@ function insertOrderHistoryProducts() {
                         <div class="name">${product.name}</div>
                         <div class="units">SKU:&nbsp;${product.unit}</div>
                         <div class="discount__detail">${product.discount_detail}</div>
-                        <div class="discount__detail__bar"><div class="description">${product.discount_description}</div><span>read more</span></div>
+                        <div class="discount__detail__bar"><div class="description">${product.discount_description}</div></div>
                     </div>
                     <div class="product__counter">
                         <div class="icon__wrapper">
