@@ -26,6 +26,15 @@ window.addEventListener('message', function (eventData) {
             return;
         }
 
+        if (parsedData?.event_code == 'custom-event' && parsedData?.data?.code == "applied_coupons_YM") {
+            console.log(" applied coupons data in parentIframe.js --> ", parsedData);
+            document.getElementById('ymIframe').contentWindow.postMessage(JSON.stringify({
+                event_code: 'custom-parent-client-checkout-event',
+                data: parsedData.data.data
+            }), '*');
+            return;
+        }
+
         if (parsedData?.event_code == 'custom-parenttoroot-client-event' && parsedData?.data) {
             console.log("------- --- --- --- ------> ", parsedData);
             document.getElementById('ymIframe').contentWindow.postMessage({

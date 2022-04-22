@@ -41,4 +41,12 @@ window.addEventListener('message', function (eventData) {
             data: parsedEventData.data
         }), '*');
     }
+
+    if(parsedEventData.event_code === "custom-parent-client-checkout-event") {
+        console.log("Final applied coupons data in childframe.js ---> ", parsedEventData.data);
+        // parent.postMessage(JSON.stringify({
+        //     event_code: 'custom-parenttoroot-checkout-event',
+        //     data: parsedEventData.data
+        // }), '*');
+    }
 });
