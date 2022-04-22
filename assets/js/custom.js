@@ -378,7 +378,7 @@ function searchProducts(node) {
         $("#search_product_wrap").append(`
             <div class="product searchproducts">
                 <div class="left__wrapper">
-                    <div class="name">${item.name}</div>
+                    <div class="name">${item.name} - ${item.listing_type}</div>
                     <div class="description">${item.description}</div>
                     <div class="price">Rs. ${item.price}</div>
                 </div>
