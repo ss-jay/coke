@@ -26,7 +26,7 @@ function renderPage(page, sectionToScroll) {
         console.log("BEFORE ++");
         parent.postMessage(JSON.stringify({
             event_code: 'custom-checkout-event',
-            data: {}
+            data: orderCartData
         }), '*');
         console.log("AFTER ++");
     }
