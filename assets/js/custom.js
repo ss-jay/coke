@@ -20,8 +20,13 @@ function loadPageContent(page, data) {
             $($(this).siblings()[1]).fadeIn("slow").hide();
             $(this).siblings(".addmore__qty").css("opacity", "1");
         });
-
-        getAllProducts = config.products;
+        
+        console.log("12.213 => ", config.products);
+        
+        for (let pObj of config.products) {
+            getAllProducts.push(...pObj.items);
+        }
+//         getAllProducts = config.products.map(p => p.item);
     }
 
 
@@ -353,6 +358,7 @@ function debounce(func, timeout = 300) {
 function saveInput(node) {
     var filter = "keywords";
     var keyword = node.value;
+    console.log("Get ALL products", getAllProducts);
     var filteredData = getAllProducts.filter(function (obj) {
         if (obj[filter] != "") {
             return obj[filter].includes(keyword);
