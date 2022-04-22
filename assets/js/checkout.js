@@ -33,7 +33,6 @@ function insertOrderCart(orderCart, skuid) {
                         <div class="name">${product.name}</div>
                         <div class="discount__offer">
                             <span class="price">Rs. ${product.price}</span>
-                            <span class="discount">Rs. ${product.costprice}</span>
                         </div>
                         <div class="discount__detail">${product.discount_detail}</div>
                         <div class="discount__detail__bar">
@@ -75,7 +74,6 @@ function insertOrderCart(orderCart, skuid) {
                     <div class="name">${product.name}</div>
                     <div class="discount__offer">
                         <span class="price">Rs. ${product.price}</span>
-                        <span class="discount">Rs. ${product.costprice}</span>
                     </div>
                     <div class="discount__detail">${product.discount_detail}</div>
                     <div class="discount__detail__bar">
