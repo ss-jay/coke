@@ -20,7 +20,8 @@ function loadPageContent(page, data) {
             $($(this).siblings()[1]).fadeIn("slow").hide();
             $(this).siblings(".addmore__qty").css("opacity", "1");
         });
-
+        
+        console.log("12.213 => ", config.products);
         getAllProducts = config.products;
     }
 
@@ -353,6 +354,7 @@ function debounce(func, timeout = 300) {
 function saveInput(node) {
     var filter = "keywords";
     var keyword = node.value;
+    console.log("Get ALL products", getAllProducts);
     var filteredData = getAllProducts.filter(function (obj) {
         if (obj[filter] != "") {
             return obj[filter].includes(keyword);
