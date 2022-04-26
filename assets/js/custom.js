@@ -55,6 +55,30 @@ function loadPageContent(page, data) {
     $('.item-drop').click(function () {
         updateDropDownMenu(this);
     });
+
+    $('.submit').click(function () {
+        let counterInput = $(this).parent().siblings(".counter__input");
+        let currentValue = $(counterInput).val();
+        let previousValue = $(counterInput).attr("previous-value");
+        $(counterInput).val(parseInt(previousValue));
+        $(counterInput).change();
+        $($(this).parent().siblings()[0]).fadeIn("slow").show();
+        $($(this).parent().siblings()[2]).fadeIn("slow").show();
+        $(this).parent(".addmore__qty").css("opacity", "0");
+        $(this).parent(".addmore__qty").css("display", "none");
+        
+        if(currentValue != 0) {
+            if(previousValue > currentValue) {
+                for (let i = 0; i < (previousValue - currentValue); i++) {
+                    updateCounter($($(counterInput).siblings()[0]).children()[0], "minus");
+                }
+            } else {
+                for (let i = 0; i < currentValue; i++) {
+                    updateCounter($($(counterInput).siblings()[1]).children()[0], "add");
+                }
+            }
+        }
+    });
 }
 
 function insertSearchBar() {
@@ -130,30 +154,6 @@ function insertPromotionsContainer() {
                 </div>
             </div>
         `);
-    });
-
-    $('.submit').click(function () {
-        let counterInput = $(this).parent().siblings(".counter__input");
-        let currentValue = $(counterInput).val();
-        let previousValue = $(counterInput).attr("previous-value");
-        $(counterInput).val(parseInt(previousValue));
-        $(counterInput).change();
-        $($(this).parent().siblings()[0]).fadeIn("slow").show();
-        $($(this).parent().siblings()[2]).fadeIn("slow").show();
-        $(this).parent(".addmore__qty").css("opacity", "0");
-        $(this).parent(".addmore__qty").css("display", "none");
-        
-        if(currentValue != 0) {
-            if(previousValue > currentValue) {
-                for (let i = 0; i < (previousValue - currentValue); i++) {
-                    updateCounter($($(counterInput).siblings()[0]).children()[0], "minus");
-                }
-            } else {
-                for (let i = 0; i < currentValue; i++) {
-                    updateCounter($($(counterInput).siblings()[1]).children()[0], "add");
-                }
-            }
-        }
     });
 
     $('.readmore').click(function () {
@@ -258,6 +258,11 @@ function insertFavouriteProducts() {
                                     <img src="/coke/assets/images/png/plus.png" />
                                 </div>
                             </div>
+                            <div class="addmore__qty">
+                                <div class="submit">
+                                    <img src="/assets/images/svg/icons8-ok.svg" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -345,6 +350,11 @@ function insertInnerProducts(products) {
                                         <img src="/coke/assets/images/png/plus.png" />
                                     </div>
                                 </div>
+                                <div class="addmore__qty">
+                                    <div class="submit">
+                                        <img src="/assets/images/svg/icons8-ok.svg" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -405,6 +415,11 @@ function searchProducts(node) {
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(item))}">
                                     <img src="/coke/assets/images/png/plus.png" />
+                                </div>
+                            </div>
+                            <div class="addmore__qty">
+                                <div class="submit">
+                                    <img src="/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
                         </div>
