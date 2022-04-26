@@ -390,6 +390,7 @@ function sendDataToBot() {
 }
 
 function passDataToBot(data) {
+    console.log("BEFORERERER +++++++++++");
     window.parent.postMessage(JSON.stringify({
         event_code: 'custom-checkout-event',
         data: data
