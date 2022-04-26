@@ -127,7 +127,7 @@ function insertSelectedCoupon(discountData, type) {
                         </svg>
                         <div class="coupon__name__box">
                             <div class="name">
-                                ${discount.brand}
+                                PROMO
                             </div>
                             <div class="stripes"></div>
                         </div>
@@ -136,9 +136,9 @@ function insertSelectedCoupon(discountData, type) {
                         <div class="box__wrapper">
                             <div class="discount__info">
                                 <div class="title">Applied Promo</div>
-                                <div class="discount_name">${discount.name}</div>
+                                <div class="discount_name">${discount.offer_name}</div>
                             </div>
-                            <div class="discount__detail">${discount.offer}</div>
+                            <div class="discount__detail">${discount.display_message}</div>
                         </div>
                     </div>
                 </div>
