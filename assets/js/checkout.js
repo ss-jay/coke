@@ -115,6 +115,7 @@ function insertSelectedCoupon(discountData, type) {
     } else {
         elementNode = "#coupon_container";
     }
+    $(elementNode).empty();
     discountData.map((discount, index) => {
         $(elementNode).prepend(`
             <div class="coupon__banner__container">
