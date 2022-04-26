@@ -16,6 +16,44 @@ window.addEventListener('message', function (eventData) {
             loadCheckoutPageContent("checkoutpage", parsedEventData.data);
         }, 2500);
     }
+    
+    if (parsedEventData.event_code === "custom-parentchild-client-checkout-event") {
+        console.log("\n\n\n\n\n\n\n discount data received \n\n\n\n\n\n\n\n");
+        console.log(parsedEventData);
+        let data = [
+            {
+                offerType: "rupee",
+                product_name: "",
+                quantity: "",
+                product_price: "",
+                discountedPrice:"",
+                discountPrice: "",
+                display_message: "test test test test",
+                offer_name:"TEST"
+            },
+            {
+                offerType: "percentage",
+                product_name: "",
+                quantity:"",
+                product_price:"",
+                discountedPrice: "",
+                discountedPercent:"",
+                display_message: "test test test",
+                offer_name:"TEST2"
+            },           
+            {
+                offerType: "product",
+                product_name: "*Free* " + "productName",
+                quantity: "",
+                product_price: "Rs.0",
+                unit_price: 0,
+                discountedPrice: 0,
+                display_message: "test test test",
+                offer_name:"TEST"
+            }
+        ]
+        insertSelectedCoupon(data);
+    }
 });
 
 /* var config = {
@@ -367,14 +405,51 @@ window.addEventListener('message', function (eventData) {
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
                 "costprice": "16.95",
-                "unit": "10",
-                "icon": "/coke/assets/images/png/product.png",
+                "icon": "/assets/images/png/product.png",
                 "quantity_available": false,
                 "discount": "",
                 "discount_detail": "5 case offer on 1L/500ML",
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
                 "order_date" : "Dec 14, 2021",
                 "order_amount" : "149.50",
+                "products": {
+                    "CCPPID17": {
+                        "product_data" : {
+                            "sku": "CCPPID17",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 5
+                    },
+                    "CCPPID18": {
+                        "product_data" : {
+                            "sku": "CCPPID18",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 10
+                    }
+                }
             },
             {
                 "sku": "CCPPID18",
@@ -383,46 +458,51 @@ window.addEventListener('message', function (eventData) {
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
                 "costprice": "16.95",
-                "unit": "10",
-                "icon": "/coke/assets/images/png/product.png",
-                "quantity_available": true,
-                "discount": "",
-                "discount_detail": "5 case offer on 1L/500ML",
-                "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
-                "order_date" : "Dec 14, 2021",
-                "order_amount" : "149.50",
-            },
-            {
-                "sku": "CCPPID19",
-                "keywords": "",
-                "name": "Kinley 5 case offer",
-                "description": "7.5 fl oz, 10 pack",
-                "price": "14.95",
-                "costprice": "16.95",
-                "unit": "10",
-                "icon": "/coke/assets/images/png/product.png",
+                "icon": "/assets/images/png/product.png",
                 "quantity_available": false,
                 "discount": "",
                 "discount_detail": "5 case offer on 1L/500ML",
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
                 "order_date" : "Dec 14, 2021",
                 "order_amount" : "149.50",
-            },
-            {
-                "sku": "CCPPID20",
-                "keywords": "",
-                "name": "Kinley 5 case offer",
-                "description": "7.5 fl oz, 10 pack",
-                "price": "14.95",
-                "costprice": "16.95",
-                "unit": "10",
-                "icon": "/coke/assets/images/png/product.png",
-                "quantity_available": true,
-                "discount": "",
-                "discount_detail": "5 case offer on 1L/500ML",
-                "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
-                "order_date" : "Dec 14, 2021",
-                "order_amount" : "149.50",
+                "products": {
+                    "CCPPID18": {
+                        "product_data" : {
+                            "sku": "CCPPID18",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 5
+                    },
+                    "CCPPID19": {
+                        "product_data" : {
+                            "sku": "CCPPID19",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 10
+                    }
+                }
             }
         ]
     },

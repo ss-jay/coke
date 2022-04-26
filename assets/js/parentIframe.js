@@ -51,7 +51,6 @@ window.addEventListener('message', function (eventData) {
                         console.log("34");
             return;
         }
-        
         if (parsedData?.event_code == 'custom-parenttoroot-checkout-event') {
             console.log("Checkout data ------- --- --- --- ------> ", parsedData);
             document.getElementById('ymIframe').contentWindow.postMessage({
