@@ -16,6 +16,44 @@ window.addEventListener('message', function (eventData) {
             loadCheckoutPageContent("checkoutpage", parsedEventData.data);
         }, 2500);
     }
+    
+    if (parsedEventData.event_code === "custom-parentchild-client-checkout-event") {
+        console.log("\n\n\n\n\n\n\n discount data received \n\n\n\n\n\n\n\n");
+        console.log(parsedEventData);
+        let data = [
+            {
+                offerType: "rupee",
+                product_name: "",
+                quantity: "",
+                product_price: "",
+                discountedPrice:"",
+                discountPrice: "",
+                display_message: "test test test test",
+                offer_name:"TEST"
+            },
+            {
+                offerType: "percentage",
+                product_name: "",
+                quantity:"",
+                product_price:"",
+                discountedPrice: "",
+                discountedPercent:"",
+                display_message: "test test test",
+                offer_name:"TEST2"
+            },           
+            {
+                offerType: "product",
+                product_name: "*Free* " + "productName",
+                quantity: "",
+                product_price: "Rs.0",
+                unit_price: 0,
+                discountedPrice: 0,
+                display_message: "test test test",
+                offer_name:"TEST"
+            }
+        ]
+        insertSelectedCoupon(data);
+    }
 });
 
 /* var config = {
