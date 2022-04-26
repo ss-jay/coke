@@ -142,7 +142,6 @@ function insertSelectedCoupon(discountData, type) {
                         </div>
                     </div>
                 </div>
-                <div class="view__more" id="view_more" onclick="viewDiscount()">View More Promotions</div>
             </div>
         `)
     })
