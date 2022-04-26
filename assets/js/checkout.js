@@ -334,52 +334,56 @@ function processQ(data, skuid) {
 
 function recalculateCart(discountData) {
     let subtotal = 0;
-    /* Sum up row totals */
-    for (const key in cartData) {
-        // subtotal += parseFloat(cartData[key]["product_data"].price);
-        if(cartData[key]["product_data"].unit) {
-            subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["product_data"].unit * parseInt(cartData[key]["quantity"]));
-        } else {
-            subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["quantity"]);
-            // subtotal = subtotal * (parseInt(cartData[key]["quantity"]) ? parseInt(cartData[key]["quantity"]) : 1);
+    // JAY
+    if (discountData.length) {
+        /* Sum up row totals */
+        for (const key in cartData) {
+            // subtotal += parseFloat(cartData[key]["product_data"].price);
+            if(cartData[key]["product_data"].unit) {
+                subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["product_data"].unit * parseInt(cartData[key]["quantity"]));
+            } else {
+                subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["quantity"]);
+                // subtotal = subtotal * (parseInt(cartData[key]["quantity"]) ? parseInt(cartData[key]["quantity"]) : 1);
+            }
         }
-    }
-    /* Calculate totals */
-    // let tax = subtotal * 0.28;
-    let discount = subtotal * (parseInt(discountData.discount) / 100);
-    let total = subtotal - discount;
+        /* Calculate totals */
+        // let tax = subtotal * 0.28;
+        let discount = subtotal * (parseInt(discountData.discount) / 100);
+        let total = subtotal - discount;
+    
+        /* Update totals display */
+        $('.item').fadeOut(300, function () {
+            $('#item_total').text(subtotal.toFixed(2));
+            $('#item_total').attr("orderValue", subtotal.toFixed(2));
+    
+            $('#sticky_cart_price').text(`Rs. ${subtotal.toFixed(2)}`);
+            $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
+    
+            $('#discout_perc').text(discount.toFixed(2));
+            $('#discout_perc').attr("orderValue", discount.toFixed(2));
+    
+            $('#grand_total').text(total.toFixed(2));
+            $('#grand_total').attr("orderValue", total.toFixed(2));
+    
+            $('.item').fadeIn(300);
+        });
+    
+        $('.sticky__footer').fadeIn().show();
+        $("#numberCircle").fadeIn().css("display", "flex");
+    
+        if ($("#numberCircle").attr("value") == 0) {
+            $(".sticky__footer").hide();
+            $("#numberCircle").hide();
+            return;
+        }
+        // $('.sticky__footer').fadeIn().show();
+        // $("#numberCircle").fadeIn().css("display", "flex");
+        orderCartData = {
+            products: cartData,
+            discount: discount,
+            subtotal: subtotal
+        }
 
-    /* Update totals display */
-    $('.item').fadeOut(300, function () {
-        $('#item_total').text(subtotal.toFixed(2));
-        $('#item_total').attr("orderValue", subtotal.toFixed(2));
-
-        $('#sticky_cart_price').text(`Rs. ${subtotal.toFixed(2)}`);
-        $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
-
-        $('#discout_perc').text(discount.toFixed(2));
-        $('#discout_perc').attr("orderValue", discount.toFixed(2));
-
-        $('#grand_total').text(total.toFixed(2));
-        $('#grand_total').attr("orderValue", total.toFixed(2));
-
-        $('.item').fadeIn(300);
-    });
-
-    $('.sticky__footer').fadeIn().show();
-    $("#numberCircle").fadeIn().css("display", "flex");
-
-    if ($("#numberCircle").attr("value") == 0) {
-        $(".sticky__footer").hide();
-        $("#numberCircle").hide();
-        return;
-    }
-    // $('.sticky__footer').fadeIn().show();
-    // $("#numberCircle").fadeIn().css("display", "flex");
-    orderCartData = {
-        products: cartData,
-        discount: discount,
-        subtotal: subtotal
     }
 }
 
