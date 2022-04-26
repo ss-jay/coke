@@ -59,6 +59,11 @@ function insertOrderCart(orderCart, skuid) {
                                         <img src="/coke/assets/images/png/plus.png" />
                                     </div>
                                 </div>
+                                <div class="addmore__qty">
+                                    <div class="submit">
+                                        <img src="/assets/images/svg/icons8-ok.svg" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,6 +104,11 @@ function insertOrderCart(orderCart, skuid) {
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
                                     <img src="/coke/assets/images/png/plus.png" />
+                                </div>
+                            </div>
+                            <div class="addmore__qty">
+                                <div class="submit">
+                                    <img src="/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
                         </div>
