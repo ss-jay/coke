@@ -1,5 +1,6 @@
 var config = {};
 var orderCartData = {};
+var discountPrice = 0;
 
 function loadCheckoutPageContent(page, data) {
     config = data;
@@ -117,9 +118,9 @@ function insertSelectedCoupon(discountData, type) {
     }
     $(elementNode).empty();
     discountData.map((discount, index) => {
-        $(elementNode).prepend(`
+        discountPrice += discount.discountedPrice;
+        $(elementNode).append(`
             <div class="coupon__banner__container">
-                <div class="title">Promotions details</div>
                 <div class="banner__wrapper">
                     <div class="svg__box">
                         <svg width="84" height="146" viewBox="0 0 84 146" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,7 +143,6 @@ function insertSelectedCoupon(discountData, type) {
                         </div>
                     </div>
                 </div>
-                <div class="view__more" id="view_more" onclick="viewDiscount()">View More Promotions</div>
             </div>
         `)
     })
@@ -214,7 +214,7 @@ function insertDiscountSection(discountAvailable) {
             </div>
         `)
     });
-    $("#offers_height_box").append(`<div class="view__less" onclick="hideDiscount()">View less</div>`);
+    // $("#offers_height_box").append(`<div class="view__less" onclick="hideDiscount()">View less</div>`);
     /* $('.offer__apply').click(function () {
         addDiscount(this);
     }); */
