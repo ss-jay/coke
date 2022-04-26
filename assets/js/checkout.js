@@ -1,5 +1,6 @@
 var config = {};
 var orderCartData = {};
+var discountPrice = 0;
 
 function loadCheckoutPageContent(page, data) {
     config = data;
@@ -118,6 +119,7 @@ function insertSelectedCoupon(discountData, type) {
     }
     $(elementNode).empty();
     discountData.map((discount, index) => {
+        discountPrice += discount.discountedPrice;
         $(elementNode).append(`
             <div class="coupon__banner__container">
                 <div class="banner__wrapper">
