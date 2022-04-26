@@ -14,14 +14,16 @@ function loadPageContent(page) {
         insertProducts(config.products);
         insertInnerProducts(config.products);
         $('input').blur(function () {
-            $($(this).siblings()[0]).fadeIn("slow").show();
-            $($(this).siblings()[1]).fadeIn("slow").show();
-            $(this).siblings(".addmore__qty").css("opacity", "0");
+            // $($(this).siblings()[0]).fadeIn("slow").show();
+            // $($(this).siblings()[1]).fadeIn("slow").show();
+            // $(this).siblings(".addmore__qty").css("opacity", "0");
+            // $(this).siblings(".addmore__qty").css("display", "none");
         });
         $('input').focus(function() {
             $($(this).siblings()[0]).fadeIn("slow").hide();
             $($(this).siblings()[1]).fadeIn("slow").hide();
             $(this).siblings(".addmore__qty").css("opacity", "1");
+            $(this).siblings(".addmore__qty").css("display", "block");
         });
     }
 
@@ -108,7 +110,7 @@ function insertPromotionsContainer() {
                                 </div>
                             </div>
                         
-                            <input id="counter_input_${promotion.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
+                            <input id="counter_input_${promotion.sku}" class="counter__input home" type="text" value="1" size="2" maxlength="2" autocomplete="off" previous-value="1" />
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(promotion))}">
                                     <img src="/assets/images/png/plus.png" />
@@ -132,6 +134,11 @@ function insertPromotionsContainer() {
         let previousValue = $(counterInput).attr("previous-value");
         $(counterInput).val(parseInt(previousValue));
         $(counterInput).change();
+        $($(this).parent().siblings()[0]).fadeIn("slow").show();
+        $($(this).parent().siblings()[2]).fadeIn("slow").show();
+        $(this).parent(".addmore__qty").css("opacity", "0");
+        $(this).parent(".addmore__qty").css("display", "none");
+        
         if(currentValue != 0) {
             if(previousValue > currentValue) {
                 for (let i = 0; i < (previousValue - currentValue); i++) {
@@ -241,7 +248,7 @@ function insertFavouriteProducts() {
                                 </div>
                             </div>
                         
-                            <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
+                            <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="2" maxlength="2" autocomplete="off" previous-value="1" />
                             <div class="counter__box__container" product="${encodeURIComponent(JSON.stringify(item))}">
                                 <div class="counter__plus" id="plus">
                                     <img src="/assets/images/png/plus.png" />
@@ -328,7 +335,7 @@ function insertInnerProducts(products) {
                                     </div>
                                 </div>
                             
-                                <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
+                                <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="2" maxlength="2" autocomplete="off" previous-value="1" />
                                 <div class="counter__box__container">
                                     <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(item))}">
                                         <img src="/assets/images/png/plus.png" />
@@ -389,7 +396,7 @@ function searchProducts(node) {
                                 </div>
                             </div>
                         
-                            <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="1" maxlength="2" autocomplete="off" previous-value="1" />
+                            <input id="counter_input_${item.sku}" class="counter__input home" type="text" value="1" size="2" maxlength="2" autocomplete="off" previous-value="1" />
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(item))}">
                                     <img src="/assets/images/png/plus.png" />
@@ -613,7 +620,7 @@ function updateCheckoutCartData(data, type) {
 
 function updateProductsBasedOnProducts(node, type) {
     let orderhistoryNode = "";
-    let productData = $(node).attr("product");
+    /* let productData = $(node).attr("product");
     let decodedProductData = JSON.parse(decodeURIComponent(productData));
     if (type === "add") {
         orderhistoryNode = $(node).siblings(".counter__wrapper.orderhistory");
@@ -628,12 +635,42 @@ function updateProductsBasedOnProducts(node, type) {
     if (type === "minus") {
         orderhistoryNode = $(node).siblings(".repeat.orderhistory");
         let numberCircleCount = $("#numberCircle").attr("value");
-        let parseCount = Number(numberCircleCount)
+        let parseCount = Number(numberCircleCount)`
         let updatedValue = parseCount - 1;
         $("#numberCircle").attr("value", updatedValue);
         $("#numberCircle").text(updatedValue);
     }
     $(orderhistoryNode).show();
+    $(node).hide(); */
+    // updateCheckoutCartData(decodedProductData, type);
+
+    let productDataa = $(node).attr("product");
+    let decodedProductDataa = JSON.parse(decodeURIComponent(productDataa));
+    let products = decodedProductDataa.products;
+    for (const key in products) {
+        let data = products[key].product_data;
+        for(var i=0; i < products[key].quantity; i++) {
+            if (type === "add") {
+                orderhistoryNode = $(node).siblings(".counter__wrapper.orderhistory");
+                let numberCircleCount = $("#numberCircle").attr("value");
+                let parseCount = Number(numberCircleCount)
+                let updatedValue = parseCount + 1;
+                $("#numberCircle").attr("value", updatedValue);
+                $("#numberCircle").text(updatedValue);
+            }
+            if (type === "minus") {
+                orderhistoryNode = $(node).siblings(".repeat.orderhistory");
+                let numberCircleCount = $("#numberCircle").attr("value");
+                let parseCount = Number(numberCircleCount);
+                let updatedValue = parseCount - 1;
+                $("#numberCircle").attr("value", updatedValue);
+                $("#numberCircle").text(updatedValue);
+            }
+            updateCheckoutCartData(data, type);
+        }
+        // processQ({[key] : data}, key);
+        
+    }
+    $(orderhistoryNode).show();
     $(node).hide();
-    updateCheckoutCartData(decodedProductData, type);
 }

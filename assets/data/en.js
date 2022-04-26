@@ -347,7 +347,6 @@ var config = {
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
                 "costprice": "16.95",
-                "unit": "10",
                 "icon": "/assets/images/png/product.png",
                 "quantity_available": false,
                 "discount": "",
@@ -355,6 +354,44 @@ var config = {
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
                 "order_date" : "Dec 14, 2021",
                 "order_amount" : "149.50",
+                "products": {
+                    "CCPPID17": {
+                        "product_data" : {
+                            "sku": "CCPPID17",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 5
+                    },
+                    "CCPPID18": {
+                        "product_data" : {
+                            "sku": "CCPPID18",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 10
+                    }
+                }
             },
             {
                 "sku": "CCPPID18",
@@ -363,23 +400,6 @@ var config = {
                 "description": "7.5 fl oz, 10 pack",
                 "price": "14.95",
                 "costprice": "16.95",
-                "unit": "10",
-                "icon": "/assets/images/png/product.png",
-                "quantity_available": true,
-                "discount": "",
-                "discount_detail": "5 case offer on 1L/500ML",
-                "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
-                "order_date" : "Dec 14, 2021",
-                "order_amount" : "149.50",
-            },
-            {
-                "sku": "CCPPID19",
-                "keywords": "",
-                "name": "Kinley 5 case offer",
-                "description": "7.5 fl oz, 10 pack",
-                "price": "14.95",
-                "costprice": "16.95",
-                "unit": "10",
                 "icon": "/assets/images/png/product.png",
                 "quantity_available": false,
                 "discount": "",
@@ -387,22 +407,44 @@ var config = {
                 "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
                 "order_date" : "Dec 14, 2021",
                 "order_amount" : "149.50",
-            },
-            {
-                "sku": "CCPPID20",
-                "keywords": "",
-                "name": "Kinley 5 case offer",
-                "description": "7.5 fl oz, 10 pack",
-                "price": "14.95",
-                "costprice": "16.95",
-                "unit": "10",
-                "icon": "/assets/images/png/product.png",
-                "quantity_available": true,
-                "discount": "",
-                "discount_detail": "5 case offer on 1L/500ML",
-                "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
-                "order_date" : "Dec 14, 2021",
-                "order_amount" : "149.50",
+                "products": {
+                    "CCPPID18": {
+                        "product_data" : {
+                            "sku": "CCPPID18",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 5
+                    },
+                    "CCPPID19": {
+                        "product_data" : {
+                            "sku": "CCPPID19",
+                            "keywords": "",
+                            "name": "Kinley 5 case offer",
+                            "description": "7.5 fl oz, 10 pack",
+                            "price": "14.95",
+                            "costprice": "16.95",
+                            "icon": "/assets/images/png/product.png",
+                            "quantity_available": false,
+                            "discount": "",
+                            "discount_detail": "5 case offer on 1L/500ML",
+                            "discount_description": "Kinley 5 case sit amet, consectetur amet consectetur",
+                            "order_date" : "Dec 14, 2021",
+                            "order_amount" : "149.50",
+                        },
+                        "quantity": 10
+                    }
+                }
             }
         ]
     },

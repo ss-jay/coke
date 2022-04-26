@@ -265,6 +265,7 @@
     animation-duration: 3s;
     animation-delay: 0ms;
     opacity: 0;
+    display: none;
 }
 
 @keyframes slideToRight {
@@ -577,5 +578,10 @@
     }
     .counter__wrapper.checkout {
         width: 6rem;
+    }
+    .details__section {
+        display: grid;
+        grid-row-gap: 8px;
+        align-content: flex-start;
     }
 }
