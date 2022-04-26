@@ -181,7 +181,7 @@ function insertSelectedCoupon(discountData, type) {
 function insertDiscountSection(discountAvailable) {
         $("#offers_height_box").empty();
         discountAvailable.map((discount, index) => {
-        $("#offers_height_box").prepend(`
+        $("#offers_height_box").append(`
             <div class="offer__info__wrapper">
                 <div class="offer__info__container">
                     <div class="offer__info__section">
