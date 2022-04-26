@@ -52,7 +52,7 @@ function insertOrderCart(orderCart, skuid) {
                                     </div>
                                 </div>
                             
-                                <input id="counter_input" class="counter__input" type="text" value='${orderCart[skuid]["quantity"]}' size="1" maxlength="2" />
+                                <input id="counter_input" class="counter__input" type="text" value='${orderCart[skuid]["quantity"]}' size="2" maxlength="2" />
                                 <div class="counter__box__container">
                                     <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
                                         <img src="/coke/assets/images/png/plus.png" />
@@ -94,7 +94,7 @@ function insertOrderCart(orderCart, skuid) {
                                 </div>
                             </div>
                         
-                            <input id="counter_input" class="counter__input" type="text" value="1" size="1" maxlength="2" />
+                            <input id="counter_input" class="counter__input" type="text" value="1" size="2" maxlength="2" />
                             <div class="counter__box__container">
                                 <div class="counter__plus" id="plus" product="${encodeURIComponent(JSON.stringify(product))}" onclick="updateCounterDataFromCheckout('add')">
                                     <img src="/coke/assets/images/png/plus.png" />
@@ -324,13 +324,16 @@ function recalculateCart(discountData) {
         $('.item').fadeIn(300);
     });
 
-    if ($("#numberCircle").attr("value") == 0) {
-        $(".sticky__footer").fadeIn().hide();
-        $("#numberCircle").fadeIn().hide();
-        return
-    }
     $('.sticky__footer').fadeIn().show();
     $("#numberCircle").fadeIn().css("display", "flex");
+
+    if ($("#numberCircle").attr("value") == 0) {
+        $(".sticky__footer").hide();
+        $("#numberCircle").hide();
+        return;
+    }
+    // $('.sticky__footer').fadeIn().show();
+    // $("#numberCircle").fadeIn().css("display", "flex");
     orderCartData = {
         products: cartData,
         discount: discount,
