@@ -118,9 +118,8 @@ function insertSelectedCoupon(discountData, type) {
     }
     $(elementNode).empty();
     discountData.map((discount, index) => {
-        $(elementNode).prepend(`
+        $(elementNode).append(`
             <div class="coupon__banner__container">
-                <div class="title">Promotions details</div>
                 <div class="banner__wrapper">
                     <div class="svg__box">
                         <svg width="84" height="146" viewBox="0 0 84 146" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +180,7 @@ function insertSelectedCoupon(discountData, type) {
 function insertDiscountSection(discountAvailable) {
         $("#offers_height_box").empty();
         discountAvailable.map((discount, index) => {
-        $("#offers_height_box").append(`
+        $("#offers_height_box").prepend(`
             <div class="offer__info__wrapper">
                 <div class="offer__info__container">
                     <div class="offer__info__section">
@@ -215,7 +214,7 @@ function insertDiscountSection(discountAvailable) {
             </div>
         `)
     });
-    $("#offers_height_box").append(`<div class="view__less" onclick="hideDiscount()">View less</div>`);
+    // $("#offers_height_box").append(`<div class="view__less" onclick="hideDiscount()">View less</div>`);
     /* $('.offer__apply').click(function () {
         addDiscount(this);
     }); */
