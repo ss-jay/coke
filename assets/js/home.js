@@ -21,14 +21,6 @@ function renderPage(page, sectionToScroll) {
         }
         document.getElementById(`${page}`).style.display = "block";
         document.getElementById(`homepage`).style.display = "none";
-
-        // send event
-        console.log("BEFORE ++");
-        parent.postMessage(JSON.stringify({
-            event_code: 'custom-checkout-event',
-            data: orderCartData
-        }), '*');
-        console.log("AFTER ++");
     }
 
 }
