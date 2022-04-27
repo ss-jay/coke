@@ -127,6 +127,7 @@ function insertSelectedCoupon(discountData, type, data) {
         elementNode = "#coupon_container";
     }
     discountPrice = 0;
+    $(elementNode).empty();
     discountData.map((discount, index) => {
         discountPrice += discount.discountedPrice;
         $(elementNode).append(`
@@ -341,7 +342,6 @@ function processQ(data, skuid) {
 function recalculateOrderSummary(data) {
     /* Calculate totals */
     // let tax = subtotal * 0.28;
-    console.log(discountPrice);
     let discount = discountPrice;
     let total = data.subtotal - discount;
 
@@ -429,10 +429,8 @@ function sendDataToBot() {
 }
 
 function passDataToBot(data) {
-    console.log("BEFORERERER +++++++++++");
     window.parent.postMessage(JSON.stringify({
         event_code: 'custom-checkout-event',
         data: data
     }), '*');
-    console.log("AFTER ++");
 }
