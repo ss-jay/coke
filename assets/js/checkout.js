@@ -351,7 +351,8 @@ function recalculateCart() {
         // let discount = subtotal * (parseInt(discountData.discount) / 100);
         let discount = discountPrice;
         let total = subtotal - discount;
-    
+        
+        console.log(" ==========> discount =? ", discountPrice);
         /* Update totals display */
         $('.item').fadeOut(300, function () {
             $('#item_total').text(subtotal.toFixed(2));
