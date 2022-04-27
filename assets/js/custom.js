@@ -505,6 +505,12 @@ function updateCounter(counterInput, type, requestFrom) {
     let siblingWrapper = $(counterInput).parent().siblings(".counter__input");
     if (type === "add") {
         var $input = $(siblingWrapper);
+        let productData = $(counterInput).attr("product");
+        let decodedProductData = JSON.parse(decodeURIComponent(productData));
+        if(decodedProductData.itemspercase <= parseInt($input.val())) {
+            showToastMessage(decodedProductData.itemspercase);
+            return false;
+        }
         $input.val(parseInt($input.val()) + 1);
         $input.change();
         $input.attr("previous-value", $input.val());
@@ -513,8 +519,6 @@ function updateCounter(counterInput, type, requestFrom) {
         let updatedValue = parseCount + 1;
         $("#numberCircle").attr("value", updatedValue);
         $("#numberCircle").text(updatedValue);
-        let productData = $(counterInput).attr("product");
-        let decodedProductData = JSON.parse(decodeURIComponent(productData));
         updateCheckoutCartData(decodedProductData, "add");
         return false;
     }
@@ -662,6 +666,10 @@ function updateProductsBasedOnProducts(node, type) {
         let data = products[key].product_data;
         for(var i=0; i < products[key].quantity; i++) {
             if (type === "add") {
+                if(data.itemspercase <= parseInt(products[key].quantity)) {
+                    showToastMessage(data.itemspercase);
+                    return false;
+                }
                 orderhistoryNode = $(node).siblings(".counter__wrapper.orderhistory");
                 let numberCircleCount = $("#numberCircle").attr("value");
                 let parseCount = Number(numberCircleCount)
@@ -685,3 +693,11 @@ function updateProductsBasedOnProducts(node, type) {
     $(orderhistoryNode).show();
     $(node).hide();
 }
+
+function showToastMessage(maxItems) {
+    var x = document.querySelector("#simpleToast");
+    x.className = "show";
+    $(x).children(".toastMsg").text(`Max limit reached | ${maxItems} units`)
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+  
