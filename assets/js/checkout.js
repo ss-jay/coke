@@ -332,7 +332,7 @@ function processQ(data, skuid) {
     passDataToBot(data);
 }
 
-function recalculateCart(discountData) {
+function recalculateCart() {
     let subtotal = 0;
     // JAY
     // if (discountData.length) {
