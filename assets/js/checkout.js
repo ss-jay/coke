@@ -156,7 +156,7 @@ function insertSelectedCoupon(discountData, type) {
             </div>
         `)
     })
-    
+    recalculateCart();
     /* $(elementNode).replaceWith(`
         <div class="coupon__banner__container">
             <div class="title">Promotions details</div>
