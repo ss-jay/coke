@@ -599,7 +599,6 @@ function updateCheckoutCartData(data, type) {
             "product_data": data,
             "quantity": 1
         }
-        insertSelectedCoupon(config.checkout.discounts[0]);
         processQ(cartData, data.sku);
         return;
     }
