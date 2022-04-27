@@ -228,6 +228,7 @@ function insertDiscountSection(discountAvailable) {
     /* $('.offer__apply').click(function () {
         addDiscount(this);
     }); */
+    recalculateCart();
 }
 
 function insertDistributorAddress() {
@@ -328,7 +329,6 @@ function addDiscount(node) {
 
 function processQ(data, skuid) {
     insertOrderCart(data, skuid);
-    recalculateCart(config.checkout.discounts[1]);
     passDataToBot(data);
 }
 
