@@ -335,7 +335,7 @@ function processQ(data, skuid) {
 function recalculateCart(discountData) {
     let subtotal = 0;
     // JAY
-    if (discountData.length) {
+    // if (discountData.length) {
         /* Sum up row totals */
         for (const key in cartData) {
             // subtotal += parseFloat(cartData[key]["product_data"].price);
@@ -384,7 +384,7 @@ function recalculateCart(discountData) {
             subtotal: subtotal
         }
 
-    }
+    // }
 }
 
 function updateCounterDataFromCheckout(type) {
