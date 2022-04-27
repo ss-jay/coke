@@ -5,9 +5,6 @@ var discountPrice = 0;
 function loadCheckoutPageContent(page, data) {
     config = data;
     if (page === "checkoutpage") {
-        // let clonedArr = [...config.checkout.discounts];
-        // clonedArr.splice(0, 1);
-        // insertDiscountSection(clonedArr);
         insertDistributorAddress();
         insertOrderSummary();
         insertDeliveryDetails();
@@ -120,7 +117,7 @@ function insertOrderCart(orderCart, skuid) {
 
 }
 
-function insertSelectedCoupon(discountData, type) {
+function insertSelectedCoupon(discountData, type, data) {
     var elementNode = "";
     if (type === "update") {
         elementNode = ".coupon__banner__container";
@@ -128,6 +125,7 @@ function insertSelectedCoupon(discountData, type) {
         elementNode = "#coupon_container";
     }
     $(elementNode).empty();
+    discountPrice = 0;
     discountData.map((discount, index) => {
         discountPrice += discount.discountedPrice;
         $(elementNode).append(`
@@ -156,39 +154,11 @@ function insertSelectedCoupon(discountData, type) {
                 </div>
             </div>
         `)
-    })
-    
-    /* $(elementNode).replaceWith(`
-        <div class="coupon__banner__container">
-            <div class="title">Promotions details</div>
-            <div class="banner__wrapper">
-                <div class="svg__box">
-                    <svg width="84" height="146" viewBox="0 0 84 146" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M83.0244 3.05176e-05H0V2.93142C2.30098 2.93142 4.16068 4.79111 4.16068 7.09209C4.16068 9.39307 2.30098 11.2528 0 11.2528V13.9005C2.30098 13.9005 4.16068 15.7602 4.16068 18.0612C4.16068 20.3621 2.30098 22.2218 0 22.2218V24.8695C2.30098 24.8695 4.16068 26.7292 4.16068 29.0302C4.16068 31.3312 2.30098 33.1909 0 33.1909V35.8386C2.30098 35.8386 4.16068 37.6983 4.16068 39.9993C4.16068 42.3002 2.30098 44.1599 0 44.1599V46.8076C2.30098 46.8076 4.16068 48.6673 4.16068 50.9683C4.16068 53.2693 2.30098 55.129 0 55.129V58.4701C7.56487 58.6278 13.6483 64.8057 13.6483 72.4021C13.6483 79.9985 7.56487 86.271 0 86.4286V89.9904C2.30098 89.9904 4.16068 91.8501 4.16068 94.1511C4.16068 96.4521 2.30098 98.3118 0 98.3118V100.959C2.30098 100.959 4.16068 102.819 4.16068 105.12C4.16068 107.421 2.30098 109.281 0 109.281V111.929C2.30098 111.929 4.16068 113.788 4.16068 116.089C4.16068 118.39 2.30098 120.25 0 120.25V122.898C2.30098 122.898 4.16068 124.757 4.16068 127.058C4.16068 129.359 2.30098 131.219 0 131.219V133.867C2.30098 133.867 4.16068 135.726 4.16068 138.027C4.16068 140.328 2.30098 142.188 0 142.188V145.844H83.0244V3.05176e-05Z" fill="#F4000B"/>
-                    </svg>
-                    <div class="coupon__name__box">
-                        <div class="name">
-                            PROMO
-                        </div>
-                        <div class="stripes"></div>
-                    </div>
-                </div>
-                <div class="detail__box">
-                    <div class="box__wrapper">
-                        <div class="discount__info">
-                            <div class="title">Applied Promo</div>
-                            <div class="discount_name">${discount.name}</div>
-                        </div>
-                        <div class="discount__detail">${discount.offer}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="view__more" id="view_more" onclick="viewDiscount()">View More Promotions</div>
-        </div>
-    `) */
+    });
+    recalculateOrderSummary(data);
 }
 
-function insertDiscountSection(discountAvailable) {
+/* function insertDiscountSection(discountAvailable) {
         $("#offers_height_box").empty();
         discountAvailable.map((discount, index) => {
         $("#offers_height_box").prepend(`
@@ -226,11 +196,11 @@ function insertDiscountSection(discountAvailable) {
         `)
     });
     // $("#offers_height_box").append(`<div class="view__less" onclick="hideDiscount()">View less</div>`);
-    /* $('.offer__apply').click(function () {
-        addDiscount(this);
-    }); */
-    recalculateCart();
-}
+    // $('.offer__apply').click(function () {
+    //     addDiscount(this);
+    // });
+    // recalculateCart();
+} */
 
 function insertDistributorAddress() {
     $("#distributor_details_container").append(`
@@ -315,7 +285,7 @@ function hideDiscount() {
     $("#view_more").removeClass("hide");
 }
 
-function addDiscount(node) {
+/* function addDiscount(node) {
     let discountData = $(node).attr("discount-data");
     let decodedDiscountData = JSON.parse(decodeURIComponent(discountData));
     insertSelectedCoupon(decodedDiscountData, "update");
@@ -326,11 +296,36 @@ function addDiscount(node) {
     insertDiscountSection(filteredDiscounts);
     $("#view_more").fadeIn().removeClass("hide");
     recalculateCart(decodedDiscountData);
-}
+} */
 
 function processQ(data, skuid) {
     insertOrderCart(data, skuid);
     passDataToBot(data);
+    recalculateCart();
+}
+
+function recalculateOrderSummary(data) {
+    /* Calculate totals */
+    // let tax = subtotal * 0.28;
+    console.log(discountPrice);
+    let discount = discountPrice;
+    let total = data.subtotal - discount;
+
+    $('.item').fadeOut(300, function () {
+        $('#item_total').text(data.subtotal.toFixed(2));
+        $('#item_total').attr("orderValue", data.subtotal.toFixed(2));
+
+        $('#discout_perc').text(discount.toFixed(2));
+        $('#discout_perc').attr("orderValue", discount.toFixed(2));
+
+        $('#grand_total').text(total.toFixed(2));
+        $('#grand_total').attr("orderValue", total.toFixed(2));
+
+        $('.item').fadeIn(300);
+    });
+
+    orderCartData["discount"] = discount;
+    orderCartData["total"] = total;
 }
 
 function recalculateCart() {
@@ -345,24 +340,20 @@ function recalculateCart() {
             // subtotal = subtotal * (parseInt(cartData[key]["quantity"]) ? parseInt(cartData[key]["quantity"]) : 1);
         }
     }
-    /* Calculate totals */
-    // let tax = subtotal * 0.28;
-    let discount = discountPrice;
-    let total = subtotal - discount;
-
+    
     /* Update totals display */
     $('.item').fadeOut(300, function () {
-        $('#item_total').text(subtotal.toFixed(2));
-        $('#item_total').attr("orderValue", subtotal.toFixed(2));
+        $('#item_total').html(`<div id="loading"></div>`);
+        $('#item_total').attr("orderValue", 0);
 
         $('#sticky_cart_price').text(`Rs. ${subtotal.toFixed(2)}`);
         $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
 
-        $('#discout_perc').text(discount.toFixed(2));
-        $('#discout_perc').attr("orderValue", discount.toFixed(2));
+        $('#discout_perc').html(`<div id="loading"></div>`);
+        $('#discout_perc').attr("orderValue", 0);
 
-        $('#grand_total').text(total.toFixed(2));
-        $('#grand_total').attr("orderValue", total.toFixed(2));
+        $('#grand_total').html(`<div id="loading"></div>`);
+        $('#grand_total').attr("orderValue", 0);
 
         $('.item').fadeIn(300);
     });
@@ -379,9 +370,10 @@ function recalculateCart() {
     // $("#numberCircle").fadeIn().css("display", "flex");
     orderCartData = {
         products: cartData,
-        discount: discount,
-        subtotal: subtotal
-    }
+        subtotal: subtotal,
+    };
+
+    return orderCartData;
 }
 
 function updateCounterDataFromCheckout(type) {
@@ -393,6 +385,7 @@ function updateCounterDataFromCheckout(type) {
     $(`#counter_input_${decodedselectedProduct.sku}`).val(value);
     $(`#counter_input_${decodedselectedProduct.sku}`).change();
 }
+
 
 function sendDataToBot() {
     window.parent.postMessage(JSON.stringify({

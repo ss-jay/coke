@@ -52,7 +52,7 @@ window.addEventListener('message', function (eventData) {
                 offer_name:"TEST"
             }
         ]
-        insertSelectedCoupon(parsedEventData.data);
+        insertSelectedCoupon(parsedEventData.data, false, orderCartData);
     }
 });
 
