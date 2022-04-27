@@ -333,7 +333,7 @@ function processQ(data, skuid) {
     passDataToBot(data);
 }
 
-function recalculateCart(discountData) {
+function recalculateCart() {
     let subtotal = 0;
     /* Sum up row totals */
     for (const key in cartData) {
@@ -347,7 +347,7 @@ function recalculateCart(discountData) {
     }
     /* Calculate totals */
     // let tax = subtotal * 0.28;
-    let discount = subtotal * (parseInt(discountData.discount) / 100);
+    let discount = discountPrice;
     let total = subtotal - discount;
 
     /* Update totals display */
