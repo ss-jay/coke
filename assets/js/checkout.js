@@ -128,6 +128,7 @@ function insertSelectedCoupon(discountData, type) {
     }
     $(elementNode).empty();
     discountData.map((discount, index) => {
+        console.log('Here it comes ==+=> ', discount, index);
         discountPrice += discount.discountedPrice;
         $(elementNode).append(`
             <div class="coupon__banner__container">
