@@ -260,7 +260,7 @@ function insertFavouriteProducts() {
                             </div>
                             <div class="addmore__qty">
                                 <div class="submit">
-                                    <img src="/assets/images/svg/icons8-ok.svg" />
+                                    <img src="/coke/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
                         </div>
@@ -352,7 +352,7 @@ function insertInnerProducts(products) {
                                 </div>
                                 <div class="addmore__qty">
                                     <div class="submit">
-                                        <img src="/assets/images/svg/icons8-ok.svg" />
+                                        <img src="/coke/assets/images/svg/icons8-ok.svg" />
                                     </div>
                                 </div>
                             </div>
@@ -419,7 +419,7 @@ function searchProducts(node) {
                             </div>
                             <div class="addmore__qty">
                                 <div class="submit">
-                                    <img src="/assets/images/svg/icons8-ok.svg" />
+                                    <img src="/coke/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
                         </div>
