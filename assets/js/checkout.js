@@ -16,7 +16,7 @@ function loadCheckoutPageContent(page, data) {
             expandMore(this);
         });
 
-        $('.buyout__btn').click(function () {
+        $('.buyout__btn1').click(function () {
 //             window.location.replace('https://wa.me/+94773233440?text=show%20cart');
             sendDataToBot();
         });
