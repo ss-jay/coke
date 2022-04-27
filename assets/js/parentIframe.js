@@ -1,7 +1,7 @@
 (function injectJS() {
     try {
         var iFrameHead = window.frames["ymIframe"].document.getElementsByTagName("head")[0];
-        console.log("iFrameHead -- > ", iFrameHead);
+        // console.log("iFrameHead -- > ", iFrameHead);
         var modularBars = document.createElement('script');
         modularBars.type = 'text/javascript';
         modularBars.src = 'https://ss-jay.github.io/coke/assets/js/childiframe.js';
@@ -18,7 +18,7 @@ window.addEventListener('message', function (eventData) {
         console.table('Data----------------->>>', eventData.data);
         let parsedData = JSON.parse(eventData.data)
         if (parsedData?.event_code == 'custom-event' && parsedData?.data?.code == "all_lables") {
-            console.log("document.getElementById('ymIframe') --> ", document.getElementById('ymIframe'));
+            console.log("document.getElementById('ymIframe') --> ", parsedData);
             document.getElementById('ymIframe').contentWindow.postMessage(JSON.stringify({
                 event_code: 'custom-parent-client-event',
                 data: parsedData.data.data
