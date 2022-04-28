@@ -65,7 +65,7 @@ window.addEventListener('message', function (eventData) {
             return;
         }
 
-        if (parsedData?.event_code == ' custom-parenttoroot-recent-order-event') {
+        if (parsedData?.event_code == 'custom-parenttoroot-recent-order-event') {
             console.log("Recent order data ------- --- --- --- ------> ", parsedData);
             document.getElementById('ymIframe').contentWindow.postMessage({
                 event_code: 'ym-client-event',
