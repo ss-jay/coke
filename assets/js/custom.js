@@ -490,6 +490,15 @@ function switchTabs(id) {
         default:
             break;
     }
+
+    // JAY
+    if (id == 2) {
+        // fire an event to get order history
+        window.parent.postMessage(JSON.stringify({
+            event_code: 'custom-recent-order-event',
+            data: { phone: config.phone }
+        }), '*'); 
+    }
 }
 
 
