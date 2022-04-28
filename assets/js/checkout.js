@@ -24,11 +24,17 @@ function insertOrderCart(orderCart, skuid) {
     $("#favourites_container_title").show();
     if (Object.keys($(`#${skuid}`)).length !== 0) {
         let product = orderCart[skuid]["product_data"]
+        let type = orderCart[skuid]["product_data"]["listing_type"];
+        if (type) {
+            type = `- ${type}`
+        } else {
+            type = '';
+        }
         if(orderCart[skuid]["quantity"] !== 0) {
             $(`#${skuid}`).replaceWith(`
                 <div class="order__section" id=${product.sku}>
                     <div class="details__section">
-                        <div class="name">${product.name}</div>
+                        <div class="name">${product.name} ${type}</div>
                         <div class="discount__offer">
                             <span class="price">Rs. ${product.price}</span>
                         </div>
@@ -71,10 +77,16 @@ function insertOrderCart(orderCart, skuid) {
         }
     } else {
         let product = orderCart[skuid]["product_data"]
+        let type = orderCart[skuid]["product_data"]["listing_type"];
+        if (type) {
+            type = `- ${type}`
+        } else {
+            type = '';
+        }
         $("#order_checkout_cart").append(`
             <div class="order__section" id=${product.sku}>
                 <div class="details__section">
-                    <div class="name">${product.name}</div>
+                    <div class="name">${product.name} ${type}</div>
                     <div class="discount__offer">
                         <span class="price">Rs. ${product.price}</span>
                     </div>
