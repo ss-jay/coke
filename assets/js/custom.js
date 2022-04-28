@@ -176,10 +176,10 @@ function insertPromotionsContainer() {
 }
 
 function insertOrderHistoryProducts(data) {
+    var elementNode = ".orderhistory__container";
+    $(elementNode).empty();
     $("#orderhistory_container").prepend(`<p class="products__title">${config.recent_order.title}</p>`)
     // JAY
-    var elementNode = ".orderhistory__container__inner";
-    $(elementNode).empty();
     data.map((product) => {
     // config.recent_order.products.map((product) => {
         $("#orderhistory_container__inner").append(`
