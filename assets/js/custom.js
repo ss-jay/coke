@@ -176,9 +176,11 @@ function insertPromotionsContainer() {
 }
 
 function insertOrderHistoryProducts(data) {
+    var titleEle = ".recent_order_title";
+    $(titleEle).empty();
+    $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
     var elementNode = ".orderhistory__container";
     $(elementNode).empty();
-    $("#orderhistory_container").prepend(`<p class="products__title">${config.recent_order.title}</p>`)
     // JAY
     data.map((product) => {
     // config.recent_order.products.map((product) => {
