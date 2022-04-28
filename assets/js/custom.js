@@ -180,8 +180,8 @@ function insertOrderHistoryProducts(data) {
     $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
     // var titleEle = ".recent_order_title";
     // $(titleEle).empty();
-    var elementNode = ".orderhistory__container";
-    $(elementNode).empty();
+    // var elementNode = ".orderhistory__container";
+    // $(elementNode).empty();
     // JAY
     data.map((product) => {
     // config.recent_order.products.map((product) => {
