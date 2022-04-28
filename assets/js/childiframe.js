@@ -48,4 +48,12 @@ window.addEventListener('message', function (eventData) {
             data: parsedEventData.data
         }), '*');
     }
+
+    if(parsedEventData.event_code === "custom-recent-order-event") {
+        console.log("Recent order event childframe.js ---> ", parsedEventData.data);
+        parent.postMessage(JSON.stringify({
+            event_code: 'custom-parenttoroot-recent-order-event',
+            data: parsedEventData.data
+        }), '*');
+    }
 });

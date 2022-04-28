@@ -62,7 +62,20 @@ window.addEventListener('message', function (eventData) {
                     }
                 }
            }, '*');
-            console.log("12", window.location);
+            return;
+        }
+
+        if (parsedData?.event_code == ' custom-parenttoroot-recent-order-event') {
+            console.log("Recent order data ------- --- --- --- ------> ", parsedData);
+            document.getElementById('ymIframe').contentWindow.postMessage({
+                event_code: 'ym-client-event',
+                data: {
+                    event: {
+                     code: "fetch_recent_orders",
+                     data: parsedData
+                    }
+                }
+           }, '*');
             return;
         }
     } catch (error) {
