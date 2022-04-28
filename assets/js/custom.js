@@ -6,7 +6,8 @@ function loadPageContent(page, data) {
         insertSearchBar();
         insertTabContainer();
         insertPromotionsContainer();
-        insertOrderHistoryProducts();
+        // JAY
+        // insertOrderHistoryProducts();
         insertFilterBar();
         insertProducts(config.products);
         insertInnerProducts(config.products);
@@ -174,9 +175,11 @@ function insertPromotionsContainer() {
 
 }
 
-function insertOrderHistoryProducts() {
+function insertOrderHistoryProducts(data) {
     $("#orderhistory_container").prepend(`<p class="products__title">${config.recent_order.title}</p>`)
-    config.recent_order.products.map((product) => {
+    // JAY
+    data.map((product) => {
+    // config.recent_order.products.map((product) => {
         $("#orderhistory_container__inner").append(`
             
             <div class="order__history__wrapper">
