@@ -49,6 +49,14 @@ window.addEventListener('message', function (eventData) {
         }), '*');
     }
 
+    if(parsedEventData.event_code === "custom-parent-client-recent-order-event") {
+        console.log("Final recent order data childframe.js ---> ", parsedEventData.data);
+        document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({
+            event_code: 'custom-parentchild-client-recent-order-event',
+            data: parsedEventData.data
+        }), '*');
+    }
+
     if(parsedEventData.event_code === "custom-recent-order-event") {
         console.log("Recent order event childframe.js ---> ", parsedEventData.data);
         parent.postMessage(JSON.stringify({
