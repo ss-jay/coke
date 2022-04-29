@@ -58,7 +58,7 @@ window.addEventListener('message', function (eventData) {
     if (parsedEventData.event_code === "custom-parentchild-client-recent-order-event") {
         console.log("\n\n\n\n\n\n\n Recent Order data received \n\n\n\n\n\n\n\n");
         console.log(parsedEventData);
-        insertOrderHistoryProducts(parsedEventData.data)
+        // insertOrderHistoryProducts(parsedEventData.data)
     }
 });
 

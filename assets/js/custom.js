@@ -7,7 +7,7 @@ function loadPageContent(page, data) {
         insertTabContainer();
         insertPromotionsContainer();
         // JAY
-        // insertOrderHistoryProducts();
+        insertOrderHistoryProducts();
         insertFilterBar();
         insertProducts(config.products);
         insertInnerProducts(config.products);
@@ -176,17 +176,17 @@ function insertPromotionsContainer() {
 }
 
 function insertOrderHistoryProducts(data) {
-    console.log("INSide the insertOrderHistoryProducts fubc => ", config.recent_order, data);
-    var titleEle = ".orderhistory_container";
-    $(titleEle).empty();
-    $(titleEle).prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
+    // console.log("INSide the insertOrderHistoryProducts fubc => ", config.recent_order, data);
+    // var titleEle = ".orderhistory_container";
+    // $(titleEle).empty();
+    $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
     // $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
-    var elementNode = ".orderhistory__container";
-    $(elementNode).empty();
+    // var elementNode = ".orderhistory__container";
+    // $(elementNode).empty();
     // JAY
-    data.map((product) => {
-    // config.recent_order.products.map((product) => {
-        $(elementNode).append(`
+    // data.map((product) => {
+    config.recent_order.products.map((product) => {
+        $("#orderhistory_container__inner").append(`
             
             <div class="order__history__wrapper">
                 <div class="history__details">
