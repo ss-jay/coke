@@ -127,8 +127,10 @@ function insertSelectedCoupon(discountData, type, data) {
     $(elementNode).empty();
     discountPrice = 0;
     $(elementNode).empty();
+    $('#title_loader').empty();
     discountData.map((discount, index) => {
         discountPrice += discount.discountedPrice;
+        let qty = discount.quantity > 0 ? `<span>${discount.quantity}</span>` : "";
         $(elementNode).append(`
             <div class="coupon__banner__container">
                 <div class="banner__wrapper">
@@ -149,7 +151,7 @@ function insertSelectedCoupon(discountData, type, data) {
                                 <div class="title">Applied Promo</div>
                                 <div class="discount_name">${discount.offer_name}</div>
                             </div>
-                            <div class="discount__detail">${discount.display_message}</div>
+                            <div class="discount__detail">${qty} ${discount.display_message}</div>
                         </div>
                     </div>
                 </div>
@@ -312,6 +314,12 @@ function recalculateOrderSummary(data) {
     let total = data.subtotal - discount;
 
     $('.item').fadeOut(300, function () {
+        $('#title_loader').empty();
+        $('#loader_coupon').empty();
+        $('#loader_summary_bar').empty();
+        $('#text__loading').empty();
+        $('#continue_cta').removeClass("disabled");
+
         $('#item_total').text(data.subtotal.toFixed(2));
         $('#item_total').attr("orderValue", data.subtotal.toFixed(2));
 
@@ -343,6 +351,12 @@ function recalculateCart() {
     
     /* Update totals display */
     $('.item').fadeOut(300, function () {
+        $('#title_loader').html(`<div>Personalizing Promotions...</div>`);
+        $('#loader_coupon').html(`<div id="loading"></div>`);
+        $('#loader_summary_bar').html(`<div id="loading"></div>`);
+        $('#text__loading').text(`  (Recalculating...)`);
+        $('#continue_cta').addClass("disabled");
+
         $('#item_total').html(`<div id="loading"></div>`);
         $('#item_total').attr("orderValue", 0);
 
