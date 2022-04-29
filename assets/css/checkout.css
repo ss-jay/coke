@@ -304,6 +304,31 @@
     margin: 6px 10px;
 }
 
+.coupon__parent__wrapper {
+    position: relative;
+}
+
+.coupon__parent__wrapper .title__bar {
+    display: flex;
+    justify-content: space-between;
+}
+.coupon__parent__wrapper .title__bar .loader__coupon {
+    padding: 16px 16px 8px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+}
+
+.coupon__parent__wrapper .title__loader { 
+    padding: 0 16px 0 16px;
+    font-size: 12px;
+    color: #f4000b;
+    font-style: italic;
+    position: absolute;
+    top: 35px;
+    pointer-events: none;
+}
+
 .coupon__banner__container {
     padding: 16px;
 }
@@ -443,9 +468,20 @@
     padding: 16px;
 }
 
-.delivery__details__container .title,
 .delivery__details__container .title {
     padding: 0 0 8px 0;
+}
+
+.delivery__details__container .title__bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delivery__details__container .title__bar .title #text__loading {
+    color: #f4000b;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .delivery__details__container .summary__wrapper,
@@ -557,6 +593,10 @@
     white-space: nowrap;
 }
 
+.buyout__btn__wrapper .buyout__btn.disabled {
+    background-color: #cbcbcb;
+    pointer-events: none;
+}
 
 @media (min-width: 540px) {
     .buyout__btn__wrapper .buyout__btn {
