@@ -225,12 +225,6 @@ function insertDistributorAddress() {
 }
 
 function insertOrderSummary() {
-    //JAY
-
-    // <div class="price__item" id="discount_perc">
-    //                 <div class="key red">Discount</div>
-    //                 <div class="item red" orderValue="0" id="discout_perc">$0</div>
-    //             </div>
     $("#order_summary").append(`
         <div class="summary__wrapper">
             <div class="price__cart__box">
@@ -238,7 +232,10 @@ function insertOrderSummary() {
                     <div class="key bold">Item total</div>
                     <div class="item" orderValue="0" id="item_total">$0</div>
                 </div>
-                
+                <div class="price__item" id="discount_perc">
+                     <div class="key red">Discount</div>
+                     <div class="item red" orderValue="0" id="discout_perc">$0</div>
+                </div>
             </div>
             <div class="price__item total">
                 <div class="key bold total">Grand Total</div>
@@ -329,11 +326,8 @@ function recalculateOrderSummary(data) {
         $('#item_total').text(data.subtotal.toFixed(2));
         $('#item_total').attr("orderValue", data.subtotal.toFixed(2));
 
-        // JAY
-        if(discount.toFixed(2) > 0) {
-            $('#discout_perc').text(discount.toFixed(2));
-            $('#discout_perc').attr("orderValue", discount.toFixed(2));
-        }
+        $('#discout_perc').text(discount.toFixed(2));
+        $('#discout_perc').attr("orderValue", discount.toFixed(2));
 
         $('#grand_total').text(total.toFixed(2));
         $('#grand_total').attr("orderValue", total.toFixed(2));
