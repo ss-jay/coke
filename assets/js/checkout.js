@@ -162,7 +162,7 @@ function insertSelectedCoupon(discountData, type, data) {
                                 <div class="title">Applied Promo</div>
                                 <div class="discount_name">${discount.offer_name}</div>
                             </div>
-                            <div class="discount__detail">${qty} ${discount.display_message}</div>
+                            <div class="discount__detail">${discount.display_message}</div>
                         </div>
                     </div>
                 </div>
