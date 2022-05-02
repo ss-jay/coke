@@ -220,7 +220,7 @@ function insertDistributorAddress() {
     $("#distributor_details_container").append(`
         <div class="title">Distributor Details</div>
         <div class="summary__wrapper">
-            <div class="detail">${config.checkout.distributor_details.address}</div>
+            <div class="detail" style="margin:0;">${config.checkout.distributor_details.name}</div>
         </div>
     `)
 }

@@ -408,6 +408,7 @@ window.addEventListener('message', function (eventData) {
             }
         ],
         "distributor_details": {
+            "name": "Ionic pvt ltd.",
             "address": "Mckayla McClure DDS,",
             "phone": "467-512-7188"
         },
