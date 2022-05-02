@@ -218,10 +218,9 @@ function insertSelectedCoupon(discountData, type, data) {
 
 function insertDistributorAddress() {
     $("#distributor_details_container").append(`
-        <div class="title">Distributor address</div>
+        <div class="title">Distributor Details</div>
         <div class="summary__wrapper">
-            <div class="detail">${config.checkout.distributor_details.address},</div>
-            <div class="detail__num">${config.checkout.distributor_details.phone}</div>
+            <div class="detail">${config.checkout.distributor_details.address}</div>
         </div>
     `)
 }
