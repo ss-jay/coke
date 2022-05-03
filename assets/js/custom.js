@@ -176,6 +176,7 @@ function insertPromotionsContainer() {
 }
 
 function insertOrderHistoryProducts(data) {
+    console.log("Inside == . ", data);
     // console.log("INSide the insertOrderHistoryProducts fubc => ", config.recent_order, data);
     var titleEle = "#orderhistory_container";
     $(titleEle).empty();
@@ -186,7 +187,7 @@ function insertOrderHistoryProducts(data) {
     // JAY
     data.map((product) => {
     // config.recent_order.products.map((product) => {
-        $(elementNode).append(`
+        $("#orderhistory_container__inner").append(`
             
             <div class="order__history__wrapper">
                 <div class="history__details">
