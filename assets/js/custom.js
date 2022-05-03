@@ -180,7 +180,7 @@ function insertOrderHistoryProducts(data) {
     // console.log("INSide the insertOrderHistoryProducts fubc => ", config.recent_order, data);
     // var titleEle = "#orderhistory_container";
     // $(titleEle).empty();
-    $(titleEle).prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
+    $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
     // $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
     // var elementNode = "#orderhistory_container__inner";
     // $(elementNode).empty();
