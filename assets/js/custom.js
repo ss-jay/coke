@@ -182,12 +182,12 @@ function insertOrderHistoryProducts(data) {
     // $(titleEle).empty();
     $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
     // $("#orderhistory_container").prepend(`<p class="products__title recent_order_title">${config.recent_order.title}</p>`)
-    // var elementNode = "#orderhistory_container__inner";
-    // $(elementNode).empty();
+    var elementNode = "#orderhistory_container__inner";
+    $(elementNode).empty();
     // JAY
     data.map((product) => {
     // config.recent_order.products.map((product) => {
-        $("#orderhistory_container__inner").append(`
+        $(elementNode).append(`
             
             <div class="order__history__wrapper">
                 <div class="history__details">
