@@ -11,7 +11,8 @@
 
 .checkout__container .order__wrapper,
 .checkout__container .offer__info__wrapper {
-    padding: 8px 16px 8px 16px;
+    padding: 16px 16px 8px 16px;
+    position: relative;
 }
 
 .checkout__container .more__offers__parent__container {
@@ -624,4 +625,19 @@
         grid-row-gap: 8px;
         align-content: flex-start;
     }
+}
+.checkout_notification {
+    width: 100%;
+    top: 55px;
+    left: 0;
+    right: 0;
+    height: 16px;
+    color: #fff;
+    display: flex;
+    position: fixed;
+    font-size: 10px;
+    z-index: 9;
+    align-items: center;
+    justify-content: center;
+    background-color: #4BB543;
 }

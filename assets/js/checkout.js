@@ -353,19 +353,20 @@ function recalculateCart() {
         $('#title_loader').html(`<div>Personalizing Promotions...</div>`);
         $('#loader_coupon').html(`<div id="loading"></div>`);
         $('#loader_summary_bar').html(`<div id="loading"></div>`);
+        $('#notification_bar').html(`<div class="checkout_notification">Promotions Applied!</div>`);
         $('#text__loading').text(`  (Recalculating...)`);
         $('#continue_cta').addClass("disabled");
 
-        $('#item_total').html(`<div id="loading"></div>`);
+        // $('#item_total').html(`<div id="loading"></div>`);
         $('#item_total').attr("orderValue", 0);
 
         $('#sticky_cart_price').text(`Rs. ${subtotal.toFixed(2)}`);
         $('#sticky_cart_quantity').text(`${$("#numberCircle").attr("value")} Item`);
 
-        $('#discout_perc').html(`<div id="loading"></div>`);
+        // $('#discout_perc').html(`<div id="loading"></div>`);
         $('#discout_perc').attr("orderValue", 0);
 
-        $('#grand_total').html(`<div id="loading"></div>`);
+        // $('#grand_total').html(`<div id="loading"></div>`);
         $('#grand_total').attr("orderValue", 0);
 
         $('.item').fadeIn(300);
