@@ -250,6 +250,8 @@ function insertOrderSummary() {
             </div>
         </div>
     `)
+
+    hideDiscountLable();
 }
 
 function hideDiscountLable() {
