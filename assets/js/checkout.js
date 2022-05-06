@@ -443,8 +443,12 @@ function passDataToBot(data) {
         data: data
     }), '*');
 
+    const totalLength = data ? data.length : 0;
+    const itemsWithNoQuantity = data.filter(obj => obj.quantity == 0);
 
-    // $('#item_total').text(data.subtotal.toFixed(2));
-    //     $('#item_total').attr("orderValue", data.subtotal.toFixed(2));
+    if (totalLength == itemsWithNoQuantity) {
+        $('#item_total').text(0);
+        $('#item_total').attr("orderValue", 0);
+    }
     console.log("AFTER ++");
 }
