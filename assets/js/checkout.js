@@ -170,7 +170,7 @@ function insertSelectedCoupon(discountData, type, data) {
         `)
     });
 
-    console.log('CHecking discount price', discountPrice);
+    console.log('CHecking discount price', discountPrice, orderCartData);
     if (+discountPrice > 0) {
         showDiscountLable();
     } else {
