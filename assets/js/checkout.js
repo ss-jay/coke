@@ -340,6 +340,14 @@ function recalculateOrderSummary(data) {
     let discount = discountPrice;
     let total = data.subtotal - discount;
 
+    if (data.products) {
+        const values = Object.values(data.products);
+        const itemsWithNoQuantity = values.filter(obj => obj.quantity == 0);
+        if (value.length == itemsWithNoQuantity.length) {
+            data.subtotal = 0;
+            total = 0;
+        }
+    }
     $('.item').fadeOut(300, function () {
         $('#title_loader').empty();
         $('#loader_coupon').empty();
