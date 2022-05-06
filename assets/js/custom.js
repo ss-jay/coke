@@ -146,7 +146,7 @@ function insertPromotionsContainer() {
                                 </div>
                             </div>
                             <div class="addmore__qty">
-                                <div class="submit">
+                                <div class="submit" product="${encodeURIComponent(JSON.stringify(promotion))}">
                                     <img src="/coke/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
@@ -269,8 +269,8 @@ function insertFavouriteProducts() {
                                 </div>
                             </div>
                             <div class="addmore__qty">
-                                <div class="submit">
-                                    <img src="/coke/assets/images/svg/icons8-ok.svg" />
+                                <div class="submit" product="${encodeURIComponent(JSON.stringify(item))}">
+                                    <img src="/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
                         </div>
@@ -361,8 +361,8 @@ function insertInnerProducts(products) {
                                     </div>
                                 </div>
                                 <div class="addmore__qty">
-                                    <div class="submit">
-                                        <img src="/coke/assets/images/svg/icons8-ok.svg" />
+                                    <div class="submit" product="${encodeURIComponent(JSON.stringify(item))}">
+                                        <img src="/assets/images/svg/icons8-ok.svg" />
                                     </div>
                                 </div>
                             </div>
@@ -428,8 +428,8 @@ function searchProducts(node) {
                                 </div>
                             </div>
                             <div class="addmore__qty">
-                                <div class="submit">
-                                    <img src="/coke/assets/images/svg/icons8-ok.svg" />
+                                <div class="submit" product="${encodeURIComponent(JSON.stringify(item))}">
+                                    <img src="/assets/images/svg/icons8-ok.svg" />
                                 </div>
                             </div>
                         </div>
@@ -517,6 +517,10 @@ function addProducts(quantityInput) {
     let siblingWrapper = $(quantityInput).siblings(".counter__wrapper");
     let productData = $(quantityInput).attr("product");
     let decodedProductData = JSON.parse(decodeURIComponent(productData));
+    if(cartData && Object.keys(cartData).length !== 0 && cartData[decodedProductData.sku]?.quantity >= decodedProductData?.itemspercase) {
+        showToastMessage(decodedProductData.itemspercase);
+        return false;
+    }
     $(quantityInput).hide();
     $(siblingWrapper).show();
     let numberCircleCount = $("#numberCircle").attr("value");
@@ -534,6 +538,11 @@ function updateCounter(counterInput, type, requestFrom) {
         var $input = $(siblingWrapper);
         let productData = $(counterInput).attr("product");
         let decodedProductData = JSON.parse(decodeURIComponent(productData));
+        if(cartData && Object.keys(cartData).length !== 0 && cartData[decodedProductData.sku].quantity >= decodedProductData.itemspercase) {
+            showToastMessage(decodedProductData.itemspercase);
+            return false;
+        }
+
         if(decodedProductData.itemspercase <= parseInt($input.val())) {
             showToastMessage(decodedProductData.itemspercase);
             return false;
