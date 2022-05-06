@@ -443,8 +443,9 @@ function passDataToBot(data) {
         data: data
     }), '*');
 
-    const totalLength = data ? data.length : 0;
-    const itemsWithNoQuantity = data.filter(obj => obj.quantity == 0);
+    const values = Object.values(data);
+    const totalLength = values ? values.length : 0;
+    const itemsWithNoQuantity = values.filter(obj => obj.quantity == 0);
 
     if (totalLength == itemsWithNoQuantity) {
         $('#item_total').text(0);
