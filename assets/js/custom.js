@@ -637,8 +637,6 @@ function sortProducts(products, sortBy) {
 
 function updateCheckoutCartData(data, type) {
     // JAY
-    console.log("CLICK ON REPEAT check => ", data);
-    console.log("THis is carrttData ==>? ", cartData)
     if (Object.keys(cartData).length == 0) {
         cartData[data.sku] = {
             "product_data": data,
