@@ -448,7 +448,7 @@ function passDataToBot(data) {
     const itemsWithNoQuantity = values.filter(obj => obj.quantity == 0);
     
     console.log("Data to compare => ", values, itemsWithNoQuantity, totalLength)
-    if (totalLength == itemsWithNoQuantity) {
+    if (totalLength == itemsWithNoQuantity.length) {
         $('#item_total').text(0);
         $('#item_total').attr("orderValue", 0);
     }
