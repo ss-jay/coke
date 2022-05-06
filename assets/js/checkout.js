@@ -437,10 +437,14 @@ function sendDataToBot() {
 }
 
 function passDataToBot(data) {
-    console.log("BEFORERERER +++++++++++");
+    console.log("BEFORERERER +++++++++++", data);
     window.parent.postMessage(JSON.stringify({
         event_code: 'custom-checkout-event',
         data: data
     }), '*');
+
+
+    // $('#item_total').text(data.subtotal.toFixed(2));
+    //     $('#item_total').attr("orderValue", data.subtotal.toFixed(2));
     console.log("AFTER ++");
 }
