@@ -343,7 +343,7 @@ function recalculateOrderSummary(data) {
     if (data.products) {
         const values = Object.values(data.products);
         const itemsWithNoQuantity = values.filter(obj => obj.quantity == 0);
-        if (value.length == itemsWithNoQuantity.length) {
+        if (values.length == itemsWithNoQuantity.length) {
             data.subtotal = 0;
             total = 0;
         }
