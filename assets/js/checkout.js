@@ -169,6 +169,12 @@ function insertSelectedCoupon(discountData, type, data) {
             </div>
         `)
     });
+
+    if (discountPrice > 0) {
+        showDiscountLable();
+    } else {
+        hideDiscountLable();
+    }
     recalculateOrderSummary(data);
 }
 
@@ -233,7 +239,7 @@ function insertOrderSummary() {
                     <div class="key bold">Item total</div>
                     <div class="item" orderValue="0" id="item_total">$0</div>
                 </div>
-                <div class="price__item" id="discount_perc">
+                <div class="price__item hide" id="discount_perc">
                      <div class="key red">Discount</div>
                      <div class="item red" orderValue="0" id="discout_perc">$0</div>
                 </div>
@@ -244,6 +250,14 @@ function insertOrderSummary() {
             </div>
         </div>
     `)
+}
+
+function hideDiscountLable() {
+    $("#discount_perc").hide();
+}
+
+function showDiscountLable() {
+    $("#discount_perc").show();
 }
 
 function insertDeliveryDetails() {
