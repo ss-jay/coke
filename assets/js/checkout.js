@@ -446,7 +446,8 @@ function passDataToBot(data) {
     const values = Object.values(data);
     const totalLength = values ? values.length : 0;
     const itemsWithNoQuantity = values.filter(obj => obj.quantity == 0);
-
+    
+    console.log("Data to compare => ", values, itemsWithNoQuantity, totalLength)
     if (totalLength == itemsWithNoQuantity) {
         $('#item_total').text(0);
         $('#item_total').attr("orderValue", 0);
