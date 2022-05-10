@@ -335,6 +335,7 @@ function insertProducts(products, sortedBy) {
 }
 
 function insertInnerProducts(products) {
+    console.log("Hello there =? ", products);
     products.map((product, index) => {
         let listitem = "#products_container_inner" + index;
         product.items.map((item) => {
