@@ -21,11 +21,17 @@ function loadPageContent(page, data) {
                 $(this).siblings(".addmore__qty").css("display", "none");
             }, 500);
         });
+        
         $('input').focus(function () {
             $($(this).siblings()[0]).fadeIn("slow").hide();
             $($(this).siblings()[1]).fadeIn("slow").hide();
             $(this).siblings(".addmore__qty").css("opacity", "1");
             $(this).siblings(".addmore__qty").css("display", "block");
+        });
+
+        $('input').on('input', function() {
+            this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');
+            return;
         });
     }
 
