@@ -665,11 +665,21 @@ function updateDropDownMenu(dpItem) {
 }
 
 function groupProductsByCategory(productsItemsJson, sortBy) {
+    let sortedProducts = [];
     let productsArrayCopy = JSON.parse(JSON.stringify(productsItemsJson));
     let groupedItems = groupProductsIntoItems(productsArrayCopy, sortBy);
     let sortCategory = sortProductsByCategory(groupedItems);
-    let sortedProducts = sortedByProducts(sortCategory, productsArrayCopy, sortBy);
+    if(sortBy === "brand") {
+        let uniqueListArr = getUniqueListBy(productsArrayCopy, 'brand');
+        sortedProducts = sortedByProducts(sortCategory, uniqueListArr, sortBy);
+    } else {
+        sortedProducts = sortedByProducts(sortCategory, productsArrayCopy, sortBy);
+    }
     return sortedProducts;
+}
+
+function getUniqueListBy(arr, key) {
+    return [...new Map(arr.map(item => [item[key], item])).values()]
 }
 
 function groupProductsIntoItems(productsArray, sortBy) {
