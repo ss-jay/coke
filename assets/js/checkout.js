@@ -468,7 +468,7 @@ function recalculateCart() {
     }
 
     /* Update totals display */
-    $('.item').fadeOut(300, function () {
+    $('.item').fadeOut(0, function () {
         $('#title_loader').html(`<div>Personalizing Promotions...</div>`);
         $('#loader_coupon').html(`<div id="loading"></div>`);
         $('#loader_summary_bar').html(`<div id="loading"></div>`);
@@ -488,7 +488,7 @@ function recalculateCart() {
         // $('#grand_total').html(`<div id="loading"></div>`);
         $('#grand_total').attr("orderValue", 0);
 
-        $('.item').fadeIn(300);
+        $('.item').fadeIn(0);
     });
 
     $('.sticky__footer').fadeIn().show();
