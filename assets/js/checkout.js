@@ -11,11 +11,15 @@ function loadCheckoutPageContent(page) {
         insertOrderSummary();
         insertDeliveryDetails();
 
-        $('.more__cta').click(function () {
+        $('.more__cta').click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             expandMore(this);
         });
 
-        $('.buyout__btn').click(function () {
+        $('.buyout__btn').click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             sendDataToBot();
         });
 
@@ -31,7 +35,7 @@ function loadCheckoutPageContent(page) {
 function insertOrderCart(orderCart, skuid) {
     if (Object.keys($(`#${skuid}`)).length !== 0) {
         let product = orderCart[skuid]["product_data"]
-        if(orderCart[skuid]["quantity"] !== 0) {
+        if (orderCart[skuid]["quantity"] !== 0) {
             $(`#${skuid}`).replaceWith(`
                 <div class="order__section" id=${product.sku}>
                     <div class="details__section">
@@ -123,11 +127,16 @@ function insertOrderCart(orderCart, skuid) {
         `)
     }
 
+    $('input').on('input', function () {
+        if (this.type === "search") return;
+        this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');
+        return;
+    });
 }
 
 function insertSelectedCoupon(discountData, type, data) {
-    if(!discountData && !type && !data) return; 
-    if(Object.keys(cartData).length === 0) {
+    if (!discountData && !type && !data) return;
+    if (Object.keys(cartData).length === 0) {
         emptyContainerData();
         return;
     }
@@ -175,8 +184,8 @@ function insertSelectedCoupon(discountData, type, data) {
 }
 
 function insertDiscountSection(discountAvailable) {
-        $("#offers_height_box").empty();
-        discountAvailable.map((discount, index) => {
+    $("#offers_height_box").empty();
+    discountAvailable.map((discount, index) => {
         $("#offers_height_box").prepend(`
             <div class="offer__info__wrapper">
                 <div class="offer__info__container">
@@ -212,7 +221,9 @@ function insertDiscountSection(discountAvailable) {
         `)
     });
     $("#offers_height_box").append(`<div class="view__less" onclick="hideDiscount()">View less</div>`);
-    $('.offer__apply').click(function () {
+    $('.offer__apply').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         addDiscount(this);
     });
 }
@@ -259,7 +270,9 @@ function insertDeliveryDetails() {
 }
 
 $(document).ready(function () {
-    $('#minus').click(function () {
+    $('#minus').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         var $input = $('#counter_input');
         var count = parseInt($input.val()) - 1;
         count = count < 1 ? 1 : count;
@@ -267,7 +280,9 @@ $(document).ready(function () {
         $input.change();
         return false;
     });
-    $('#plus').click(function () {
+    $('#plus').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         var $input = $('#counter_input');
         $input.val(parseInt($input.val()) + 1);
         $input.change();
@@ -313,7 +328,8 @@ function hideDiscount() {
 } */
 
 function processQ(data, skuid) {
-    if(Object.keys(data).length === 0) {
+    // syncContainers(skuid);
+    if (Object.keys(data).length === 0) {
         emptyContainerData();
         return;
     }
@@ -330,7 +346,7 @@ function processQ(data, skuid) {
                 discountedPrice: 90,
                 discountPrice: 90,
                 display_message: "test test test test",
-                offer_name:"TEST"
+                offer_name: "TEST"
             },
             {
                 offerType: "rupee",
@@ -340,7 +356,7 @@ function processQ(data, skuid) {
                 discountedPrice: 290,
                 discountPrice: 290,
                 display_message: "test test test test",
-                offer_name:"TEST"
+                offer_name: "TEST"
             },
             {
                 offerType: "rupee",
@@ -350,35 +366,59 @@ function processQ(data, skuid) {
                 discountedPrice: 190,
                 discountPrice: 190,
                 display_message: "test test test test",
-                offer_name:"TEST"
+                offer_name: "TEST"
             }
         ], false, cardRecalculatedData)
     }, 4000);
 }
 
+function syncContainers(skuid) {
+    for (let key in cartData) {
+        $(`#promotions-add-searchbox-${key}`).hide();
+        $(`#promotions-counter-searchbox-${key}`).show();
+        $(`#counter_input_searchbox_${key}`).val(parseInt(cartData[key].quantity));
+        $(`#counter_input_searchbox_${key}`).change();
+        $(`#counter_input_searchbox_${key}`).attr("previous-value", parseInt(cartData[key].quantity) - 1 > 0 ? parseInt(cartData[key].quantity) - 1 : 0);
+
+        $(`#promotions-add-${key}`).hide();
+        $(`#promotions-counter-${key}`).show();
+        $(`#counter_input_${key}`).val(parseInt(cartData[key].quantity));
+        $(`#counter_input_${key}`).change();
+        $(`#counter_input_${key}`).attr("previous-value", parseInt(cartData[key].quantity) - 1 > 0 ? parseInt(cartData[key].quantity) - 1 : 0);
+
+    }
+    if (!cartData[skuid]) {
+        $(`#promotions-add-${skuid}`).show();
+        $(`#promotions-counter-${skuid}`).hide();
+        // $(`#counter_input_${skuid}`).val(1);
+        // $(`#counter_input_${skuid}`).change();
+        // $(`#counter_input_${skuid}`).attr("previous-value", 1);
+    }
+}
+
 function emptyContainerData() {
     $("#order_checkout_cart").empty();
-    
+
     $('#title_loader').html(``);
     $('#loader_coupon').html(``);
     $('#loader_summary_bar').html(``);
     
     $('#text__loading').text(``);
     $('#continue_cta').addClass("disabled");
-    
+
     $('#item_total').text(0);
     $('#item_total').attr("orderValue", 0);
-    
+
     $('#discout_perc').text(0);
     $('#discout_perc').attr("orderValue", 0);
-    
+
     $('#grand_total').text(0);
     $('#grand_total').attr("orderValue", 0);
-    
+
     $('#sticky_cart_price').text(`Rs. 0`);
     $('#sticky_cart_quantity').text(`0 Item`);
     $(".sticky__footer").hide();
-    
+
     $("#coupon_container").empty();
     $("#notification_bar").empty();
     $('#numberCircle').hide();
@@ -419,14 +459,14 @@ function recalculateCart() {
     /* Sum up row totals */
     for (const key in cartData) {
         // subtotal += parseFloat(cartData[key]["product_data"].price);
-        if(cartData[key]["product_data"].unit) {
+        if (cartData[key]["product_data"].unit) {
             subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["product_data"].unit * parseInt(cartData[key]["quantity"]));
         } else {
             subtotal = subtotal + parseFloat(cartData[key]["product_data"].price) * parseInt(cartData[key]["quantity"]);
             // subtotal = subtotal * (parseInt(cartData[key]["quantity"]) ? parseInt(cartData[key]["quantity"]) : 1);
         }
     }
-    
+
     /* Update totals display */
     $('.item').fadeOut(300, function () {
         $('#title_loader').html(`<div>Personalizing Promotions...</div>`);
