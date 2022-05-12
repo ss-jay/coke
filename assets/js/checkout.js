@@ -291,10 +291,10 @@ function insertDeliveryDetails() {
     $("#delivery_details_container").append(`
         <div class="title">Delivery details</div>
         <div class="details__wrapper">
-            <div>${config.checkout.delivery_details.id}</div>
-            <div>${config.checkout.delivery_details.name}</div>
-            <div>${config.checkout.delivery_details.address}</div>
-            <div>${config.checkout.delivery_details.phone}</div>
+            <div class="grayColour">${config.checkout.delivery_details.id}</div>
+            <div class="grayColour">${config.checkout.delivery_details.name}</div>
+            <div class="grayColour">${config.checkout.delivery_details.address}</div>
+            <div class="grayColour">${config.checkout.delivery_details.phone}</div>
         </div>
     `)
 }
