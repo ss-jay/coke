@@ -33,6 +33,7 @@ function loadCheckoutPageContent(page) {
 }
 
 function insertOrderCart(orderCart, skuid) {
+    if (!orderCart[skuid]) return;
     if (Object.keys($(`#${skuid}`)).length !== 0) {
         let product = orderCart[skuid]["product_data"]
         if (orderCart[skuid]["quantity"] !== 0) {

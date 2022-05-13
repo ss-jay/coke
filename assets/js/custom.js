@@ -470,6 +470,15 @@ function searchProducts(node) {
         `);
     });
     if (node.length !== 0) {
+
+        /* for (let key in cartData) {
+            $(`#promotions-add-searchbox-${key}`).hide();
+            $(`#promotions-counter-searchbox-${key}`).show();
+            $(`#counter_input_searchbox_${key}`).val(parseInt(cartData[key].quantity));
+            $(`#counter_input_searchbox_${key}`).change();
+            $(`#counter_input_searchbox_${key}`).attr("previous-value", parseInt(cartData[key].quantity) - 1 > 0 ? parseInt(cartData[key].quantity) - 1 : 0);
+        } */
+
         $('.product-bottom-details').click(function (e) {
             e.preventDefault();
             e.stopPropagation();
