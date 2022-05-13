@@ -42,8 +42,8 @@ function loadPageContent(page) {
     }
 
     document.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+        // e.preventDefault();
+        // e.stopPropagation();
         emptySearch();
     });
 
@@ -73,11 +73,13 @@ function loadPageContent(page) {
 
     $('.counter__plus').click(function (e) {
         e.preventDefault();
+        e.stopPropagation();
         updateCounter(this, "add");
     });
 
     $('.item-drop').click(function (e) {
         e.preventDefault();
+        e.stopPropagation();
         updateDropDownMenu(this);
     });
 
