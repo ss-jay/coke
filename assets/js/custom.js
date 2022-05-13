@@ -78,8 +78,8 @@ function loadPageContent(page) {
     });
 
     $('.item-drop').click(function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+        // e.preventDefault();
+        // e.stopPropagation();
         updateDropDownMenu(this);
     });
 
